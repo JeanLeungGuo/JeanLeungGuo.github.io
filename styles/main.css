@@ -2076,19 +2076,19 @@ p > code {
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
       background: #dee2e64c;
     }h1, h2, h3, h4, h5, h6 {
-      color: #080808;
+      color: #FFFFFF ;
     }
     
     .archive-timeline-title::before {
-      background-color: #080808;
+      background-color: #FFFFFF ;
     }
     
     .post-title-link::before {
-      background-color: #080808;
+      background-color: #FFFFFF ;
     }
     
     .node-title::before {
-      background-color: #080808;
+      background-color: #FFFFFF ;
     }a {
       color: #495057;
     }
