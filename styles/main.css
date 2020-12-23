@@ -2074,7 +2074,7 @@ p > code {
       border-bottom-color: #080808;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #49505799;
+      background: #49505733;
     }h1, h2, h3, h4, h5, h6 {
       color: #212529;
     }
@@ -2121,11 +2121,11 @@ p > code {
       }.nav-item a:hover {
         color: #4dabf7;
       }.nav-item-active {
-      background: #FFFFFF99;
+      background: #FFFFFF33;
     }
 
     .nav-item:hover {
-      background: #FFFFFF99;
+      background: #FFFFFF33;
       color: rgba(0, 0, 0, 0.98);
     }.site-author-image {
       border-radius: 50%;
@@ -2161,7 +2161,7 @@ p > code {
       color: #212529;
       border-bottom-color: #212529;
     }.bg-color {
-      background-color: #F8F8FF99;
+      background-color: #F8F8FF33;
     }
     .site-meta {
       background: #343a40 !important;
@@ -2170,13 +2170,17 @@ p > code {
       background: #343a40;
     }
     .brand {
-      background: #08080899;
+      background: #08080833;
     }
-    .main-title, .brand {
+    
+      .brand {
+        font-weight: bold;
+        transform: scale(2);
+      }.main-title, .brand {
       color: #ffffff !important;
     }
     .mist .site-title i {
-      background: #ffffff99;
+      background: #ffffff33;
     }body {
       cursor: default;
     }a {
