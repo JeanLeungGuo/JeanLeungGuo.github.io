@@ -2159,7 +2159,7 @@ body {
       color: #212529;
       border-bottom-color: #212529;
     }.bg-color {
-      background-color: #f1f3f5fe;
+      background-color: #212529fe;
     }
     .site-meta {
       background: #343a40 !important;
@@ -2171,10 +2171,10 @@ body {
       background: #343a40fe;
     }
     .main-title, .brand {
-      color: #212529 !important;
+      color: #080808 !important;
     }
     .mist .site-title i {
-      background: #212529fe;
+      background: #080808fe;
     }body {
       cursor: default;
     }a {
