@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://JeanLeungGuo.github.io</id>
+    <id>https://jeanleungguo.github.io</id>
     <title>Gridea</title>
-    <updated>2020-12-23T02:21:20.045Z</updated>
+    <updated>2020-12-23T02:26:21.185Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://JeanLeungGuo.github.io"/>
-    <link rel="self" href="https://JeanLeungGuo.github.io/atom.xml"/>
+    <link rel="alternate" href="https://jeanleungguo.github.io"/>
+    <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>https://JeanLeungGuo.github.io/images/avatar.png</logo>
-    <icon>https://JeanLeungGuo.github.io/favicon.ico</icon>
+    <logo>https://jeanleungguo.github.io/images/avatar.png</logo>
+    <icon>https://jeanleungguo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[hello girdea ]]></title>
-        <id>https://JeanLeungGuo.github.io/post/hello-girdea/</id>
-        <link href="https://JeanLeungGuo.github.io/post/hello-girdea/">
+        <id>https://jeanleungguo.github.io/post/hello-girdea/</id>
+        <link href="https://jeanleungguo.github.io/post/hello-girdea/">
         </link>
         <updated>2020-12-23T00:30:14.000Z</updated>
         <content type="html"><![CDATA[<p>this is my first gridea blog</p>
