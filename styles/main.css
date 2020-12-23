@@ -2175,7 +2175,9 @@ body {
     }
     .mist .site-title i {
       background: #FFFFFFfe;
-    }body {
+    }.bg-img img {
+        filter: blur(10px)
+      }body {
       cursor: default;
     }a {
       cursor: pointer;
