@@ -2184,7 +2184,7 @@ p > code {
     }input, textarea, code {
       cursor: text;
     }code > span.copy-code {
-      cursor: url('/media/curs/禁止复制哦，复制会被博主发现ip哦.cur'), text !important;
+      cursor: pointer;
     }.post img {
       cursor: zoom-in;
     }.post img {
