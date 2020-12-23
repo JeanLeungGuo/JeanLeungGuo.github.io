@@ -2072,7 +2072,7 @@ body {
       border-bottom-color: #495057;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #fffffffe;
+      background: #dee2e6fe;
     }h1, h2, h3, h4, h5, h6 {
       color: #ffffff;
     }
@@ -2115,9 +2115,9 @@ body {
       background-color:  !important;
     }
       .nav-item a {
-        color:  #fffffff;
+        color:  #080808;
       }.nav-item a:hover {
-        color: #f03e3e;
+        color: #4dabf7;
       }.nav-item-active {
       background: #f8f9fafe;
     }
