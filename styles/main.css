@@ -2072,21 +2072,21 @@ body {
       border-bottom-color: #495057;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
-      background: #ced4dafe;
+      background: #fffffffe;
     }h1, h2, h3, h4, h5, h6 {
-      color: #212529;
+      color: #ffffff;
     }
     
     .archive-timeline-title::before {
-      background-color: #212529;
+      background-color: #ffffff;
     }
     
     .post-title-link::before {
-      background-color: #212529;
+      background-color: #ffffff;
     }
     
     .node-title::before {
-      background-color: #212529;
+      background-color: #ffffff;
     }a {
       color: #339af0;
     }
