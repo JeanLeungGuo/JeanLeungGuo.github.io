@@ -2076,19 +2076,19 @@ p > code {
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
       background: #dee2e64c;
     }h1, h2, h3, h4, h5, h6 {
-      color: #FFFFFF ;
+      color: #212529;
     }
     
     .archive-timeline-title::before {
-      background-color: #FFFFFF ;
+      background-color: #212529;
     }
     
     .post-title-link::before {
-      background-color: #FFFFFF ;
+      background-color: #212529;
     }
     
     .node-title::before {
-      background-color: #FFFFFF ;
+      background-color: #212529;
     }a {
       color: #495057;
     }
@@ -2173,10 +2173,10 @@ p > code {
       background: #343a404c;
     }
     .main-title, .brand {
-      color: #080808 !important;
+      color: #ffffff !important;
     }
     .mist .site-title i {
-      background: #0808084c;
+      background: #ffffff4c;
     }body {
       cursor: default;
     }a {
