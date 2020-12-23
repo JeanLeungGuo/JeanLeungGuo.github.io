@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2020-12-23T14:31:41.860Z</updated>
+    <updated>2020-12-23T14:45:14.873Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -18,31 +18,10 @@
         <updated>2020-12-23T13:31:52.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[中文]]></title>
-        <id>https://jeanleungguo.github.io/zhong-wen/</id>
-        <link href="https://jeanleungguo.github.io/zhong-wen/">
+        <title type="html"><![CDATA[用户增长过程中关注的数据指标]]></title>
+        <id>https://jeanleungguo.github.io/user-growth/</id>
+        <link href="https://jeanleungguo.github.io/user-growth/">
         </link>
-        <updated>2020-12-23T10:50:27.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[11111]]></title>
-        <id>https://jeanleungguo.github.io/11111/</id>
-        <link href="https://jeanleungguo.github.io/11111/">
-        </link>
-        <updated>2020-12-23T10:24:38.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[hello gridea]]></title>
-        <id>https://jeanleungguo.github.io/hello-gridea/</id>
-        <link href="https://jeanleungguo.github.io/hello-gridea/">
-        </link>
-        <updated>2020-12-23T10:23:45.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[文章1]]></title>
-        <id>https://jeanleungguo.github.io/hello/</id>
-        <link href="https://jeanleungguo.github.io/hello/">
-        </link>
-        <updated>2020-12-23T10:11:13.000Z</updated>
+        <updated>2020-12-23T13:31:52.000Z</updated>
     </entry>
 </feed>
