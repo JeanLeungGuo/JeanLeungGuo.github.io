@@ -2063,30 +2063,30 @@ body {
         margin: 0 auto;
       }
     body {
-      color: #495057;
+      color: #080808;
     }
     .next-md-body {
-      color: #495057;
+      color: #080808;
     }
     .next-md-body h1, .next-md-body h2 {
-      border-bottom-color: #495057;
+      border-bottom-color: #080808;
     }
     .archive-timeline-box::after, .tag-timeline-wrapper::after {
       background: #dee2e6fe;
     }h1, h2, h3, h4, h5, h6 {
-      color: #ffffff;
+      color: #212529;
     }
     
     .archive-timeline-title::before {
-      background-color: #ffffff;
+      background-color: #212529;
     }
     
     .post-title-link::before {
-      background-color: #ffffff;
+      background-color: #212529;
     }
     
     .node-title::before {
-      background-color: #ffffff;
+      background-color: #212529;
     }a {
       color: #a5d8ff;
     }
