@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2020-12-23T08:50:11.536Z</updated>
+    <updated>2020-12-23T09:03:44.826Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -10,15 +10,4 @@
     <logo>https://jeanleungguo.github.io/images/avatar.png</logo>
     <icon>https://jeanleungguo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Jeanleung_blog</rights>
-    <entry>
-        <title type="html"><![CDATA[hello girdea ]]></title>
-        <id>https://jeanleungguo.github.io/hello-girdea/</id>
-        <link href="https://jeanleungguo.github.io/hello-girdea/">
-        </link>
-        <updated>2020-12-23T00:30:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>😝</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>😝</p>
-]]></content>
-    </entry>
 </feed>
