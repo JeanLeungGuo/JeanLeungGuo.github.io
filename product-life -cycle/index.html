@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>中文 | Jeanleung_blog</title>
+<title>产品生命周期 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608730876433">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,7 +38,7 @@
 
 
 
-  <meta name="description" content="中文" />
+  <meta name="description" content="产品生命周期" />
   <meta name="keywords" content="Gridea" />
 </head>
 
@@ -151,7 +151,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -210,6 +211,200 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%85%B3%E6%B3%A8%E4%BA%A7%E5%93%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">1、为什么要关注产品生命周期</a></li>
+<li><a href="#2-%E4%BA%A7%E5%93%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%88%92%E5%88%86">2、<strong>产品生命周期划分</strong></a></li>
+<li><a href="#3-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%BA%A7%E5%93%81%E6%89%80%E5%A4%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><strong>3、如何判断产品所处生命周期</strong></a><br>
+*
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%951%E7%94%B1%E6%B5%81%E5%A4%B1%E7%94%A8%E6%88%B7%E4%B8%8E%E6%96%B0%E5%A2%9E%E7%94%A8%E6%88%B7%E5%85%B3%E7%B3%BB"><strong>方法1：由流失用户与新增用户关系</strong></a></li>
+<li><a href="#%E6%96%B9%E6%B3%952%E7%89%88%E6%9C%AC%E6%9B%B4%E6%96%B0%E9%A2%91%E7%8E%87"><strong>方法2：版本更新频率</strong></a></li>
+<li><a href="#%E6%96%B9%E6%B3%953%E9%80%9A%E8%BF%87%E6%B5%81%E9%87%8F%E6%9D%A5%E5%88%A4%E6%96%AD%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><strong>方法3：通过流量来判断生命周期</strong></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -297,8 +492,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/zhong-wen/">
-      中文
+    <a class="post-title-link" href="https://jeanleungguo.github.io/product-life -cycle/">
+      产品生命周期
     </a>
   </h1>
   <div class="post-meta">
@@ -306,7 +501,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-12-23 18:50:27">2020-12-23</span>
+      <span class="publish-time" data-t="2020-12-23 21:31:52">2020-12-23</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -325,18 +520,72 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
+      <span>7<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>12<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>2064<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>中文文字不知道能不能保存</p>
+              <h1 id="1-为什么要关注产品生命周期">1、为什么要关注产品生命周期</h1>
+<p>任何一款产品都和人一样有属于自己生命阶段，在对应的阶段也会有属于这个阶段的特征，我们作为产品人只有先判断出当前产品生命状态再制定下一步发展战略，才能有针对性解决产品中现存的问题。</p>
+<p>举例来说，对于一款处于引入期的产品，此时最重要的是验证商业模式与产品核心竞争力，而如果在此时就开始大举推广往往造成的结果就是由于产品不一定契合目前市场的需求，而投入巨大收效甚微，白白浪费了资源。</p>
+<h1 id="2-产品生命周期划分">2、<strong>产品生命周期划分</strong></h1>
+<figure data-type="image" tabindex="1"><img src="https://uploader.shimo.im/f/EqU5yOZLvY62YISN.png!thumbnail?fileGuid=GH9rqwc6GRkrVrrJ" alt="图片" loading="lazy"></figure>
+<p><strong>a.引入期</strong></p>
+<p>此时产品还处于寻找主要市场切合点的时期，市场用户大多不了解产品，此时产品会通过快速迭代去寻找产品的核心方向，并通过小范围的市场投放去进行产品方向验证，所谓很多产品人老讲的MVP期也就属于这里。</p>
+<p><strong>b.成长期</strong></p>
+<p>此时的产品大多数进行到基本产品框架搭建完成的时期，在这个阶段我们要去发现的是产品的核心功能到底有多核心，其发展的天花板在哪里？找到一些有传播力的功能，目的是为核心功能吸引新用户。一般来说在用户量上，C端产品此时应该逐渐开始迈进十万量级门槛。</p>
+<p><strong>c.成熟期</strong></p>
+<p>产品已经完成缺少功能开发，开始进入迭代优化期（此时APP的应用更新介绍大多数描述都是性能优化，交互优化两个选项），产品用户增长也已步入平缓期，目标市场已经被基本占领，市场需求趋向饱和，整体环境也开始竞争加剧。</p>
+<p>如果还从用户量上来看：对于一般的C端产品，此时应该迈入百万量级用户。那么此时我们要做的主要是进行核心功能的优化与新的兴奋点寻找，同时更重要的是在核心功能外，找到新的增长点。</p>
+<p><strong>d.衰退期</strong></p>
+<p>新产品或替代品出现导致用户转向其他产品，用户量开始衰退。随之产品渐渐停止维护，产品开始走向死亡。</p>
+<h1 id="3-如何判断产品所处生命周期"><strong>3、如何判断产品所处生命周期</strong></h1>
+<h3 id="方法1由流失用户与新增用户关系"><strong>方法1：由流失用户与新增用户关系</strong></h3>
+<p>首先需要我们对用户分类有个了解，大体来说用户分为如下5类：</p>
+<p>**访问用户：**也就是每天的UV，主要体现在访问量，能够直接反应产品的受欢迎程度；</p>
+<p>**新增用户：**分析产品发展速度与推广效果；</p>
+<p>**活跃用户：**此类用户才是产品真正掌握的用户，只有活跃用户才能为产品带来价值；</p>
+<p>**流失用户：**根据产品定义时间周期，满足周期未访问的用户就可称为流失用户。例如：知乎一个月未登录用户；电商三个月或半年未下订单的用户；</p>
+<p>**回访用户：**分析产品挽回用户的能力。</p>
+<p>这里面我们需要重点关注的指标主要为这两个：新增用户比例多少、用户流失率多少。掌握了这两个指标我们可以来判断产品状态。</p>
+<p>判断方法：</p>
+<p><strong>新增用户比例大于流失率</strong>：产品处于发展成长阶段，很多用户在体验后觉得无法满足需求并抛弃了软件，也就是此时产品的留存相当低；</p>
+<p><strong>新增用户比例与流失率持平</strong>：持平处于成熟稳定阶段；</p>
+<p><strong>新增用户比例低于用户流失率</strong>：产品处于下滑衰退阶段。</p>
+<h3 id="方法2版本更新频率"><strong>方法2：版本更新频率</strong></h3>
+<p>产品的迭代速度也就是生长的标志。在一个产品诞生之初一切都是新的，产品中每一个功能需要完成先从零到一再从一到好的发展历程。</p>
+<p>那么我们可以根据这个维度总结出来如下结论：</p>
+<p>当<strong>产品迭代速度很快</strong>，几乎是一周一个版本且不断在堆砌新功能就可以证明产品还处于<strong>引入期</strong>；</p>
+<p>当<strong>功能迭代速度明显变缓</strong>，但已经每次更新都以功能为主时，此时产品便是进入<strong>增长期</strong></p>
+<p>当<strong>功能逐渐稳定开始优化细节</strong>，同时版本更新时间也开始拉长就是进入了<strong>成长期</strong>。</p>
+<h3 id="方法3通过流量来判断生命周期"><strong>方法3：通过流量来判断生命周期</strong></h3>
+<p>网站的流量分为三大类，分别是直接流量、推荐流量和搜索引擎流量。</p>
+<p><strong>搜索流量</strong>：点击各大搜索引擎的搜索结果进入网站产生的流量，这里主要指用户自然搜索不包含购买搜索引擎的排名；</p>
+<p><strong>推荐流量</strong>：点击其他网站的链接或锚点进入本网站，其他网站的链接主要是指常见的网站下的友情链接，而网站锚点的流量主要是指：Flash 广告、搜索引擎的诱导访问、弹窗广告等导流入口，当然这部分是需要进行付费的；</p>
+<p><strong>直接流量</strong>：直接从域名进入网站。这里需要强调下，具体来说分为如下几种：直接输入网址；从浏览器收藏夹进入；和所有统计中丢失来源的访问信息源；</p>
+<p>在初步建立起印象后，我们就可以看看如何评估一个网站的质量与此时的业务状态。网站的质量分析一般是按照质和量两个维度来衡量的，例如下图。</p>
+<figure data-type="image" tabindex="2"><img src="https://uploader.shimo.im/f/hFbZFvHgP82ZeX6F.png!thumbnail?fileGuid=GH9rqwc6GRkrVrrJ" alt="图片" loading="lazy"></figure>
+<p>X轴代表数量，指网站的用户访问量（UV）；</p>
+<p>Y轴代表核心指标触达出数，也是反应流量质量的指标，具体来说指可以促进网站核心的事件次数，例如电商下单、视频网站的点击量等行为。</p>
+<p>我们将流量数据按照它们在这两个维度上的表现展示在坐标轴上，不同的流量就会有不同的位置相对应，如果把流量的成本用圆圈的大小表示，就可以清楚的知道什么途径的流量是最好的。</p>
+<ul>
+<li>第一象限的流量：质高量高。这是网站的核心流量，对于这部分流量要去努力的方向是降低获取流量的成本；</li>
+<li>第二象限的流量：质高量低。这部分流量是网站的忠诚用户，它们有很高的质，但数量较少。</li>
+<li>第三象限的流量：量还可以但质较低，并且获取流量的成本也比较高；在图中我们可以看到此处是我们通过广告方式取得的，说明这个付费广告渠道获得的流量不高，需要及时调整投放。</li>
+<li>第四象限的流量：量高质低。这部分流量是我们花费了资源后却无法转换的用户，是我们需要优先关注的部分，要去改善产品去提高转换率。</li>
+</ul>
+<p>通过判断当前产品的主要流量所处象限就可以推断产品的生命周期：</p>
+<ul>
+<li><strong>引入期与增长期</strong>：主要流量为第三，第四象限，表明市场对产品还处于接受期，通过流量数据我们清晰的看到在大量投入市场推广费用进行宣传后，得到的用户群却不是非常稳定。</li>
+<li><strong>成熟期</strong>：主要流量转换为第一象限，产品此时已经有了足够健康流量支撑，且数据比较稳定没有大的波动，整个渠道ROI测算后较好。</li>
+<li><strong>衰退期</strong>：主要流量回归到第四象限，产品的整体盈利能力下降而成本却居高不下，开始步入死亡。</li>
+</ul>
 
             </div>
             
@@ -349,7 +598,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jeanleungguo.github.io/zhong-wen/" title="中文">https://jeanleungguo.github.io/zhong-wen/</a>
+      <a href="https://jeanleungguo.github.io/product-life -cycle/" title="产品生命周期">https://jeanleungguo.github.io/product-life -cycle/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -364,15 +613,11 @@
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="产品生命周期" href="https://jeanleungguo.github.io/product-life -cycle/">产品生命周期</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="产品生命周期" href="https://jeanleungguo.github.io/product-life -cycle/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="11111" href="https://jeanleungguo.github.io/11111/">11111</a>
-        <a class="nav-mobile-next" title="11111" href="https://jeanleungguo.github.io/11111/">下一篇</a>
+        <a class="nav-pc-next" title="中文" href="https://jeanleungguo.github.io/zhong-wen/">中文</a>
+        <a class="nav-mobile-next" title="中文" href="https://jeanleungguo.github.io/zhong-wen/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

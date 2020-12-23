@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2020-12-23T13:28:28.858Z</updated>
+    <updated>2020-12-23T13:41:19.931Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -10,6 +10,13 @@
     <logo>https://jeanleungguo.github.io/images/avatar.png</logo>
     <icon>https://jeanleungguo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Jeanleung_blog</rights>
+    <entry>
+        <title type="html"><![CDATA[产品生命周期]]></title>
+        <id>https://jeanleungguo.github.io/product-life -cycle/</id>
+        <link href="https://jeanleungguo.github.io/product-life -cycle/">
+        </link>
+        <updated>2020-12-23T13:31:52.000Z</updated>
+    </entry>
     <entry>
         <title type="html"><![CDATA[中文]]></title>
         <id>https://jeanleungguo.github.io/zhong-wen/</id>
