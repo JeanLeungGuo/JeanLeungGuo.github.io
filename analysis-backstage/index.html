@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>Jeanleung_blog</title>
+<title>如何建设数据监控后台 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1608889688391">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="如何建设数据监控后台" />
+  <meta name="keywords" content="数据分析" />
 </head>
 
 <body>
@@ -170,10 +172,26 @@
   <div class="main-continer">
     
     <div
-      class="section-layout  gemini">
+      class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -245,204 +263,469 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%9C%89%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7%E5%90%8E%E5%8F%B0"><strong>为什么要有数据监控后台？</strong></a></li>
+<li><a href="#%E5%A6%82%E4%BD%95%E7%AD%9B%E9%80%89%E5%85%B3%E9%94%AE%E6%8C%87%E6%A0%87">如何筛选关键指标</a>
+<ul>
+<li><a href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%E9%80%89%E6%8B%A9%E8%83%BD%E5%8F%8D%E5%BA%94%E9%97%AE%E9%A2%98%E7%9A%84%E6%95%B0%E6%8D%AE%E6%8C%87%E6%A0%87">第一步：选择能反应问题的数据指标</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5-%E8%BE%85%E5%8A%A9%E6%8C%87%E6%A0%87%E5%9C%88%E5%AE%9A">第二步： 辅助指标圈定</a></li>
+</ul>
+</li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%96%B9%E6%B3%95">数据分析的方法</a>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E4%B8%80%E6%BC%8F%E6%96%97%E6%A8%A1%E5%9E%8B"><strong>模型一：漏斗模型</strong></a>
+<ul>
+<li><a href="#%E5%A6%82%E4%BD%95%E5%88%86%E6%9E%90%E7%8E%AF%E8%8A%82%E8%BD%AC%E5%8C%96">如何分析环节转化</a></li>
+<li><a href="#%E6%BC%8F%E6%96%97%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%BC%8F%E6%96%97%E9%A2%97%E7%B2%92%E5%BA%A6%E5%AE%9A%E4%B9%89"><strong>漏斗模型的漏斗颗粒度定义</strong></a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E4%BA%8C%E6%9D%9C%E9%82%A6%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B">模型二：<strong>杜邦分析模型</strong></a>
+<ul>
+<li><a href="#%E4%BB%A5%E7%94%B5%E5%95%86%E6%88%90%E4%BA%A4%E9%A2%9D%E4%B8%BE%E4%BE%8B%E6%9D%9C%E9%82%A6%E6%A8%A1%E5%9E%8B%E7%94%A8%E6%B3%95">以电商成交额举例杜邦模型用法</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box box-shadow-wrapper">
-          <section class="section tags-section bg-color posts-expand">
-            <div class="tags-box">
-  <div class="tag-cloud-title language" data-lan="cloud-tags" data-count="3">
-    目前共计 3 个标签
-  </div>
-  <div class="tag-cloud-list" id="tags">
-    
-      
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-            
-      
-        
-          
-        
-      
-      <a class="cloud-tag" href="https://jeanleungguo.github.io/tag/" rel="6">用户增长</a>
-    
-      
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-      <a class="cloud-tag" href="https://jeanleungguo.github.io/product_design/" rel="1">产品设计</a>
-    
-      
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-        
-          
-        
-      
-        
-          
-        
-      
-        
-          
-            
-      
-      <a class="cloud-tag" href="https://jeanleungguo.github.io/tag2/" rel="2">数据分析</a>
-    
-  </div>
-</div>
-<script>
 
-  let fontStart = 12, fontEnd = 30, colorStart = '#666', colorEnd = '#000';
-  let tags = document.querySelector('#tags').children;
-  let counts = [];
-  for(let i = 0; i < tags.length; i++) {
-    counts.push(tags[i].rel);
-  }
-  let lowest = Math.min.apply(null,counts), highest = Math.max.apply(null,counts);;
-  let range = highest - lowest;
-  if (range === 0) {
-    range = 1;
-  }
-  let fontIncr, colorIncr;
-  fontIncr = (fontEnd - fontStart) / range;
-  
-  let sColorArr = toRGB(colorStart), eColorArr = toRGB(colorEnd);
-
-  for(let i = 0; i < tags.length; i++) {
-    let disCount = tags[i].rel - lowest;
-    let fontSize = fontStart + disCount * fontIncr;
-    let style = 'font-size: ' + fontSize + 'px;';
-    let arr = [];
-    for(let c = 0; c < sColorArr.length; c++) {
-      if (disCount === 0) {
-        disCount = 1;
-      }
-      let val = (sColorArr[c] - eColorArr[c]) / range * disCount;
-      if (val >= 100) {
-        val = eColorArr[c];
-      } else if (val <= 0) {
-        val = sColorArr[c];
-      }
-      arr[c] = Math.floor(val);
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
     }
-    style += 'color: ' + toHex(arr);
-    tags[i].style = style;
   }
 
-  function toRGB(code) {
-    if (code.length === 4) {
-      code = code.replace(/(\w)(\w)(\w)/gi, "\$1\$1\$2\$2\$3\$3");
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
     }
-    var hex = /(\w{2})(\w{2})(\w{2})/.exec(code);
-    return [parseInt(hex[1], 16), parseInt(hex[2], 16), parseInt(hex[3], 16)];
   }
 
-  function toHex(ary) {
-    return "#" + ((1 << 24) + (ary[0] << 16) + (ary[1] << 8) + ary[2]).toString(16).slice(1);
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
   }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
 
 </script>
-          </section>
+            </div>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://jeanleungguo.github.io/analysis-backstage/">
+      如何建设数据监控后台
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2020-12-22 21:31:52">2020-12-22</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://jeanleungguo.github.io/tag2/">
+        <span>数据分析</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>9<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>2530<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <h1 id="为什么要有数据监控后台"><strong>为什么要有数据监控后台？</strong></h1>
+<p>市场中很多初创公司在初期为了快速上线，往往选择只进行功能开发，而认为数据后台在初期没有太多作用，觉得说这种不重要的东西可以在后期再补上。但这是错误的。</p>
+<p>正确的产品生产流程应该是在我们生产产品后，在市场的反馈下及时纠正我们的发展方向，完成迭代，从而保证尽量让多的用户满意。特别是刚刚投放到市场的产品，更需要急切去确认商业模式是否正确，是否为用户真正的痛点，从而及时发现方向上的问题进行及时调整。</p>
+<figure data-type="image" tabindex="1"><img src="https://uploader.shimo.im/f/t5pKui3r0OkQC1sD.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>那么，如何低成本而又快速的定位用户喜好呢？</p>
+<p>这个时候数据后台的作用就凸显出来了，在这里我们不用去耗时耗力的做大量的用户访谈调查，就可以直接又真实看到用户的行为：到底用到了产品中的哪些部分，又是否有我们以为会大受欢迎的功能被用户残忍的抛弃等，从而帮助我们快速定位市场的声音。</p>
+<h1 id="如何筛选关键指标">如何筛选关键指标</h1>
+<p>我们可以利用核心业务驱动来帮助我们定义数据指标的范围：</p>
+<figure data-type="image" tabindex="2"><img src="https://uploader.shimo.im/f/wVqOuisA0FY3VN82.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>闭环设计的核心在于<strong>把握市场的反馈</strong>，那么重重之中就是验证市场对于商业模式的是否喜好。</p>
+<h2 id="第一步选择能反应问题的数据指标">第一步：选择能反应问题的数据指标</h2>
+<p>在这里经常会遇到两类问题：</p>
+<p>（1）采集数据颗粒度过于细导致应用缓慢</p>
+<p>很多产品经理在定义元数据时，由于不能清楚的定位数据平台的使用方向，所以很多时候害怕遗漏便将产品中所有点事无巨细都埋上点，导致一个图文资讯类产品在用户打开后，流量消耗和看视频一样，你说我不卸载它卸载谁。</p>
+<p>（2）数据统计点过少（颗粒度过大）导致的发现问题却无法定位具体原因</p>
+<p>当然也出现了另外一种后台为了避免应用过于臃肿，而只采集日活，月活，留存等用户数据，导致出现用户量抖动变化时，无法定位究竟是什么问题导致的，讲真那时内心感觉比不知道用户流失还难受（不是我，不是我）。</p>
+<p>那么到底什么才是我们的核心业务？对于不同的产品来说，在迭代初期都应该有的一个核心：<strong>你最想让用户在你这干什么。</strong></p>
+<p>举例来说，电商平台想让用户在我这买东西，视频网站想让用户在我这看视频，而不是在我这比价格，搞什么视频留言等衍生需求。在找到产品的核心后，我们就要开始思考什么指标可以去衡量其好坏？</p>
+<p>所以，只有找到业务的核心数据才会对我们有意义而不是只笼统的计算用户访问量。</p>
+<h2 id="第二步-辅助指标圈定">第二步： 辅助指标圈定</h2>
+<p>随着行业数据分析的逐渐普及，也慢慢积累出了大量的通用数据指标，供我们直接借鉴。</p>
+<p>通用指标指的是可以根据你的业务大方向套用的类型。在这我总结了行业中最基础的通用指标范围：</p>
+<figure data-type="image" tabindex="3"><img src="https://uploader.shimo.im/f/kABmggYQKGpAfFwl.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>这样在我们由核心业务推导出我们产品的核心指标后，在通过这里挑选搭配的数据指标就可以完成我们数据平台的范围选择。</p>
+<h1 id="数据分析的方法">数据分析的方法</h1>
+<h2 id="模型一漏斗模型"><strong>模型一：漏斗模型</strong></h2>
+<p>第一个我们要介绍的模型是漏斗模型，所为漏斗模型其最早起源是从传统行业的营销商业活动中演变而来的，它是一套流程式数据分析方法。</p>
+<p>漏斗模型框架是什么？</p>
+<p>它的主要模型框架：通过检测目标流程中起点（用户进入），到最后完成目标动作。这其中经历过的每个节点的用户量与留存量，来考核每个节点的好坏，来找到最需要优化的节点。可以说漏斗模型是用户行为状态以及从起点到终点各阶段用户转化率情况的重要分析模型。</p>
+<figure data-type="image" tabindex="4"><img src="https://uploader.shimo.im/f/hVsD7mmouBTG1DNh.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<h3 id="如何分析环节转化">如何分析环节转化</h3>
+<p>我们不能说某个环节的转化率最低，就一定是某一个环节出现了问题。也就是说在我们拿到数据后，要按照一定的对比维度去进行分析，得到的结果才是有意义的。</p>
+<p>总结来说，在漏斗模型建立完成后，我们对数据要从如下三个维度去进行分析：</p>
+<p>**纵向对比：**也就是让产品与自己历史同期进行对比，这种对比适用于对某一流程或其中某个步骤进行改进或优化的效果监控；</p>
+<p>**横向对比：**通过将本产品的同一流程转化率在竞品中进行横向对比，定位自身产品出现的问题；</p>
+<p>**来源分类：**细分来源或不同的客户类型在转化率上的表现，从而完成客户群体划分。在日常分析中我们通常用于网站广告或推广的效果的评价。</p>
+<h3 id="漏斗模型的漏斗颗粒度定义"><strong>漏斗模型的漏斗颗粒度定义</strong></h3>
+<p>在实际的场景中同一款产品会有各种各样的用户类型，比如用户来自于不同的区域、不同的生命周期、不同的性别，不同的年龄，他们在漏斗中的表现都是不一样的，也就造成了在用户漏斗中的转化率往往是有很大的差异的，因此我们需要将不同的人群拆分成一个个小的漏斗去逐一分析，一点点去分析结果。</p>
+<p>让我们再总结一下所谓漏斗模型将任意产品流程抽象成一个个的关键步骤，如案例中的购物流程。然后用转化率来衡量每一个步骤的表现，最后通过异常的数据指标找出有问题的环节。从而解决问题优化该步骤，最终达到提升转化率的目的。</p>
+<p>用一句话来说<strong>漏斗模型的核心思想就是分解和归类量化</strong>。</p>
+<p>在定位了产品出现问题的环节后，接下来让我们来看看，如何具体定位指标。</p>
+<h2 id="模型二杜邦分析模型">模型二：<strong>杜邦分析模型</strong></h2>
+<blockquote>
+<p>“杜邦分析法（DuPont Analysis）是利用几种主要的财务比率之间的关系来综合地分析企业的财务状况。具体来说，它是一种用来评价公司赢利能力和股东权益回报水平，从财务角度评价企业绩效的一种经典方法。其基本思想是将企业净资产收益率逐级分解为多项财务比率乘积，这样有助于深入分析比较企业经营业绩。”</p>
+</blockquote>
+<p>其实通俗地说就是将大指标拆分成若干个底层应用中直接触达的动作。</p>
+<figure data-type="image" tabindex="5"><img src="https://uploader.shimo.im/f/MqgFxMel9qFVzDen.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>一般的我们将指标分为如下三个角色：</p>
+<ol>
+<li><strong>核心指标</strong></li>
+<li><strong>子指标</strong>（若干层级）</li>
+<li><strong>孙代指标</strong>（让抽象的指标与APP中动作进行关联上的指标）</li>
+</ol>
+<p>那为什么要这么做呢？直接看指标不行吗？</p>
+<p>这是由于产品本身涉及到的各种指标类型非常的多，但产品经理无法对这些指标面面俱到。往往此时产品经理只能去关注本业务核心指标。而这些指标已经远远脱离了现实APP中可以直观感受到的部分。</p>
+<p>当我们发现在我们某次日常运营活动投放后，产品的成交金额不增反而出现了下跌，这个时候问题就出现了到底是什么让我们的产品出现这样的问题了呢？</p>
+<p>那么这个时候就需要通过杜邦分析模型来寻找答案了。</p>
+<h3 id="以电商成交额举例杜邦模型用法">以电商成交额举例杜邦模型用法</h3>
+<p>以电商行业举例，对于电商类的产品来说核心指标就是成交金额。首先我们将电商成交额做如下拆分：</p>
+<ul>
+<li>核心指标拆分：销售额 = 付费人数 * 客单价</li>
+<li>子指标拆分：付费人数 = UV * 付费转化率</li>
+<li>孙代指标拆分：（UV进行拆分）</li>
+</ul>
+<figure data-type="image" tabindex="6"><img src="https://uploader.shimo.im/f/Trkird6Q3PK2Y2oZ.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>我们拿此处UV的例子来看，经过层层拆分，我们看到了最后和产品相关的是我们本次活动用户步骤与步骤奖励数这两个指标。因此我们就可以根据如上的图中的指标去看数据来一步步寻找产品的问题；</p>
+<ul>
+<li>核心指标拆分：销售额 = 付费人数 * 客单价</li>
+</ul>
+<figure data-type="image" tabindex="7"><img src="https://uploader.shimo.im/f/BLhkp6lmBY2IF2Az.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>从这我们就能看到核心指标中付费人数出现了问题，那么我们就找到了入手调查的地方，让我们继续拆分付费人数这个指标。</p>
+<ul>
+<li>子指标拆分：付费人数 = UV * 付费转化率</li>
+</ul>
+<figure data-type="image" tabindex="8"><img src="https://uploader.shimo.im/f/aJEIwJoc9pCIxQx6.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>在付费转化率几乎没有变化的情况下，UV就成了这最大的问题。</p>
+<ul>
+<li>孙指标拆分：UV=新用户人数+老用户人数</li>
+</ul>
+<figure data-type="image" tabindex="9"><img src="https://uploader.shimo.im/f/eFHr2H4qJyYUfSPn.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p><strong>·</strong></p>
+<p><strong>·</strong></p>
+<p><strong>·</strong></p>
+<ul>
+<li><strong>中间省去若干个孙代指标的最终对比</strong></li>
+</ul>
+<figure data-type="image" tabindex="10"><img src="https://uploader.shimo.im/f/1BlToRsU8efzLgOg.png!thumbnail?fileGuid=8wQK3YxTYGcwxvDw" alt="图片" loading="lazy"></figure>
+<p>那么在这我们就能清楚的看到了，由于我们本次的活动要求用户过多，长达7步导致了用户很多程度下不愿意参与本活动，导致了流失与交易金额的下降。</p>
+<p>到这我们产品的解决方案也就出来了需要对活动进行修改，减少活动用户步骤或者增大奖励。</p>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Jeanleung
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://jeanleungguo.github.io/analysis-backstage/" title="如何建设数据监控后台">https://jeanleungguo.github.io/analysis-backstage/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://jeanleungguo.github.io/tag2/"># 数据分析</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">用户增长过程中关注的数据指标</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+    </div>
+  </div>
+</div>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -1196,6 +1479,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -2264,6 +2764,5 @@
 
   <div class="snow-container"></div>
   <script src="/media/js/bg/snow.js"></script>
-
 
 </html>
