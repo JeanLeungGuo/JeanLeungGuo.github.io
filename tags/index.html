@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1608953199489">
+<link rel="shortcut icon" href="/favicon.ico?v=1609152171449">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -1279,27 +1279,28 @@
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/Middle-Platform/"" data-c="
           &lt;h1 id=&#34;1-中台的诞生&#34;&gt;1、中台的诞生&lt;/h1&gt;
-&lt;p&gt;过去每一个前台的用户终端都需要与后台进行一次对接&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/IBCJMr4n5oOKtYRX.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
-&lt;p&gt;而后台的每一个模块都需要维持与前台业务的关联，并根据不同业务前台的特征加入适配。这样造成的结果：&lt;/p&gt;
-&lt;p&gt;后台的每一个模块都需要加入与前台适配的部分，从而大大加大了开发量；&lt;/p&gt;
-&lt;p&gt;每个前端在启动时需要分别对接不同的后台模块，也加大前台启动时的工作量；&lt;/p&gt;
-&lt;p&gt;当后台进行升级或架构调整时还需要考虑与前台的对接，并进行逐一的调整。&lt;/p&gt;
-&lt;p&gt;当我们引入中台后，让中台作为一个对接层，帮我们去统一对接前台的不同终端，同时对后台各个子系统进行统一的封装，让前台能无感知的使用各项服务而不需要单独设计通道，我们的系统也就简化成了这个样子：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/lL93rKCUQzpH3RJx.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
-&lt;p&gt;举个简单的例子：原来修改一个页面，UI花一小时，开发至少需要一上午。但启用了中台，形成标准组件，只需要改几个前端样式，半小时足够（开发+测试）。&lt;/p&gt;
+&lt;p&gt;过去公司涉及多产品线时，每一个产品线数据、代码都是不互通的。每一个功能都需要从零开始开发。不仅功能上需要重新建设，而且数据也是从零累积。随着产品的发展，产品所需的开发、运维的成本也在急剧增加。&lt;br&gt;
+&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1609145662546.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+但不同产品之间，不同模块之间是有很大一部分是结构相同，功能相似的。没有复用其他产品的功能是由于：1、产品线之间相互独立；2、功能的不完全一致造成的。&lt;br&gt;
+由此有了中台的概念。&lt;br&gt;
+当我们引入中台后，实质是引入了一个中间层。他负责了解不同产品的业务和功能，将重复的部分找出来，统一由自己接管。而根据接管内容的不同，就有了数据中台、技术中台、业务中台的不同概念。&lt;br&gt;
+&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1609147447931.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;2-中台的概念&#34;&gt;2、中台的概念&lt;/h1&gt;
-&lt;p&gt;中台解决方案的组成 = 能力输出 + 标准化中间件&lt;/p&gt;
-&lt;h2 id=&#34;第一部分能力输出&#34;&gt;第一部分：能力输出&lt;/h2&gt;
-&lt;p&gt;所谓能力输出就是要规划出什么是公司的核心竞争力，理清楚公司发展的战略与目标与未来公司里的主要业务会涉及到哪些方面。并在这些业务层面中去提炼哪些模块是以共性存在的，并会在每个新开拓的业务中不断使用，然后就把他归类到中台进行建设。&lt;/p&gt;
-&lt;p&gt;这也就是中台的一个重要的意义：&lt;strong&gt;为不同的前台业务提供可以重复使用的能力，形成一次建设多次使用。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;例如我们规划了公司的核心方向是视频方向，未来可能会涉及的业务形态有：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;在线视频&lt;/li&gt;
-&lt;li&gt;视频直播&lt;/li&gt;
-&lt;li&gt;短视频&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;第二部分标准化中间件整合能力&#34;&gt;第二部分：标准化中间件（整合能力）&lt;/h2&gt;
+&lt;h2 id=&#34;数据中台&#34;&gt;数据中台&lt;/h2&gt;
+&lt;p&gt;根据接管内容不同，中台有了不同的名讳。故名思意，数据中台就是接管了所有渠道，所有产品的分散的数据，并将其统一处理的平台。需要注意的是：&lt;br&gt;
+** 1、数据中台的工作并非是数据存储。**&lt;br&gt;
+数据中台对接的数据仓库和大数据平台，并从中提取数据进行处理，并将一个个业务结果返回不同的产品前端。&lt;br&gt;
+** 2、数据中台整合的是全渠道的数据。 **&lt;br&gt;
+数据中台处理的数据是所有渠道统一汇总的数据。只是将原来独立的产品数据和用户的行为数据进行了整合和分析。&lt;br&gt;
+数据中台一般包含以下服务：&lt;br&gt;
+1、大数据计算；2、大数据开发套件；3、画像分析；4、数据可视化；5、数据提取等功能。&lt;/p&gt;
+&lt;h2 id=&#34;技术中台&#34;&gt;技术中台&lt;/h2&gt;
+&lt;p&gt;技术中台说白了就是标准api的集合。技术中台包含两部分，一部分是标准化组件。另一部分是标准化接口。&lt;br&gt;
+**  第一部分：标准化组件 **&lt;/p&gt;
+&lt;p&gt;所谓标准化组件就是要规划出公司什么功能使用频次较高，理清楚公司发展的战略与目标与未来公司里的主要业务会涉及到哪些方面。并在这些业务层面中去提炼哪些模块是以共性存在的，并会在每个新开拓的业务中不断使用，然后就把他归类到中台进行建设。&lt;br&gt;
+例如公司主营电商，那么不同渠道的营销方式：优惠券、砍价、拼团等玩法就可以沉淀为标准化组件，支持多渠道多终端使用。&lt;br&gt;
+中台所需要做的就是分析现有业务通用的能力，并将其提取出来封装成组件。&lt;/p&gt;
+&lt;p&gt;** 第二部分：标准化接口 **&lt;/p&gt;
 &lt;p&gt;同一家公司内的不同业务，经常会出现一个事物被不同项目因为场景化的需求，而出现两个称呼的现象，但是实际上他们本质上是同一个事物。这也是原来不同项目组想要进行复用前人的模块时一个天然的巨大障碍：无法快速对接。&lt;/p&gt;
 &lt;p&gt;在我们确定了公司的业务发展需要哪些能力之后，中台解决方案的另一个组成部分就是需要做一个将每个能力进行封装，形成一个统一的可供前台业务端方便使用的中间件。&lt;/p&gt;
 &lt;ul&gt;
@@ -1307,15 +1308,17 @@
 &lt;li&gt;定义统一化的输入输出；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;面对这种现象，在有了中台后，我们就可以通过定义标准化的中间件来解决。以后假设公司内部孵化的项目组再次要使用用户昵称这个字段的时候，无论具体是什么业务前端都会是一个叫法，一种存储，这样不仅能直接使用之前项目的模块，同时还可以和公司内部的管理系统如CRM/BI等快速完成对接。&lt;/p&gt;
+&lt;h2 id=&#34;业务中台&#34;&gt;业务中台&lt;/h2&gt;
+&lt;p&gt;业务中台说白了就是后台的管理系统。如用户中心、商品中心、订单中心、交易中心、支付中心、评价中心等。只不过业务中台涉及渠道、功能更多。因此业务中台的操作也要统一化标准化，让各个渠道、产品线都能使用。&lt;/p&gt;
 &lt;h1 id=&#34;3-中台如何做&#34;&gt;3、中台如何做&lt;/h1&gt;
 &lt;p&gt;中台的设计过程说白了其实就是一个标准的企业级软件设计过程，而且是一个具有高度定制化的企业软件。我们需要抛弃以往的设计一套通用软件可以给所有企业所使用的思考方法，要去针对每个企业的业务现状与需求进行千人千面的设计。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;数据中心化存储&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;中台的必要条件是将不同业务的数据剥离业务团队， 把数据存储至数据中心进行维护，打破各团队的数据隔离。&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/imxyXpzZF7dI33vJ.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/imxyXpzZF7dI33vJ.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;未中台化前的前后台系统&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;4&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/Vup2cgugVU7iSiGG.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/Vup2cgugVU7iSiGG.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;中台系统架构&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;相同功能接口形成标准化接口&lt;/li&gt;
@@ -1325,18 +1328,18 @@
 &lt;p&gt;这样在所有的版本中我们始终对同一批相同功能的接口进行维护（为了负载均衡），各个接口没有任何特异性都是标准的取数据接口，只根据请求内容进行内容返回，这样大大减少了开发量。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;特异性特别高的，与业务强相关的东西下放到业务端，由业务方进行数据处理&lt;/strong&gt;，加工成他们需要的组织形式再返回给客户方。&lt;/p&gt;
 &lt;p&gt;因此&lt;strong&gt;中台开发的是面向数据源的数据输入接口&lt;/strong&gt;，也就是将BD采集的数据进行清洗成为中台的原材料。&lt;/p&gt;
-&lt;h1 id=&#34;3-中台的业务边界&#34;&gt;3、中台的业务边界&lt;/h1&gt;
+&lt;h1 id=&#34;4-中台的业务边界&#34;&gt;4、中台的业务边界&lt;/h1&gt;
 &lt;h2 id=&#34;1-为什么要限制中台业务的边界&#34;&gt;1、为什么要限制中台业务的边界&lt;/h2&gt;
 &lt;p&gt;为什么要限制中台业务的边界，就是我们要如何识别各个业务线中的功能是否都为需要中台化的部分。比如说我们在某个业务线中新推出了付费会员体系，那么我们如何判断是否要把这一模块进行通用化，进行中台化呢？这就要找到一个能约束边界的方法。&lt;/p&gt;
 &lt;h2 id=&#34;2-中台业务边界的划定&#34;&gt;2、&lt;strong&gt;中台业务边界的划定&lt;/strong&gt;&lt;/h2&gt;
 &lt;p&gt;中台也是一个软件产品，因此整个建设流程和我们的一般性产品设计一样，可以很粗略分为如下4步：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;5&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/kirjyNSptkZZVu4H.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/kirjyNSptkZZVu4H.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;这个问题本质上有两个核心难关：&lt;/p&gt;
 &lt;h3 id=&#34;a-找到公司核心标准环节&#34;&gt;a、找到公司核心标准环节&lt;/h3&gt;
 &lt;p&gt;需要我们中台的产品经理能判断出该流程是否为整个公司的核心业务的标准环节，也就是80%的业务日常都会触达这些个节点&lt;/p&gt;
 &lt;h3 id=&#34;b-分析模块结果是否影响下一流程&#34;&gt;b、分析模块结果是否影响下一流程&lt;/h3&gt;
 &lt;p&gt;分析模块结果是否还为公司下一流程的核心业务的标准环节。&lt;/p&gt;
-&lt;h1 id=&#34;4-企业业务sop梳理&#34;&gt;4、企业业务SOP梳理&lt;/h1&gt;
+&lt;h1 id=&#34;5-企业业务sop梳理&#34;&gt;5、企业业务SOP梳理&lt;/h1&gt;
 &lt;h2 id=&#34;1-sop是什么&#34;&gt;1、SOP是什么？&lt;/h2&gt;
 &lt;p&gt;SOP就是 Standard Operating Procedure三个单词中首字母的大写 ，即标准作业程序，指将某一事件的标准操作步骤和要求以统一的格式描述出来，用于指导和规范日常的工作。&lt;/p&gt;
 &lt;p&gt;通俗来讲SOP就是对某一程序中的关键控制点进行细化和量化。从管理学的角度,标准作业程序能够缩短新进人员面对不熟练且复杂的事务所花的学习时间,只要按照步骤指示就能避免失误与疏忽。&lt;/p&gt;
@@ -1352,18 +1355,18 @@
 &lt;ul&gt;
 &lt;li&gt;工作流：日常工作的节点获取：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;6&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/ubybXzAg73ilmPLq.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;4&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/ubybXzAg73ilmPLq.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;日常工作的节点是关键业务活动，接下来要去梳理每一个业务活动中有哪些信息流。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;信息流：信息流转的节点获取：&lt;/li&gt;
 &lt;/ul&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;7&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/rEmkdaRA71nZMLa9.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;5&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/rEmkdaRA71nZMLa9.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;如上我们得到的就是一个完整的信息流，这两部合并起来我们就将抽象的业务活动定义为标准的信息流程，我们可以清楚看到业务线是如何实现商品管理的。&lt;/p&gt;
 &lt;h2 id=&#34;3-公司级战略评估&#34;&gt;3、公司级战略评估&lt;/h2&gt;
 &lt;p&gt;当我们将不同事业线中的信息流与工作流都梳理出来后，我们就可以统一来看哪些部分是各个业务线都重叠的，从而提取到中台来。&lt;/p&gt;
 &lt;p&gt;接下来我们要上升一个维度进入业务线间的抽象，去评估这些SOP哪些是符合当前公司战略走向的。&lt;/p&gt;
 &lt;p&gt;具体来说我们的评估维度整体范围如下表所示：&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;8&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/emyFGylRZ3Tv9otR.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;6&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/emyFGylRZ3Tv9otR.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;在这个层级的分析我们重点是要：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;找到企业的问题域&lt;/strong&gt;-&amp;gt;&lt;strong&gt;再定义解决能力&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如公司的问题域或KPI是GMV和复购率。那么可以找到未来公司的发展方向。&lt;/p&gt;
@@ -1374,7 +1377,7 @@
 &lt;li&gt;现有用户交易情况跟踪。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;我们也找到了现在与未来的企业发展方向，此时就可以对上一步得到的SOP进行一个再次评价，哪些是公司当前战略所需要的，将其归类到中台需求范围中，至此我们整个中台业务需求边界就可以说梳理完了。&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;9&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/4LRXVaoDDILhbZRP.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;7&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/4LRXVaoDDILhbZRP.png!thumbnail?fileGuid=Crj6p8rYPjrY83Hq&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 ">中台实战</a>
       </div>
       
