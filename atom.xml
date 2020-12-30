@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2020-12-30T05:21:49.489Z</updated>
+    <updated>2020-12-30T05:22:42.557Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -10,13 +10,6 @@
     <logo>https://jeanleungguo.github.io/images/avatar.png</logo>
     <icon>https://jeanleungguo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Jeanleung_blog</rights>
-    <entry>
-        <title type="html"><![CDATA[如何理解用户]]></title>
-        <id>https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/</id>
-        <link href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">
-        </link>
-        <updated>2020-12-30T03:20:33.000Z</updated>
-    </entry>
     <entry>
         <title type="html"><![CDATA[如果做好一个产品]]></title>
         <id>https://jeanleungguo.github.io/ru-guo-zuo-hao-yi-ge-chan-pin/</id>
@@ -44,5 +37,12 @@
         <link href="https://jeanleungguo.github.io/user-growth/">
         </link>
         <updated>2020-12-24T13:31:52.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[产品冷启动]]></title>
+        <id>https://jeanleungguo.github.io/how-to-devise-a -product /</id>
+        <link href="https://jeanleungguo.github.io/how-to-devise-a -product /">
+        </link>
+        <updated>2020-12-24T10:31:52.000Z</updated>
     </entry>
 </feed>
