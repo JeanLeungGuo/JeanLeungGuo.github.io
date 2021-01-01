@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2020-12-30T10:03:38.530Z</updated>
+    <updated>2021-01-01T14:55:09.607Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://jeanleungguo.github.io/images/avatar.png</logo>
     <icon>https://jeanleungguo.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Jeanleung_blog</rights>
+    <rights>All rights reserved 2021, Jeanleung_blog</rights>
     <entry>
         <title type="html"><![CDATA[一文读懂中台]]></title>
         <id>https://jeanleungguo.github.io/Middle-Platform/</id>
