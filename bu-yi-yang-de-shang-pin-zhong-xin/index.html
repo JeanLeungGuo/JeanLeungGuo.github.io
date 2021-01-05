@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>Jeanleung_blog</title>
+<title>不一样的商品中心 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1609851831141">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="不一样的商品中心" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -172,8 +174,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -245,69 +263,485 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#1-%E6%A6%82%E5%BF%B5">1、概念</a></li>
+<li><a href="#2-%E4%BA%86%E8%A7%A3%E5%95%86%E5%93%81%E4%B8%AD%E5%BF%83%E7%9A%84%E6%A8%A1%E5%9D%97%E7%BB%84%E6%88%90">2、了解商品中心的模块组成</a>
+<ul>
+<li><a href="#21-spu%E4%B8%8Esku%E7%9A%84%E5%85%B3%E7%B3%BB">2.1 SPU与SKU的关系</a></li>
+<li><a href="#22-%E5%88%86%E7%B1%BB%E7%AE%A1%E7%90%86">2.2 分类管理</a></li>
+<li><a href="#23-%E5%B1%9E%E6%80%A7%E7%AE%A1%E7%90%86">2.3 属性管理</a></li>
+<li><a href="#24-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86">2.4 品牌管理</a></li>
+<li><a href="#25-%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86">2.5 标签管理</a></li>
+</ul>
+</li>
+<li><a href="#%E5%95%86%E5%93%81%E7%9A%84%E5%BA%93%E5%AD%98%E7%AE%A1%E7%90%86">商品的库存管理</a></li>
+<li><a href="#%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2%E5%8F%8A%E7%AD%9B%E9%80%89">商品搜索及筛选</a></li>
+<li><a href="#%E5%95%86%E5%93%81%E6%8E%A8%E8%8D%90">商品推荐</a>
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E7%94%A8%E6%88%B7%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4">基于用户的协同过滤</a></li>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E7%89%A9%E5%93%81%E7%9A%84%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4">基于物品的协同过滤</a></li>
+</ul>
+</li>
+<li><a href="#%E5%95%86%E5%93%81%E8%AF%84%E4%BB%B7">商品评价</a></li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini box-shadow-wrapper">
-          <section class="friends-section bg-color slide-down-in">
-            <div class="firends-box">
-              <h1 class="firends-title" itemprop="name headline">友情链接</h1>
-              
-              
-              <a href="http://www.woshipm.com/u/775659" target="_blank">
-                <div class="firends-item">
-                  <img src="/images/jeanleung.jpg" />
-                  <div class="right">
-                    <div class="top">
-                      人人都是产品经理
-                    </div>
-                    <div class="bottom">
-                      
-                    </div>
-                  </div>
-                </div>
-              </a>
-              
-              
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
             </div>
-            <hr>
-            <div style="text-align:center">
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
-              <span class="language" data-lan="leave-message">留言添加友链</span>
-              <span class="with-love">
-                <i class="fa fa-heart"></i>
-              </span>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/">
+      不一样的商品中心
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2021-01-04 14:25:51">2021-01-04</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>12<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>3277<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <p><em>“任何公司的商品中心功能都是比较杂乱的，这不是由于业务没有理清，而是随着业务的扩展对商品中心功能不断扩展的结果。本文将自己重构商品中心的经验分享给各位，带大家规范商品中心模块让商品中心扩展性更强。打破常规打造不一样的商品中心。”</em></p>
+<h1 id="1-概念">1、概念</h1>
+<p>商品中心主要用于商品的管理，包括商品的发布，上架，下架，编辑，删除，审核等围绕商品及商品信息的一系列操作。还包含与商品相关的其他模块，如商品的类目、属性、品牌等管理。</p>
+<h1 id="2-了解商品中心的模块组成">2、了解商品中心的模块组成</h1>
+<p>1、spu：（Standard Product Unit，即标准化产品单元），是一组标准化信息的集合，例如“iPhone 7 Plus”就是一个SPU。<br>
+2、sku:（Stock Keeping Uint，即库存量单位），库存控制的最小可用单位。例如“iPhone 7 Plus 128G银色”就是一个SKU，仓库管理、采购进货、库存管理都是以SKU为记录单元。<br>
+3、类目管理：即分类树。电商常用的有两层类目：前台展示类目和后端商品类目。前台类目指的是展示给消费者看的类目，会根据季节、销售策略、活动进行变动；后台类目属于基础数据，不可随意变动，添加SKU时都需要选择后台类目，进行绑定。<br>
+4、属性管理：分为关键属性、销售属性、非关键属性。关键属性是指能够 唯一确定产品的属性，是必填项，例如手机的屏幕尺寸、型号属于关键 属性。销售属性是组成SKU的特殊属性，或称为“规格属性”，例如手机 的“颜色”、“内存”。非关键属性指的是除关键属性、销售属性外的其他 属性，如手机的手机接口类型。非关键属性不一定是非必填项，不过有 时为了商品信息完整，也会设为必填项。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609748727154.png" alt="" loading="lazy"></p>
+<h2 id="21-spu与sku的关系">2.1 SPU与SKU的关系</h2>
+<p>spu是指一个商品的集合，而sku精确到每一款商品。,spu与sku是一对多的关系，sku与规格有关，比如某个商品有颜色（红，黄），款式（长，短）两种规格，那么这种商品将有2*2=4种sku。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609747377436.png" alt="" loading="lazy"></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>颜色</th>
+<th>款式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SKU1</td>
+<td>红</td>
+<td>长</td>
+</tr>
+<tr>
+<td>SKU2</td>
+<td>红</td>
+<td>短</td>
+</tr>
+<tr>
+<td>SKU3</td>
+<td>黄</td>
+<td>长</td>
+</tr>
+<tr>
+<td>SKU4</td>
+<td>黄</td>
+<td>短</td>
+</tr>
+</tbody>
+</table>
+<p><strong>sku与spu的字段</strong><br>
+<img src="https://jeanleungguo.github.io/post-images/1609747683479.png" alt="" loading="lazy"><br>
+理解了spu与sku的关系，sku与spu的字段也就不难理解。需要注意的是spu的价格、库存等字段的定义。<br>
+有的spu的价格取的是spu包含所有sku的价格最低值，有的取的是sku的均值。<br>
+而spu的库存一般会取sku的总库存，还有的spu的库存定义为包含sku库存的最低值。</p>
+<h2 id="22-分类管理">2.2 分类管理</h2>
+<p>分类管理指的是商品的分类，一般大型的电商项目会建设3级分类，自营电商会建设2级。商品的分类主要用于商品的查找与管理。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609750279693.png" alt="" loading="lazy"><br>
+有些商城会建设两套类目，前台类目（主要用于用户商品查找），后台类目（主要用于运营人员对商品的运营）。但个人认为完全没有必要建设两套类目管理，一是由于加大了商品运营难度，二是造成数据的大量冗余。后台商品的运营可通过商品标签的方式对商品进行检索（后文介绍）。</p>
+<h2 id="23-属性管理">2.3 属性管理</h2>
+<p>属性是对产品性质的描述，是区分产品差异性的集合。在电商中， 属性通常分为关键属性、销售属性、非关键属性、商品属性。<br>
+（1）关键属性：能够确认唯一“产品”的属性。关键属性可以是一 个属性，也可以是多个属性的组合。例如：通过手机的“品牌”、“型 号”两个属性组合就能确定唯一的产品，这两个就是关键属性；通过服装的“品牌”、“货号”两个属性组合能确定唯一的产品，所以这两个也是 关键属性。<br>
+（2）销售属性：也称为规格属性。其是组成SKU的特殊属性，它 会影响买家的购买和卖家的库存管理。例如服装的“颜色”、“套餐”和“尺 码”，都是销售属性。<br>
+（3）非关键属性：除关键属性、销售属性外的其他属性。非关键 属性不一定是非必填项，有时为了商品信息完整，也会被设为必填项。 注意，产品的非关键属性并不包括商品属性。<br>
+（4）商品属性：表示商品的特有特征，比如新旧程度、保修方式 等，不能作为产品的属性<br>
+属性的定义对于良好的消费体验有着至关重要的意义，对搜索、索引、筛选都能起到至关重要的作用。<strong>商品搜索能力，除了标题、类目， 很大程度依赖于商品属性</strong>，条件筛选的基础数据也是商品属性和规格属性。完善商品属性对于实现良好用户体验至关重要。<br>
+由于商品的属性有一定特征的，且不同种类的商品之间差异会非常大，一般都是挂在具体类目下，设置为必填或非必填。在设置属性值时，须保留一定的扩展性，部分允许自定义属性。商品属性管理要求强大的类目运营能力，在中小型电商平台一般会提供基础属性值，再开放自定义属性编辑，让用户来完善属性库数据。<br>
+属性编辑主要是定义当前分类的商品具有哪些属性。在属性管理上由于商品属性过多，因此可以考虑对商品的属性进行分组。<br>
+**属性分组 **<br>
+由于一个类目的属性有时会很多，可能几十个，甚至上百个，所以 引入了属性分组的概念，把形容某一类特征的几个属性归属于一个组。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609754174867.png" alt="" loading="lazy"><br>
+因此商品属性一般也是两级结构。一级便是属性的分组，二级是属性名称。</p>
+<h2 id="24-品牌管理">2.4 品牌管理</h2>
+<p>品牌是商品的必备属性之一，在用户做购买决策时亦是关键因素。<br>
+品牌管理主要依托于供应商的品牌上传，沉淀形成品牌库。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609755163487.png" alt="" loading="lazy"><br>
+品牌管理常用字段：Logo、中文名、英文名、产 地、备注、状态（可用、不可用）<br>
+当商品较多，品类较广时，可考虑将品牌关联到类目上， 品牌关联类目的好处在于：提升发布商品的便捷性，避免出错；品牌管理标准化；在搜索筛选商品时更加快捷。</p>
+<h2 id="25-标签管理">2.5 标签管理</h2>
+<p>商品的标签主要用于商品的日常运营工作。如对特定的商品进行打标进行活动运营。<br>
+标签也常用于用户对商品的检索。如用户搜索参与活动的商品。<br>
+标签由于可扩展性，通常也分为两级，一级是标签的名称，如“活动”，二级是标签的值，如“百亿补贴”，“满减优惠”等。</p>
+<h1 id="商品的库存管理">商品的库存管理</h1>
+<p>在电商系统中流转的是系统生成的SPU编码和SKU编码。这里要介绍一下69码，我国官方的商品编码是69开头，俗称69码，例如食品包装上的条码。在编辑商品的时候，一般会有个条形码字段需要填写，就是系统中的SKU对应69码。这个条形码主要在采购、出入库时使用。 在仓库的条码方案以下有两种。<br>
+（1）全部自建条码。采用自己的SKU编码管理商品，需要入库前重新贴标，成本较高<br>
+（2）有69码的商品沿用69码，无69码的商品（比如蔬菜、生鲜 等）以及无法指定到单一的有码商品重新贴SKU编码。在仓库管理时做相应的条码映射。</p>
+<h1 id="商品搜索及筛选">商品搜索及筛选</h1>
+<p>搜索是通过对关键词的匹配，对目标内容进行检索查找。<br>
+<img src="https://jeanleungguo.github.io/post-images/1609756587621.png" alt="" loading="lazy"><br>
+1．输入关键词分词<br>
+系统会根据搜索的关键词结合词库按字切词、索引，保证查全率，将用户搜索内容拆分出多个关键词。如“华为mate30”会同时搜索华为，mate，mate30几个关键词，并按相关性排序展示。</p>
+<p>2．数据查询<br>
+对搜索词处理后，搜索引擎程序会从索引数据库中找到所有包含搜 索词的商品。商品搜索时，主要是从商品的名称、品牌、类目、属性等 数据中查询。识别分词与类目关系，与商品名称、品牌相关性，与关键 属性、销售属性的相关性，从上架的商品中根据搜索排序规则返回商品</p>
+<p>3．搜索排序<br>
+搜索排序的因素主要分为四类：商品相关性、销量相关性、评论数、时效性等。<br>
+（1）商品相关性：主要是标题、类目、属性等因素的综合权衡。<br>
+（2）销量相关性：主要是考虑销量、价格等因素。销量可以取某 一时间段（通常为最近7天）商品销售数量。价格则倾向于取同类商品 的常用价格区间，例如男裤的常用价格区间是200～500元，价格在这一<br>
+区间内的商品就排在前面。<br>
+（3）评论数：主要是计算商品的好评度、评论数。<br>
+（4）时效性：参考商品最近上架时间、最新更新日期。</p>
+<h1 id="商品推荐">商品推荐</h1>
+<p>商品的个性化推荐主要分为两种，一种是基于用户的协同过滤，另一种是基于物品的协同过滤。前者是根据人匹配物，后者是根据物匹配物。</p>
+<h2 id="基于用户的协同过滤">基于用户的协同过滤</h2>
+<p><strong>原理</strong><br>
+基于用户的协同过滤一般先将用户的数据集按照均匀分布随机分成M份，挑选一份作为测试集，将剩下的M-1份作为训练集。然后在训练集上建立用户的兴趣模型，并在测试集上对用户行为进行预测，统计出相应的评测指标。为了保证评测结果的准确性，需要多次使用不同的训练集进行训练。将多次训练测出的指标取平均值。<br>
+<strong>算法</strong><br>
+<code>比较用户的相似度</code><br>
+N(u)表示用户u曾经有过正反馈的物品集合，令N(v)为用户v曾经有过正反馈的物品集合，用以下公式可以表示出两者的相似度<br>
+<img src="https://jeanleungguo.github.io/post-images/1609826713272.png" alt="" loading="lazy"><br>
+<code>用户u对物品ii的感兴趣程度：</code><br>
+<img src="https://jeanleungguo.github.io/post-images/1609828308853.png" alt="" loading="lazy"><br>
+S(u,k)表示与用户u兴趣相似的k个用户的集合，N(i)表示对i有过行为的用户集合，Wuv表示用户u和用户v的兴趣相似度，Rvi代表用户v对物品i的兴趣</p>
+<h2 id="基于物品的协同过滤">基于物品的协同过滤</h2>
+<p><strong>原理</strong><br>
+随着产品的用户基数的越来越大，用户兴趣相似矩阵逐渐困难，时间复杂度和空间复杂度几何倍数增长。亚马逊提出另一个算法——物品的协同过滤算法。<br>
+物品的协同过滤分为两步：<br>
+（1）计算物品之间的相似度；<br>
+（2）根据物品的相似度和用户的行为给用户生成推荐列表<br>
+<code>两个物品之间的相似度</code><br>
+<img src="https://jeanleungguo.github.io/post-images/1609848842666.png" alt="" loading="lazy"><br>
+N(i)和N(j)是喜欢i和j的用户数<br>
+<code>用户u对物品ii的感兴趣程度：</code><br>
+<img src="https://jeanleungguo.github.io/post-images/1609849151195.png" alt="" loading="lazy"><br>
+N(u)是用户喜欢的物品集合，S(j,k)是与物品j最相似的k个物品，Wij是物品i和物品j的相似度，Rui是用户u对i的兴趣</p>
+<h1 id="商品评价">商品评价</h1>
+<p>对用户来说，可以把用户在购买后对商品、服务、物流等相关信息的感受写出来，为其他用户提供购买决策，减少购物成本。对平台来说，有质量的评价有助于降低退 货率，提高优质商品的转化率，并且构建商家信用评价体系，合理分配 平台资源，甚至帮助优化搜索<br>
+<img src="https://jeanleungguo.github.io/post-images/1609851756450.png" alt="" loading="lazy"><br>
+（1）商品评论筛选。过滤恶意差评，对关键字筛选（脏话、广告 等），对出现敏感词汇的评论直接过滤或人工审核。<br>
+（2）分级显示商品评论（好评、中评、差评），统计商品好评 度，并提炼评论中的关键词（如手机评论中的“外观漂亮”、“系统流 畅”、“屏幕大”，或者有图等）。<br>
+（3）根据商品评论和服务评论对商家店铺进行评级。需要制定严 格的规则，避免商家刷信誉或者用户恶意差评影响店铺级别。</p>
+
             </div>
-            <hr>
-            <div class="friends-note">
-              <p><strong class="language" data-lan="format">友链格式：</strong></p>
-              <ul>
-                <li><span class="language" data-lan="site-name">网站名称：</span>Jeanleung_blog</li>
-                <li><span class="language" data-lan="site-link">网站地址：</span><a href="https://jeanleungguo.github.io" data-pjax-state="">https://jeanleungguo.github.io</a></li>
-                <li><span class="language" data-lan="site-desc">网站描述：</span>温故而知新</li>
-                <li><span class="language" data-lan="site-img">网站头像：</span>
-                  <a href="https://jeanleungguo.github.io/images/avatar.png">https://jeanleungguo.github.io/images/avatar.png</a>
-                </li>
-              </ul>
-            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Jeanleung
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/" title="不一样的商品中心">https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="一文读懂中台" href="https://jeanleungguo.github.io/Middle-Platform/">一文读懂中台</a>
+        <a class="nav-mobile-next" title="一文读懂中台" href="https://jeanleungguo.github.io/Middle-Platform/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+            
             
   
 
-          </section>
+          </div>
         </div>
       </div>
     </div>
@@ -1061,6 +1495,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -2463,6 +3114,5 @@ iphone手机为什么在有些国家市场份额能达到80%以上，而在中�
 
   <div class="snow-container"></div>
   <script src="/media/js/bg/snow.js"></script>
-
 
 </html>
