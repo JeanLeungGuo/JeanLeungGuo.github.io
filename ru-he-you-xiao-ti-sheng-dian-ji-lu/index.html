@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>如何有效提升点击率 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1610102795656">
+<link rel="shortcut icon" href="/favicon.ico?v=1610358422208">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -213,7 +213,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">18</span>
+        <span class="site-item-stat-count">19</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1639,6 +1639,30 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/"" data-c="
+          &lt;p&gt;今年中台化后很多业务流程及数据架构都进行了调整，重构。由于数据的中心化处理直接带来许多方面的改变。业务模式也发生了巨大的变革，比如，商品的发货。&lt;br&gt;
+我们最初的库存管理的数据来源于单一仓库的实时数据。但接入中台后，库存数据变为多仓储的库存数据。这一变化直接带来以下几方面的影响：&lt;br&gt;
+1、多仓储的库存数据同步问题；&lt;br&gt;
+2、发货仓库分配问题；&lt;br&gt;
+3、分配发货仓库无法出货问题。&lt;br&gt;
+&lt;strong&gt;1、库存同步&lt;/strong&gt;&lt;br&gt;
+由于触发库存发生变动的点不一样，库存的变动有两种流向。第一 种是自上而下（从销售层到调度层，再到仓库层）；第二种是自下而上 （从仓库层到调度层，再到销售层）两种。&lt;br&gt;
+（1）自上而下：用户下单后，首先会生成订单，扣减销售层的库 存；然后流转到调度层进行调度，生成发货通知单，调整调度层的库存；最后推送至仓库，WMS系统同步响应，扣减库存并进行出库。&lt;br&gt;
+（2）自下而上：仓库的实物入库可以算是从下到上引起的库存变动。主要有三种单据：采购入库单、退货入库单、调拨入库单。实物入 库，会连锁引起仓库层、调度层、销售层的可用库存逐步增加。&lt;br&gt;
+&lt;strong&gt;2、仓库分配&lt;/strong&gt;&lt;br&gt;
+仓库分配可以理解为仓库的调度算法，这个算法不做为中台研究范畴。可以理解为黑盒接口。输入下单用户地址，用户id等信息，返回分配发货的仓库。仓库分配分为两种情况：&lt;br&gt;
+a、正常发货；&lt;br&gt;
+b、无法及时发货。&lt;/p&gt;
+&lt;h1 id=&#34;解决方案&#34;&gt;解决方案&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610352677079.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+仓库补货&lt;br&gt;
+&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610356912788.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+用户下单&lt;br&gt;
+&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610356931244.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
+">中台—库存管理</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/yi-xie-chang-jian-fen-xi-mo-xing/"" data-c="

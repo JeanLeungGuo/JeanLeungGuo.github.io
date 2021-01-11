@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>如何理解用户 | Jeanleung_blog</title>
+<title>中台—库存管理 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1610358422208">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,7 +38,7 @@
 
 
 
-  <meta name="description" content="如何理解用户" />
+  <meta name="description" content="中台—库存管理" />
   <meta name="keywords" content="" />
 </head>
 
@@ -269,8 +269,7 @@
   <div class="toc-wrapper auto-number auto"
     id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%90%86%E8%A7%A3%E7%94%A8%E6%88%B7">一、为什么要理解用户</a></li>
-<li><a href="#%E7%94%A8%E6%88%B7%E7%9A%84%E5%AE%9A%E4%B9%89">用户的定义</a></li>
+<li><a href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">解决方案</a></li>
 </ul>
 
   </div>
@@ -536,8 +535,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">
-      如何理解用户
+    <a class="post-title-link" href="https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/">
+      中台—库存管理
     </a>
   </h1>
   <div class="post-meta">
@@ -545,35 +544,42 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-09-28 11:20:33">2019-09-28</span>
+      <span class="publish-time" data-t="2021-01-11 15:52:36">2021-01-11</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>607<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>486<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="一-为什么要理解用户">一、为什么要理解用户</h1>
-<p>商业的本质是“利他”，为用户创造价值。而为用户创造价值理解用户是第一步。</p>
-<h1 id="用户的定义">用户的定义</h1>
-<p>**1、用户的属性 **<br>
-用户有异质性、情境性、可塑性、自利性、有限理性这五个属性。<br>
-<strong>异质性</strong>是指用户的特点千差万别，几乎很难找到两个完全一样的，用户。因为用户的偏好、认知、所拥有的资源是不一样的，所以不 能把用户统一成一个单一的用户画像。<br>
-<strong>情境性</strong>是指用户的行为受情境的影响，没有情境就没有用户，同一个用户在不同的情境下会有不同的反应和行为。就像前文讲到的, 用户都处于微观场景中。比如在打车这个大情境下，面对不同的情况，比如早高峰和晚高峰，一个人和两个人，有钱和没钱，晴天和下雪天，用户的选择完全不一样。<br>
-<strong>可塑性</strong>是指用户是可变的,其偏好和认知会随着外界不同的信息刺激发生变化和演化，具备可塑性。比如传销者的洗脑能力就很强，比如二战时日本军国主义者和德国纳粹把它们的大量国民洗脑成罪恶支持者，比如消费品营销领域和增长黑客领域都有很多技巧利用人性弱点去 改变用户行为。<br>
-<strong>自利性</strong>是指用户追求个人总效用最大化。<br>
-<strong>有限理性</strong>是指用户虽然追求理性，但他的能力是有限的，其判断经常出错，也经常被骗，所以只能做到有限的程度。这个概念是由图灵奖、诺贝尔经济学奖、美国心理学会终身成就奖获得者赫伯特•西蒙提出的。<br>
-<strong>2、用户的行为</strong><br>
-首先，在行为发生前，用户通常会接受一个隋境的刺激，这个情境 的刺激会调用偏好和认知函数，产生一个主观期望效用，促使用户产生相应的行为，即追逐这个预期的效用。而行为会产生某个结果,这个结果又会成为经验,影响偏好和认知函数，从而可能对用户的下一次行为产生影响。</p>
+              <p>今年中台化后很多业务流程及数据架构都进行了调整，重构。由于数据的中心化处理直接带来许多方面的改变。业务模式也发生了巨大的变革，比如，商品的发货。<br>
+我们最初的库存管理的数据来源于单一仓库的实时数据。但接入中台后，库存数据变为多仓储的库存数据。这一变化直接带来以下几方面的影响：<br>
+1、多仓储的库存数据同步问题；<br>
+2、发货仓库分配问题；<br>
+3、分配发货仓库无法出货问题。<br>
+<strong>1、库存同步</strong><br>
+由于触发库存发生变动的点不一样，库存的变动有两种流向。第一 种是自上而下（从销售层到调度层，再到仓库层）；第二种是自下而上 （从仓库层到调度层，再到销售层）两种。<br>
+（1）自上而下：用户下单后，首先会生成订单，扣减销售层的库 存；然后流转到调度层进行调度，生成发货通知单，调整调度层的库存；最后推送至仓库，WMS系统同步响应，扣减库存并进行出库。<br>
+（2）自下而上：仓库的实物入库可以算是从下到上引起的库存变动。主要有三种单据：采购入库单、退货入库单、调拨入库单。实物入 库，会连锁引起仓库层、调度层、销售层的可用库存逐步增加。<br>
+<strong>2、仓库分配</strong><br>
+仓库分配可以理解为仓库的调度算法，这个算法不做为中台研究范畴。可以理解为黑盒接口。输入下单用户地址，用户id等信息，返回分配发货的仓库。仓库分配分为两种情况：<br>
+a、正常发货；<br>
+b、无法及时发货。</p>
+<h1 id="解决方案">解决方案</h1>
+<p><img src="https://jeanleungguo.github.io/post-images/1610352677079.png" alt="" loading="lazy"><br>
+仓库补货<br>
+<img src="https://jeanleungguo.github.io/post-images/1610356912788.jpg" alt="" loading="lazy"><br>
+用户下单<br>
+<img src="https://jeanleungguo.github.io/post-images/1610356931244.jpg" alt="" loading="lazy"></p>
 
             </div>
             
@@ -586,7 +592,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/" title="如何理解用户">https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/</a>
+      <a href="https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/" title="中台—库存管理">https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -599,15 +605,11 @@
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">用户增长过程中关注的数据指标</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="CMS系统" href="https://jeanleungguo.github.io/cms-xi-tong/">CMS系统</a>
-        <a class="nav-mobile-next" title="CMS系统" href="https://jeanleungguo.github.io/cms-xi-tong/">下一篇</a>
+        <a class="nav-pc-next" title="一些常见分析模型" href="https://jeanleungguo.github.io/yi-xie-chang-jian-fen-xi-mo-xing/">一些常见分析模型</a>
+        <a class="nav-mobile-next" title="一些常见分析模型" href="https://jeanleungguo.github.io/yi-xie-chang-jian-fen-xi-mo-xing/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
