@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>会员体系冷启动 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1610935186228">
+<link rel="shortcut icon" href="/favicon.ico?v=1610936959546">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -213,7 +213,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">21</span>
+        <span class="site-item-stat-count">22</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -1689,6 +1689,49 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/"" data-c="
+          &lt;h1 id=&#34;什么是箱型图&#34;&gt;什么是箱型图&lt;/h1&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610935277554.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h1 id=&#34;箱型图的价值&#34;&gt;箱型图的价值&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;1.直观明了地识别数据批中的异常值&lt;/strong&gt;&lt;br&gt;
+上文讲了很久的识别异常值，其实箱线图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，所以异常值不会影响箱形图的数据形状，箱线图识别异常值的结果比较客观。由此可见，箱线图在识别异常值方面有一定的优越性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.利用箱线图判断数据批的偏态和尾重&lt;/strong&gt;&lt;br&gt;
+对于标准正态分布的样本，只有极少值为异常值。异常值越多说明尾部越重，自由度越小（即自由变动的量的个数）；&lt;br&gt;
+而偏态表示偏离程度，异常值集中在较小值一侧，则分布呈左偏态；异常值集中在较大值一侧，则分布呈右偏态。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.利用箱线图比较几批数据的形状&lt;/strong&gt;&lt;br&gt;
+同一数轴上，几批数据的箱线图并行排列，几批数据的中位数、尾长、异常值、分布区间等形状信息便昭然若揭。如上图，可直观得看出第三季度各分公司的销售额大体都在下降。&lt;br&gt;
+但箱形图也有他的局限性，比如：不能精确地衡量数据分布的偏态和尾重程度；对于批量比较大的数据，反映的信息更加模糊以及用中位数代表总体评价水平有一定的局限性。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610936931212.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+1、下四分位数Q1&lt;br&gt;
+（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
+（2）根据位置，计算相应的四分位数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+我们一组序列数为例：12，15，17，19，20，23，25，28，30，33，34，35，36，37（下同）&lt;br&gt;
+Q1所在的位置=（14+1）/4=3.75，&lt;br&gt;
+Q1=0.25×第三项+0.75×第四项=0.25×17+0.75×19=18.5；&lt;/p&gt;
+&lt;p&gt;2、中位数（第二个四分位数）Q2&lt;br&gt;
+中位数，即一组数由小到大排列处于中间位置的数。若序列数为偶数个，该组的中位数为中间两个数的平均数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+Q2所在的位置=2（14+1）/4=7.5，&lt;br&gt;
+Q2=0.5×第七项+0.5×第八项=0.5×25+0.5×28=26.5&lt;/p&gt;
+&lt;p&gt;3、上四分位数Q3&lt;br&gt;
+第3个四分位。&lt;br&gt;
+（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
+（2）根据位置，计算相应的四分位数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+Q3所在的位置=3（14+1）/4=11.25，&lt;br&gt;
+Q3=0.75×第十一项+0.25×第十二项=0.75×34+0.25×35=34.25。&lt;/p&gt;
+&lt;p&gt;4、上限&lt;br&gt;
+上限是非异常范围内的最大值。&lt;br&gt;
+首先要知道什么是四分位距如何计算的？&lt;br&gt;
+四分位距IQR=Q3-Q1，那么上限=Q3+1.5IQR&lt;/p&gt;
+&lt;p&gt;5、下限&lt;br&gt;
+下限是非异常范围内的最小值。&lt;br&gt;
+下限=Q1-1.5IQR&lt;/p&gt;
+">数据分析——箱形图分析</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/zhong-tai-cang-chu-yu-ce/"" data-c="
