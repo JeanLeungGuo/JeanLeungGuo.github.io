@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>如何做产品的精细化运营 | Jeanleung_blog</title>
+<title>加入数据采集后的产品设计流程 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1610935186228">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,8 +38,8 @@
 
 
 
-  <meta name="description" content="如何做产品的精细化运营" />
-  <meta name="keywords" content="用户增长" />
+  <meta name="description" content="加入数据采集后的产品设计流程" />
+  <meta name="keywords" content="产品设计,数据分析" />
 </head>
 
 <body>
@@ -190,8 +190,7 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            <div class="post-side-meta" id="post_side_meta">
-              
+            
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -263,201 +262,6 @@
   </div>
 
 </div>
-            </div>
-            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
-              <div class="toc-box right-motion">
-  <div class="toc-wrapper auto-number auto"
-    id="toc_wrapper">
-    <ul class="markdownIt-TOC">
-<li><a href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%81%9A%E7%B2%BE%E7%BB%86%E5%8C%96%E8%BF%90%E8%90%A5">1、为什么要做精细化运营</a></li>
-<li><a href="#2-%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%8C%87%E6%A0%87">2、用户行为指标</a><br>
-*<br>
-*</li>
-<li><a href="#3-%E7%94%A8%E6%88%B7%E5%88%86%E5%B1%82">3、用户分层</a>
-<ul>
-<li><a href="#1-%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%94%A8%E6%88%B7%E5%88%86%E5%B1%82">1、如何进行用户分层</a></li>
-<li><a href="#2-%E7%94%A8%E6%88%B7%E4%BB%B7%E5%80%BC%E5%88%86%E5%B1%82">2、用户价值分层</a></li>
-</ul>
-</li>
-<li></li>
-</ul>
-
-  </div>
-</div>
-
-<script>
-
-  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
-  let active = 'active-show', activeClass = 'active-current';
-  let tocWrapper = document.querySelector('#toc_wrapper');
-  let tocContent = tocWrapper.children[0];
-  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
-
-  function addTocNumber(elem, deep) {
-    if (!elem) {
-      return;
-    }
-    let prop = elem.__proto__;
-
-    if (prop === HTMLUListElement.prototype) {
-      for (let i = 0; i < elem.children.length; i++) {
-        addTocNumber(elem.children[i], deep + (i + 1) + '.');
-      }
-    } else if (prop === HTMLLIElement.prototype) {
-      // 保存li元素
-      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
-        lList.push(elem);
-      }
-      for (let i = 0; i < elem.children.length; i++) {
-        let cur = elem.children[i];
-        if (cur.__proto__ === HTMLAnchorElement.prototype) {
-          if (autoNumber) {
-            cur.text = deep + ' ' + cur.text;
-          }
-        } else if (cur.__proto__ === HTMLUListElement.prototype) {
-          addTocNumber(cur, deep);
-        }
-      }
-    }
-  }
-
-  function removeParentActiveClass() {
-    let parents = tocContent.querySelectorAll('.' + active)
-    parents.forEach(function (elem) {
-      elem.classList.remove(active);
-    });
-  }
-
-  function addActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.add(activeClass);
-    }
-  }
-
-  function removeActiveClass(index) {
-    if (index >= 0 && index < hList.length) {
-      lList[index].classList.remove(activeClass);
-    }
-  }
-
-  function addActiveLiElemment(elem, parent) {
-    if (!elem || elem === parent) {
-      return;
-    } else {
-      if (elem.__proto__ === HTMLLIElement.prototype) {
-        elem.classList.add(active);
-      }
-      addActiveLiElemment(elem.parentElement, parent);
-    }
-  }
-
-  function showToc() {
-    if (tocWrapper) {
-      postBody = document.querySelector('#post_body');
-      for (let i = 0; i < postBody.children.length; i++) {
-        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
-          hList.push(postBody.children[i]);
-        }
-      }
-      if (tocWrapper.classList.contains('compress')) {
-        tocContent.classList.add('closed');
-      } else if (tocWrapper.classList.contains('no_compress')) {
-        tocContent.classList.add('expanded');
-      } else {
-        if (hList.length > 10) {
-          active = 'active-hidden'
-          tocContent.classList.add('closed');
-        } else {
-          tocContent.classList.add('expanded');
-        }
-      }
-    }
-  }
-
-  (function () {
-    // 处理不是从#一级标题开始目录
-    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
-      let con = tocContent.children[0].children[0];
-      tocContent.innerHTML = con.innerHTML;
-    }
-    let markdownItTOC = document.querySelector('.markdownIt-TOC');
-    let innerHeight = window.innerHeight;
-    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
-    addTocNumber(tocContent, '');
-  })();
-
-  document.addEventListener('scroll', function (e) {
-    if (lList.length <= 0) {
-      return;
-    }
-    let scrollTop = document.scrollingElement.scrollTop + 10;
-    let dir;
-
-    if (lastTop - scrollTop > 0) {
-      dir = 'up';
-    } else {
-      dir = 'down';
-    }
-
-    lastTop = scrollTop;
-    if (scrollTop <= 0) {
-      if (lastIndex >= 0 && lastIndex < hList.length) {
-        lList[lastIndex].classList.remove(activeClass);
-      }
-      return;
-    }
-
-    let current = 0, hasFind = false;
-    for (let i = 0; i < hList.length; i++) {
-      if (hList[i].offsetTop > scrollTop) {
-        current = i;
-        hasFind = true;
-        break;
-      }
-    }
-    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
-      current = hList.length - 1;
-    } else {
-      current--;
-    }
-    if (dir === 'down') {
-      if (current > lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex)
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    } else {
-      if (current < lastIndex) {
-        addActiveClass(current);
-        removeActiveClass(lastIndex);
-        lastIndex = current;
-        removeParentActiveClass();
-        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
-      }
-    }
-  });
-
-
-  window.addEventListener('load', function () {
-    showToc();
-    document.querySelector('#sidebar').style = 'display: block;';
-    tocWrapper.classList.add('toc-active');
-    setTimeout(function () {
-      if ("createEvent" in document) {
-        let evt = document.createEvent("HTMLEvents");
-        evt.initEvent("scroll", false, true);
-        document.dispatchEvent(evt);
-      }
-      else {
-        document.fireEvent("scroll");
-      }
-    }, 500)
-  })
-
-</script>
-            </div>
           
         
       </div>
@@ -545,8 +349,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/jing-xi-hua-yun-ying/">
-      如何做产品的精细化运营
+    <a class="post-title-link" href="https://jeanleungguo.github.io/jia-ru-shu-ju-cai-ji-hou-de-chan-pin-she-ji-liu-cheng/">
+      加入数据采集后的产品设计流程
     </a>
   </h1>
   <div class="post-meta">
@@ -554,7 +358,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2020-02-16 17:06:52">2020-02-16</span>
+      <span class="publish-time" data-t="2019-10-10 08:38:10">2019-10-10</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -563,8 +367,14 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://jeanleungguo.github.io/tag/">
-        <span>用户增长</span>
+      <a href="https://jeanleungguo.github.io/product_design/">
+        <span>产品设计</span>
+      </a>、
+      
+      
+      
+      <a href="https://jeanleungguo.github.io/tag2/">
+        <span>数据分析</span>
       </a>
       
       
@@ -573,68 +383,32 @@
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
+      <span>2<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>824<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>336<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <h1 id="1-为什么要做精细化运营">1、为什么要做精细化运营</h1>
-<p>无论产品处于生命周期的哪一个部分，其用户的特征总是不尽相同的，深度用户与新用户肯定不能执行同一套策略。“精细化运营”是一种建立在数据基础上的思维方式——用较少的成本获得较好的效果的运营策略。</p>
-<p><strong>主要目标</strong>是提升产品用户的<strong>活跃、留存和转化</strong>。</p>
-<p><strong>主要工作内容</strong>是依托于用户的需求制定相应的运营策略，刺激用户产生价值。</p>
-<h1 id="2-用户行为指标">2、用户行为指标</h1>
-<p>用户的行为数据是用户在网页/app等应用上发生的行为而留下的痕迹。通过对用户行为的分析可以用来判断用户对产品的喜好与期望。可以大致推测出具有不同特征的用户画像。而由于用户行为数据十分旁杂，因此需要针对用户行为进行简单有效的划分，</p>
-<h3 id=""></h3>
-<h1 id="3-用户分层">3、用户分层</h1>
-<p>用户分层首先要搞清楚为什么要分层，要解决哪些业务上的问题。</p>
-<p>分层可以实现：针对不同属性的用户进行不同策略的运营。</p>
-<p>根据用户不同的行为，可以对用户进行分层，针对不同层级的用户制定个性化的运营方案。</p>
-<h2 id="1-如何进行用户分层">1、如何进行用户分层</h2>
-<ul>
-<li>用户分层的核心首先要明确分层解决的问题</li>
-<li>找到与核心目标有关的数据指标</li>
-<li>根据数据指标进行用户的分层</li>
-</ul>
-<p>如电商行业针对不同分层的用户进行push的推送，提升用户留存。会将用户按如下几个方面分层：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">感兴趣的商品类型</th>
-<th style="text-align:left">上一次推送的时间</th>
-<th style="text-align:left">使用频率</th>
-<th style="text-align:left">上一次访问时间</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-用户价值分层">2、用户价值分层</h2>
-<p>任何产品都是要产生价值的，产品的资源是有限的，不可能无限制的对用户进行补贴。因此考虑每个用户的ROI十分关键。而且运营同学精力是有限的，随着产品用户的增长，运营难度会越来越高，因此要对用户进行分层，应将有限的精力投入到对产品贡献较大的用户身上。</p>
-<p>介绍一种常见的用户分层方式（RFM模型），利用该模型可以区分平台用户的价值。根据用户对平台的价值进行精细化运营。</p>
-<figure data-type="image" tabindex="1"><img src="https://jeanleungguo.github.io/post-images/1608893384525.jpg" alt="" loading="lazy"></figure>
-<figure data-type="image" tabindex="2"><img src="https://jeanleungguo.github.io/post-images/1608893589773.jpg" alt="" loading="lazy"></figure>
-<p><strong>R（Recency）最近一次消费时间</strong>：表示用户最近一次消费距离现在的时间（或截止到统计周期）。消费时间越近的客户价值越大。1年前消费过的用户肯定没有1周前消费过的用户价值大。</p>
-<p><strong>F（Frequency）消费频率</strong>：消费频率是指用户在统计周期内购买商品的次数，经常购买的用户也就是熟客，价值肯定比偶尔来一次的客户价值大。</p>
-<p>M（Monetary）<strong>消费金额</strong>：消费金额是指用户在统计周期内消费的总金额，体现了消费者为企业创利的多少，自然是消费越多的用户价值越大。</p>
-<h1 id="-2"></h1>
+              <p>先通过用户路径分析用户流失的原因所在，通过桑基图可以清晰展示用户的动作走向。<br>
+<img src="https://jeanleungguo.github.io/post-images/1610930396385.png" alt="" loading="lazy"><br>
+再对其中的关键行为事件进行深度分析。</p>
+<p>假如经过分析发现：<br>
+登录app后，大约40%的用户会点击首页banner，约30%的用户直接进行商品搜索，10%左右的用户会浏览商品列表，不到5%的用户会直接退出app。<br>
+接着，需要进一步查看这4类用户的订单提交情况。这里可以用到漏斗图，如下图：<br>
+<img src="https://jeanleungguo.github.io/post-images/1610930471630.webp" alt="" loading="lazy"></p>
+<p>经过再次分析发现：<br>
+直接搜索商品的用户提交订单的比例最高，超过90%；而与之形成鲜明对比的是，尽管“点击首页Banner”是大多数用户的首选动作，占比最多（40%），但这部分用户的成交率只有30%；说明Banner的内容布局体验糟糕，是优化重点。</p>
+<p>因此，完整的工作流大致要经过10个步骤：<br>
+<img src="https://jeanleungguo.github.io/post-images/1610930333118.png" alt="" loading="lazy"></p>
+<p>数据分析方法：<br>
+6大分析法：相关性分析法、分布分析法、对比分析法、多维分析法、交叉分析法、时间序列分析法。<br>
+7大可视化图表：相关热力图、用户流转地图、直方图、条形图、多变量图、折线图、散点图。<br>
+<img src="https://jeanleungguo.github.io/post-images/1610930341912.webp" alt="" loading="lazy"></p>
 
             </div>
             
@@ -647,7 +421,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://jeanleungguo.github.io/jing-xi-hua-yun-ying/" title="如何做产品的精细化运营">https://jeanleungguo.github.io/jing-xi-hua-yun-ying/</a>
+      <a href="https://jeanleungguo.github.io/jia-ru-shu-ju-cai-ji-hou-de-chan-pin-she-ji-liu-cheng/" title="加入数据采集后的产品设计流程">https://jeanleungguo.github.io/jia-ru-shu-ju-cai-ji-hou-de-chan-pin-she-ji-liu-cheng/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -656,21 +430,23 @@
   </ul>
   <div class="tags">
     
-      <a href="https://jeanleungguo.github.io/tag/"># 用户增长</a>
+      <a href="https://jeanleungguo.github.io/product_design/"># 产品设计</a>
+    
+      <a href="https://jeanleungguo.github.io/tag2/"># 数据分析</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="如何做好一个产品" href="https://jeanleungguo.github.io/ru-guo-zuo-hao-yi-ge-chan-pin/">如何做好一个产品</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="如何做好一个产品" href="https://jeanleungguo.github.io/ru-guo-zuo-hao-yi-ge-chan-pin/">上一篇</a>
+        <a class="nav-pc-next" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">用户增长过程中关注的数据指标</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="用户增长过程中关注的数据指标" href="https://jeanleungguo.github.io/user-growth-model/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="用户增长方法论" href="https://jeanleungguo.github.io/user-growth/">用户增长方法论</a>
-        <a class="nav-mobile-next" title="用户增长方法论" href="https://jeanleungguo.github.io/user-growth/">下一篇</a>
+        <a class="nav-pc-next" title="如何理解用户" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">如何理解用户</a>
+        <a class="nav-mobile-next" title="如何理解用户" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
