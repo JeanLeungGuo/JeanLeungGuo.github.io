@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2021-01-20T04:44:59.316Z</updated>
+    <updated>2021-01-20T04:54:34.636Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -15,21 +15,14 @@
         <id>https://jeanleungguo.github.io/zhong-tai-cang-chu-yu-ce/</id>
         <link href="https://jeanleungguo.github.io/zhong-tai-cang-chu-yu-ce/">
         </link>
-        <updated>2021-01-12T09:26:54.000Z</updated>
+        <updated>2020-12-12T09:26:54.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[中台—库存管理]]></title>
         <id>https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/</id>
         <link href="https://jeanleungguo.github.io/zhong-tai-ku-cun-guan-li/">
         </link>
-        <updated>2021-01-11T07:52:36.000Z</updated>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[不一样的商品中心]]></title>
-        <id>https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/</id>
-        <link href="https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/">
-        </link>
-        <updated>2020-12-22T06:25:51.000Z</updated>
+        <updated>2020-12-11T07:52:36.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[如何建设数据监控后台]]></title>
@@ -39,10 +32,17 @@
         <updated>2020-12-02T13:31:52.000Z</updated>
     </entry>
     <entry>
-        <title type="html"><![CDATA[理解管理]]></title>
-        <id>https://jeanleungguo.github.io/ru-he-zuo-guan-li/</id>
-        <link href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/">
+        <title type="html"><![CDATA[数据分析——箱形图分析]]></title>
+        <id>https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/</id>
+        <link href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/">
         </link>
-        <updated>2020-11-21T10:05:09.000Z</updated>
+        <updated>2020-11-18T02:00:15.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[不一样的商品中心]]></title>
+        <id>https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/</id>
+        <link href="https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/">
+        </link>
+        <updated>2020-11-03T06:25:51.000Z</updated>
     </entry>
 </feed>
