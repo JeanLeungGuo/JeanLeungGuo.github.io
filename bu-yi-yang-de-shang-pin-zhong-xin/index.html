@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>不一样的商品中心 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1610936959546">
+<link rel="shortcut icon" href="/favicon.ico?v=1611117546065">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -213,7 +213,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">22</span>
+        <span class="site-item-stat-count">23</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -573,13 +573,13 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>3444<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>3420<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p><em>“任何公司的商品中心功能都是比较杂乱的，这不是由于业务没有理清，而是随着业务的扩展对商品中心功能不断扩展的结果。本文将自己重构商品中心的经验分享给各位，带大家规范商品中心模块让商品中心扩展性更强。打破常规打造不一样的商品中心。”</em></p>
+              <p><em>“任何公司的商品中心功能都是比较杂乱的，这不是由于业务没有理清，而是随着业务的扩展对商品中心功能不断扩展的结果。重构商品中心的经历让我更加清晰深刻地了商品中心的完整业务架构。”</em></p>
 <h1 id="1-商品中心是什么">1、商品中心是什么</h1>
 <p>商品中心是个抽象的概念，从数据层角度来看，他主要进行商品有关的数据存储，处理与加工。<br>
 从业务层面来讲，他具体的能力是满足运营对商品的日常维护，更新与迭代。<br>
@@ -736,8 +736,8 @@ N(u)是用户喜欢的物品集合，S(j,k)是与物品j最相似的k个物品�
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="如何建设数据监控后台" href="https://jeanleungguo.github.io/analysis-backstage/">如何建设数据监控后台</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="如何建设数据监控后台" href="https://jeanleungguo.github.io/analysis-backstage/">上一篇</a>
+        <a class="nav-pc-next" title="数据分析——箱形图分析" href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/">数据分析——箱形图分析</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="数据分析——箱形图分析" href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/">上一篇</a>
       
     </div>
     <div class="nav-next">
@@ -1743,46 +1743,11 @@ N(u)是用户喜欢的物品集合，S(j,k)是与物品j最相似的k个物品�
     <div class="result" id="result">
       
       <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/"" data-c="
-          &lt;h1 id=&#34;什么是箱型图&#34;&gt;什么是箱型图&lt;/h1&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610935277554.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
-&lt;h1 id=&#34;箱型图的价值&#34;&gt;箱型图的价值&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;1.直观明了地识别数据批中的异常值&lt;/strong&gt;&lt;br&gt;
-上文讲了很久的识别异常值，其实箱线图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，所以异常值不会影响箱形图的数据形状，箱线图识别异常值的结果比较客观。由此可见，箱线图在识别异常值方面有一定的优越性。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2.利用箱线图判断数据批的偏态和尾重&lt;/strong&gt;&lt;br&gt;
-对于标准正态分布的样本，只有极少值为异常值。异常值越多说明尾部越重，自由度越小（即自由变动的量的个数）；&lt;br&gt;
-而偏态表示偏离程度，异常值集中在较小值一侧，则分布呈左偏态；异常值集中在较大值一侧，则分布呈右偏态。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;3.利用箱线图比较几批数据的形状&lt;/strong&gt;&lt;br&gt;
-同一数轴上，几批数据的箱线图并行排列，几批数据的中位数、尾长、异常值、分布区间等形状信息便昭然若揭。如上图，可直观得看出第三季度各分公司的销售额大体都在下降。&lt;br&gt;
-但箱形图也有他的局限性，比如：不能精确地衡量数据分布的偏态和尾重程度；对于批量比较大的数据，反映的信息更加模糊以及用中位数代表总体评价水平有一定的局限性。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610936931212.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
-1、下四分位数Q1&lt;br&gt;
-（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
-（2）根据位置，计算相应的四分位数。&lt;/p&gt;
-&lt;p&gt;例：&lt;br&gt;
-我们一组序列数为例：12，15，17，19，20，23，25，28，30，33，34，35，36，37（下同）&lt;br&gt;
-Q1所在的位置=（14+1）/4=3.75，&lt;br&gt;
-Q1=0.25×第三项+0.75×第四项=0.25×17+0.75×19=18.5；&lt;/p&gt;
-&lt;p&gt;2、中位数（第二个四分位数）Q2&lt;br&gt;
-中位数，即一组数由小到大排列处于中间位置的数。若序列数为偶数个，该组的中位数为中间两个数的平均数。&lt;/p&gt;
-&lt;p&gt;例：&lt;br&gt;
-Q2所在的位置=2（14+1）/4=7.5，&lt;br&gt;
-Q2=0.5×第七项+0.5×第八项=0.5×25+0.5×28=26.5&lt;/p&gt;
-&lt;p&gt;3、上四分位数Q3&lt;br&gt;
-第3个四分位。&lt;br&gt;
-（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
-（2）根据位置，计算相应的四分位数。&lt;/p&gt;
-&lt;p&gt;例：&lt;br&gt;
-Q3所在的位置=3（14+1）/4=11.25，&lt;br&gt;
-Q3=0.75×第十一项+0.25×第十二项=0.75×34+0.25×35=34.25。&lt;/p&gt;
-&lt;p&gt;4、上限&lt;br&gt;
-上限是非异常范围内的最大值。&lt;br&gt;
-首先要知道什么是四分位距如何计算的？&lt;br&gt;
-四分位距IQR=Q3-Q1，那么上限=Q3+1.5IQR&lt;/p&gt;
-&lt;p&gt;5、下限&lt;br&gt;
-下限是非异常范围内的最小值。&lt;br&gt;
-下限=Q1-1.5IQR&lt;/p&gt;
-">数据分析——箱形图分析</a>
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/cong-ling-kai-shi-xue-shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/"" data-c="
+          &lt;h1 id=&#34;数据库&#34;&gt;数据库&lt;/h1&gt;
+&lt;p&gt;展示所有数据库 —SHOW DATABASES;&lt;br&gt;
+新建数据库 —CREATE DATABASE[dbname]&lt;/p&gt;
+">从零开始学数据分析——SQL的基础语法篇</a>
       </div>
       
       <div class="item">
@@ -2097,8 +2062,51 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
       </div>
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/"" data-c="
+          &lt;h1 id=&#34;什么是箱型图&#34;&gt;什么是箱型图&lt;/h1&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610935277554.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h1 id=&#34;箱型图的价值&#34;&gt;箱型图的价值&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;1.直观明了地识别数据批中的异常值&lt;/strong&gt;&lt;br&gt;
+上文讲了很久的识别异常值，其实箱线图判断异常值的标准以四分位数和四分位距为基础，四分位数具有一定的耐抗性，多达25%的数据可以变得任意远而不会很大地扰动四分位数，所以异常值不会影响箱形图的数据形状，箱线图识别异常值的结果比较客观。由此可见，箱线图在识别异常值方面有一定的优越性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2.利用箱线图判断数据批的偏态和尾重&lt;/strong&gt;&lt;br&gt;
+对于标准正态分布的样本，只有极少值为异常值。异常值越多说明尾部越重，自由度越小（即自由变动的量的个数）；&lt;br&gt;
+而偏态表示偏离程度，异常值集中在较小值一侧，则分布呈左偏态；异常值集中在较大值一侧，则分布呈右偏态。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.利用箱线图比较几批数据的形状&lt;/strong&gt;&lt;br&gt;
+同一数轴上，几批数据的箱线图并行排列，几批数据的中位数、尾长、异常值、分布区间等形状信息便昭然若揭。如上图，可直观得看出第三季度各分公司的销售额大体都在下降。&lt;br&gt;
+但箱形图也有他的局限性，比如：不能精确地衡量数据分布的偏态和尾重程度；对于批量比较大的数据，反映的信息更加模糊以及用中位数代表总体评价水平有一定的局限性。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1610936931212.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+1、下四分位数Q1&lt;br&gt;
+（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
+（2）根据位置，计算相应的四分位数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+我们一组序列数为例：12，15，17，19，20，23，25，28，30，33，34，35，36，37（下同）&lt;br&gt;
+Q1所在的位置=（14+1）/4=3.75，&lt;br&gt;
+Q1=0.25×第三项+0.75×第四项=0.25×17+0.75×19=18.5；&lt;/p&gt;
+&lt;p&gt;2、中位数（第二个四分位数）Q2&lt;br&gt;
+中位数，即一组数由小到大排列处于中间位置的数。若序列数为偶数个，该组的中位数为中间两个数的平均数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+Q2所在的位置=2（14+1）/4=7.5，&lt;br&gt;
+Q2=0.5×第七项+0.5×第八项=0.5×25+0.5×28=26.5&lt;/p&gt;
+&lt;p&gt;3、上四分位数Q3&lt;br&gt;
+第3个四分位。&lt;br&gt;
+（1）确定四分位数的位置。Qi所在位置=i（n+1）/4&lt;br&gt;
+（2）根据位置，计算相应的四分位数。&lt;/p&gt;
+&lt;p&gt;例：&lt;br&gt;
+Q3所在的位置=3（14+1）/4=11.25，&lt;br&gt;
+Q3=0.75×第十一项+0.25×第十二项=0.75×34+0.25×35=34.25。&lt;/p&gt;
+&lt;p&gt;4、上限&lt;br&gt;
+上限是非异常范围内的最大值。&lt;br&gt;
+首先要知道什么是四分位距如何计算的？&lt;br&gt;
+四分位距IQR=Q3-Q1，那么上限=Q3+1.5IQR&lt;/p&gt;
+&lt;p&gt;5、下限&lt;br&gt;
+下限是非异常范围内的最小值。&lt;br&gt;
+下限=Q1-1.5IQR&lt;/p&gt;
+">数据分析——箱形图分析</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/bu-yi-yang-de-shang-pin-zhong-xin/"" data-c="
-          &lt;p&gt;&lt;em&gt;“任何公司的商品中心功能都是比较杂乱的，这不是由于业务没有理清，而是随着业务的扩展对商品中心功能不断扩展的结果。本文将自己重构商品中心的经验分享给各位，带大家规范商品中心模块让商品中心扩展性更强。打破常规打造不一样的商品中心。”&lt;/em&gt;&lt;/p&gt;
+          &lt;p&gt;&lt;em&gt;“任何公司的商品中心功能都是比较杂乱的，这不是由于业务没有理清，而是随着业务的扩展对商品中心功能不断扩展的结果。重构商品中心的经历让我更加清晰深刻地了商品中心的完整业务架构。”&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&#34;1-商品中心是什么&#34;&gt;1、商品中心是什么&lt;/h1&gt;
 &lt;p&gt;商品中心是个抽象的概念，从数据层角度来看，他主要进行商品有关的数据存储，处理与加工。&lt;br&gt;
 从业务层面来讲，他具体的能力是满足运营对商品的日常维护，更新与迭代。&lt;br&gt;
@@ -3095,16 +3103,32 @@ Y轴代表核心指标触达出数，也是反应流量质量的指标，具体�
           &lt;h1 id=&#34;一-为什么要理解用户&#34;&gt;一、为什么要理解用户&lt;/h1&gt;
 &lt;p&gt;商业的本质是“利他”，为用户创造价值。而为用户创造价值理解用户是第一步。&lt;/p&gt;
 &lt;h1 id=&#34;用户的定义&#34;&gt;用户的定义&lt;/h1&gt;
-&lt;p&gt;**1、用户的属性 **&lt;br&gt;
-用户有异质性、情境性、可塑性、自利性、有限理性这五个属性。&lt;br&gt;
+&lt;h2 id=&#34;1-用户的属性&#34;&gt;1、用户的属性&lt;/h2&gt;
+&lt;p&gt;用户有异质性、情境性、可塑性、自利性、有限理性这五个属性。&lt;br&gt;
 &lt;strong&gt;异质性&lt;/strong&gt;是指用户的特点千差万别，几乎很难找到两个完全一样的，用户。因为用户的偏好、认知、所拥有的资源是不一样的，所以不 能把用户统一成一个单一的用户画像。&lt;br&gt;
 &lt;strong&gt;情境性&lt;/strong&gt;是指用户的行为受情境的影响，没有情境就没有用户，同一个用户在不同的情境下会有不同的反应和行为。就像前文讲到的, 用户都处于微观场景中。比如在打车这个大情境下，面对不同的情况，比如早高峰和晚高峰，一个人和两个人，有钱和没钱，晴天和下雪天，用户的选择完全不一样。&lt;br&gt;
 &lt;strong&gt;可塑性&lt;/strong&gt;是指用户是可变的,其偏好和认知会随着外界不同的信息刺激发生变化和演化，具备可塑性。比如传销者的洗脑能力就很强，比如二战时日本军国主义者和德国纳粹把它们的大量国民洗脑成罪恶支持者，比如消费品营销领域和增长黑客领域都有很多技巧利用人性弱点去 改变用户行为。&lt;br&gt;
 &lt;strong&gt;自利性&lt;/strong&gt;是指用户追求个人总效用最大化。&lt;br&gt;
-&lt;strong&gt;有限理性&lt;/strong&gt;是指用户虽然追求理性，但他的能力是有限的，其判断经常出错，也经常被骗，所以只能做到有限的程度。这个概念是由图灵奖、诺贝尔经济学奖、美国心理学会终身成就奖获得者赫伯特•西蒙提出的。&lt;br&gt;
-&lt;strong&gt;2、用户的行为&lt;/strong&gt;&lt;br&gt;
-首先，在行为发生前，用户通常会接受一个隋境的刺激，这个情境 的刺激会调用偏好和认知函数，产生一个主观期望效用，促使用户产生相应的行为，即追逐这个预期的效用。而行为会产生某个结果,这个结果又会成为经验,影响偏好和认知函数，从而可能对用户的下一次行为产生影响。&lt;/p&gt;
-">如何理解用户</a>
+&lt;strong&gt;有限理性&lt;/strong&gt;是指用户虽然追求理性，但他的能力是有限的，其判断经常出错，也经常被骗，所以只能做到有限的程度。这个概念是由图灵奖、诺贝尔经济学奖、美国心理学会终身成就奖获得者赫伯特•西蒙提出的。&lt;/p&gt;
+&lt;h2 id=&#34;2-用户的行为&#34;&gt;2、用户的行为&lt;/h2&gt;
+&lt;p&gt;首先，在行为发生前，用户通常会接受一个隋境的刺激，这个情境的刺激会调用偏好和认知，产生一个主观期望效用，促使用户产生相应的行为，即追逐这个预期的效用。而行为会产生某个结果,这个结果又会成为经验,影响偏好和认知函数，从而可能对用户的下一次行为产生影响。&lt;br&gt;
+举个例子，望梅止渴。梅子酸，人在口渴的情况下谈论到梅子,会口生唾液，从而产生止渴的作用。&lt;br&gt;
+这里，用户的认知和偏好里包含了对梅子的认知，也就是他们知道梅子是酸的，“想象梅子”是一个情境，那么用户在这个情境刺激下，会产生一个期望效用一一吃梅子。那么产生的行为便是加快行军，流口水。&lt;br&gt;
+我们做产品，最终目的是促成用户的一种行为（交易、使用）。所以要研究行为背后的原理，以便有的放矢。&lt;br&gt;
+在不同情境下的用户偏好会塑造用户的期望效用，塑造的过程大概会经过&lt;strong&gt;感知、解读、选择集合、模拟推演、价值判断&lt;/strong&gt;五个阶段。&lt;br&gt;
+那么如何促成用户的行为呢？&lt;br&gt;
+最有效的方法是&lt;strong&gt;选择合适的用户&lt;/strong&gt;，如果选择了偏好和认知很合适的人群，那么不用进行很特殊的情境设计就能促成这些用户的行为。但如果候选人群的偏好和认知不是很合适，就要针对情境五步做很多设计，使用户的期望效用最大化的方式是完成某行为。&lt;/p&gt;
+&lt;h2 id=&#34;3-用户的价值&#34;&gt;3、用户的价值&lt;/h2&gt;
+&lt;p&gt;用户为了获取价值（效用）而使用某个产品。&lt;br&gt;
+对用户来说，价值是由效用决定的，效用是欲望的满足程度，人通过消费物品和劳务满足欲望。&lt;br&gt;
+美国第一个诺贝尔经济学奖获得者萨缪尔森有个著名的幸福公 式：幸福=效用-欲望。可见幸福与效用及欲望相关。人主观感知的效用越大（欲望满足程度越高），幸福度越高；效用不变，降低自己的欲望，也能提升幸福感。&lt;br&gt;
+用户价值（即主观效用）具备&lt;strong&gt;认知依存、情境依存、经验反馈&lt;/strong&gt;演化 三个特性。&lt;br&gt;
+&lt;strong&gt;认知依存&lt;/strong&gt;是指用户的认知决定了他的偏好，比如喜欢喝酒还是喝咖啡，喜欢减肥还是吃垃圾食品，喜欢小孩在中国上大学还是出国留学， 喜欢把钱都花光还是存起来。&lt;br&gt;
+&lt;strong&gt;情境依存&lt;/strong&gt;的意思是，有情境才有用户，脱离情境就没有用户。人的意识和行为不是数学这样的形式科学，数学可以抽象到脱离任何情境， 而用户的行为是情境依存的，偏好不变的人在不同情境下的行为不同。 比如说你特别爱吃，喜欢吃得饱饱的，但是当你在沙漠里，只有一个馒头，还要走三天才能出去时，你也会省着吃。这时候你的偏好并没有变化，但是有了新的约束条件，这就是情境依存&lt;br&gt;
+用户价值也具有&lt;strong&gt;经验反馈&lt;/strong&gt;演化的特性，是变化的。用户总是变化 的，所以产品也要跟着变化。人、制度、技术是永恒演化的，演化的结 果就是相对价格的变化。&lt;br&gt;
+以用一个公式来衡量用户价值：&lt;br&gt;
+用户价值=新体验-旧体验-替换成本&lt;/p&gt;
+">俞军方法论——如何理解用户</a>
       </div>
       
       <div class="item">

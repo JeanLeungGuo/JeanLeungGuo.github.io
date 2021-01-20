@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://jeanleungguo.github.io</id>
     <title>Jeanleung_blog</title>
-    <updated>2021-01-18T02:29:24.082Z</updated>
+    <updated>2021-01-20T04:39:11.394Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://jeanleungguo.github.io"/>
     <link rel="self" href="https://jeanleungguo.github.io/atom.xml"/>
@@ -11,11 +11,11 @@
     <icon>https://jeanleungguo.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Jeanleung_blog</rights>
     <entry>
-        <title type="html"><![CDATA[数据分析——箱形图分析]]></title>
-        <id>https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/</id>
-        <link href="https://jeanleungguo.github.io/shu-ju-fen-xi-xiang-xing-tu-fen-xi/">
+        <title type="html"><![CDATA[从零开始学数据分析——SQL的基础语法篇]]></title>
+        <id>https://jeanleungguo.github.io/cong-ling-kai-shi-xue-shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/</id>
+        <link href="https://jeanleungguo.github.io/cong-ling-kai-shi-xue-shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/">
         </link>
-        <updated>2021-01-18T02:00:15.000Z</updated>
+        <updated>2021-01-19T02:23:22.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[中台—需求预测]]></title>
