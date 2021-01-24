@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>Jeanleung_blog</title>
+<title>数据分析——SQL的基础语法篇 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1611491258634">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="数据分析——SQL的基础语法篇" />
+  <meta name="keywords" content="数据分析" />
 </head>
 
 <body>
@@ -172,8 +174,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -245,371 +263,606 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%93%8D%E4%BD%9C">数据库的操作</a></li>
+<li><a href="#%E8%A7%86%E5%9B%BE%E5%88%9B%E5%BB%BA">视图创建</a></li>
+<li><a href="#sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E4%BD%BF%E7%94%A8">Sql语句的使用</a>
+<ul>
+<li><a href="#%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5">查询语句</a>
+<ul>
+<li><a href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95">基础语法：</a></li>
+<li><a href="#distinct">DISTINCT:</a></li>
+<li><a href="#in%E8%AF%AD%E6%B3%95">IN语法：</a></li>
+<li><a href="#between-and">BETWEEN AND</a></li>
+<li><a href="#like-%E8%AF%AD%E5%8F%A5">like 语句</a></li>
+<li><a href="#concat">concat</a></li>
+<li><a href="#replace">REPLACE</a></li>
+<li><a href="#concat-2">CONCAT</a></li>
+<li><a href="#mid">MID</a></li>
+<li><a href="#round">ROUND</a></li>
+<li><a href="#case-when">CASE WHEN</a></li>
+<li><a href="#all">ALL</a></li>
+<li><a href="#alias-%E5%88%AB%E5%90%8D">Alias 别名：</a></li>
+<li><a href="#limit-%E8%AF%AD%E5%8F%A5">limit 语句</a></li>
+<li><a href="#%E8%AF%AD%E5%8F%A5%E5%B5%8C%E5%A5%97">语句嵌套</a></li>
+<li><a href="#order-by-habing">ORDER BY HABING</a></li>
+<li><a href="#sum-%E8%AF%AD%E5%8F%A5">sum 语句</a></li>
+<li><a href="#join-on-%E8%AF%AD%E5%8F%A5">JOIN ON 语句</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini">
-          <section class="section  posts-expand slide-down-in">
-            
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">
-      俞军方法论——如何理解用户
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-09-28 11:20:33">2019-09-28</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>5<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>1428<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-为什么要理解用户">一、为什么要理解用户</h1>
-<p>商业的本质是“利他”，为用户创造价值。而为用户创造价值理解用户是第一步。</p>
 
-                
-              <p>
-            
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
         
       </div>
-      
     </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/">
-      理解管理
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-08-21 18:05:09">2019-08-21</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>773<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-理解管理的核心">一、理解管理的核心</h1>
-<p>管理是决定做什么，并通过人调度资源完成这件事。<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/cms-xi-tong/">
-      CMS系统组成
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-07-24 11:22:51">2019-07-24</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>617<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><p>内容管理系统（Content Management System，简称CMS）<br>
-如今成熟的CMS系统已经可以将系统提供的内容组件用便捷的交互方式快速拼装、填充内容，使最终页面效果可视化。<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/cms-xi-tong/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-you-xiao-ti-sheng-dian-ji-lu/">
-      如何有效提升点击率
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-06-26 08:18:42">2019-06-26</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>654<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><p>如何系统的提升点击率，我这里总结出4个方向。<br>
-1、布局设计<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-you-xiao-ti-sheng-dian-ji-lu/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
   
-            
-            
-<div class="page bg-color">
-  <ul class="pagination-ul">
-    
-      <li class="pagination-dir">
-        <a href="https://jeanleungguo.github.io/page/4/">
-          <i class="fa fa-angle-left"></i>
-        </a>
-      </li>
-    
-    
-      
-        <li class="pagination-li ">
-            <a href="/page/../">
-              1
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/2">
-              2
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/3">
-              3
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/4">
-              4
-            </a>
-        </li>
-      
-        <li class="pagination-li pagination-active">
-            <a href="/page/5">
-              5
-            </a>
-        </li>
-      
-    
-    
-  </ul>
 </div>
-          </section>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/">
+      数据分析——SQL的基础语法篇
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2019-12-22 08:55:54">2019-12-22</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-folder-o"></i>
+      <span class="pc-show language" data-lan="category-in">分类于</span>
+      
+      
+      <a href="https://jeanleungguo.github.io/tag2/">
+        <span>数据分析</span>
+      </a>
+      
+      
+    </span>
+    <span class="post-meta-divider">|</span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>6<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>1289<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="数据库的操作">数据库的操作</h2>
+<ul>
+<li>展示所有数据库 —SHOW DATABASES;</li>
+<li>新建数据库 —CREATE DATABASE [dbname]</li>
+<li>使用某个数据库 —USE [dbname];</li>
+</ul>
+<h2 id="视图创建">视图创建</h2>
+<pre><code class="language-sql">　create view &lt;视图名称&gt;[(column_list)]
+ as select语句
+ with check option;
+</code></pre>
+<h2 id="sql语句的使用">Sql语句的使用</h2>
+<p>练习网站：https://sqlzoo.net/wiki/SELECT_basics/zh</p>
+<h3 id="查询语句">查询语句</h3>
+<h4 id="基础语法">基础语法：</h4>
+<p><strong>查询world表显示德国 Germany 的人口</strong></p>
+<pre><code class="language-sql">SELECT name,population FROM world  WHERE name = 'Germany '
+</code></pre>
+<h4 id="distinct">DISTINCT:</h4>
+<p>distinct:显示唯一</p>
+<p><strong>举例：</strong></p>
+<p>查询全世界的人口</p>
+<pre><code class="language-sql">SELECT SUM(population) from world
+</code></pre>
+<h4 id="in语法">IN语法：</h4>
+<p><strong>Ireland 爱尔兰”,“Iceland 冰岛”,“Denmark 丹麦”的国家名称和人口。</strong></p>
+<pre><code class="language-sql">SELECT name, population FROM world  WHERE name IN ('Ireland ', 'Iceland ', 'Denmark ');
+</code></pre>
+<h4 id="between-and">BETWEEN AND</h4>
+<p><strong>显示面积为 200,000 及 250,000 之间的国家名称和该国面积。</strong></p>
+<pre><code class="language-sql">SELECT name,area FROM world WHERE area BETWEEN 200000 AND 250000
+</code></pre>
+<h4 id="like-语句">like 语句</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">通配符</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">%</td>
+<td style="text-align:left">替代一个或多个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">_</td>
+<td style="text-align:left">仅替代一个字符</td>
+</tr>
+<tr>
+<td style="text-align:left">[charlist]</td>
+<td style="text-align:left">字符列中的任何单一字符</td>
+</tr>
+<tr>
+<td style="text-align:left">[^charlist]或者[!charlist]</td>
+<td style="text-align:left">不在字符列中的任何单一字符</td>
+</tr>
+</tbody>
+</table>
+<p><strong>找出以 Y 为开头的国家。</strong></p>
+<pre><code class="language-sql">SELECT name from world WHERE name LIKE 'Y%'
+</code></pre>
+<p><strong>找出以*Y 为结尾的国家。</strong></p>
+<pre><code class="language-sql">SELECT name FROM world WHERE name LIKE '%Y'
+</code></pre>
+<p><strong>找出包含 Y 的国家。</strong></p>
+<pre><code class="language-sql">SELECT name FROM world WHERE name LIKE '%Y%'
+</code></pre>
+<p><strong>找出所有国家,其名字以t作第二个字母。</strong></p>
+<pre><code class="language-sql">SELECT name FROM world WHERE name LIKE '_t%'
+</code></pre>
+<p><strong>从 &quot;Persons&quot; 表中选取居住的城市以 &quot;A&quot; 或 &quot;L&quot; 或 &quot;N&quot; 开头的人</strong></p>
+<pre><code class="language-sql">SELECT * FROM Persons
+WHERE City LIKE '[ALN]%'
+</code></pre>
+<h4 id="concat">concat</h4>
+<p>concat（'str1' , 'str2'）：可以用来合并两个或以上的字串。</p>
+<p><strong>显示所有国家名字,其首都是国家名字加上”City”</strong></p>
+<pre><code class="language-sql">SELECT name FROM world where capital = concat(name, ' City')
+</code></pre>
+<p><strong>找出所有首都和其國家名字,而首都要有國家名字中出現。</strong></p>
+<pre><code class="language-sql">select capital,name from world where capital Like concat('%',name,'%')
+</code></pre>
+<h4 id="replace"><a href="http://sqlzoo.net/wiki/REPLACE">REPLACE</a></h4>
+<p><strong>显示国家名字，及其延伸词，如首都是国家名字的延伸。</strong></p>
+<pre><code class="language-sql">SELECT name, REPLACE (capital, name, '') AS extend
+FROM world
+WHERE capital LIKE CONCAT ( name, '%_' ) ;
+</code></pre>
+<h4 id="concat-2">CONCAT</h4>
+<p>**CONCAT()函数：**用于将两个字符串连接起来，形成一个单一的字符串。</p>
+<p>**语法：**CONCAT('str1','str2')</p>
+<h4 id="mid">MID</h4>
+<p>**MID()函数：**用于从文本字段中提取字符。</p>
+<p><strong>语法：SELECT MID(column_name, start, length ) FROM table_name</strong></p>
+<p><strong>参数：</strong></p>
+<p>column_name：要提取字符的字段。</p>
+<p>start：规定开始位置（起始值是1）。</p>
+<p>length：可选参数。要返回的字符数。如果省略，则MID()函数返回剩余文本。</p>
+<h4 id="round">ROUND</h4>
+<p>ROUND 函数用于把数值字段舍入为指定的小数位数。</p>
+<p>SQL ROUND() 语法</p>
+<pre><code class="language-sql">SELECT ROUND(column_name,decimals) FROM table_name
+</code></pre>
+<h4 id="case-when">CASE WHEN</h4>
+<p>显示以N开头的国家的名字，并用Australasia 替代 Oceania</p>
+<pre><code class="language-sql">SELECT name, CASE WHEN continent='Oceania' 
+THEN 'Australasia'
+ELSE continent END
+FROM world 
+WHERE name LIKE 'N%';
+</code></pre>
+<p>显示以A或B开头的国家的名称的大陆名称，用Eurasia 替代Europe and Asia，用America 替代每个在 North America <strong>or</strong> South America <strong>or</strong> Caribbean的国家名称。</p>
+<pre><code class="language-sql">SELECT name,
+CASE WHEN continent IN('Europe','Asia')
+     THEN 'Eurasia'
+     WHEN continent IN('North America','South America','Caribbean')
+     THEN 'America'
+     ELSE continent END
+FROM world
+WHERE name LIKE 'A%' OR name LIKE 'B%';
+</code></pre>
+<p>将各大洲摆放正确，Oceania 改为Australasia，Eurasia 和 Turkey的国家改为Europe/Asia，以'B'开头的国家，原Caribbean 改为North America，其他Caribbean 改为<strong>South America</strong> 显示所有国家的名称，大陆名称。</p>
+<pre><code class="language-sql">SELECT name,continent,
+CASE WHEN continent IN ('Eurasia', 'Turkey')
+     THEN 'Europe/Asia'
+
+     WHEN continent = 'Oceania'
+     THEN 'Australasia'
+
+     WHEN continent = 'Caribbean'
+          THEN CASE WHEN name LIKE 'B%'
+               THEN 'North America'
+               ELSE 'South America'
+          END
+     ELSE continent
+     END
+FROM world
+ORDER BY name ASC;
+</code></pre>
+<h4 id="all">ALL</h4>
+<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5CAdministrator%5CDesktop%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210120155815.png" alt="" loading="lazy"></figure>
+<h4 id="alias-别名">Alias 别名：</h4>
+<p>**语法：**表/列名后 使用as后跟别名</p>
+<p>在每一個州中找出最大面積的國家，列出洲份 continent, 國家名字 name 及面積 area。 (有些國家的記錄中，AREA是NULL，沒有填入資料的。)</p>
+<pre><code class="language-sql">SELECT continent, name, area FROM world x  
+WHERE area &gt;= 
+ALL(SELECT area 
+    FROM world y
+		WHERE y.continent=x.continent
+		AND area&gt;0)
+</code></pre>
+<h4 id="limit-语句">limit 语句</h4>
+<p>limit子句用于限制查询结果返回的数量。</p>
+<p><strong>用法</strong>：【select * from tableName limit i,n 】</p>
+<p><strong>参数：</strong></p>
+<ul>
+<li>tableName : 为数据表；</li>
+<li>i : 为查询结果的索引值（默认从0开始）；</li>
+<li>n : 为查询结果返回的数量</li>
+</ul>
+<p><strong>例子</strong>：列出洲份名稱，和每個洲份中國家名字按子母順序是排首位的國家名。(即每洲只有列一國)</p>
+<pre><code class="language-sql">SELECT continent,name FROM world x 
+WHERE x.name=
+(SELECT y.name 
+ FROM world y 
+WHERE y.continent=x.continent 
+ORDER BY name LIMIT 1)；
+</code></pre>
+<h4 id="语句嵌套">语句嵌套</h4>
+<p>**例子：**找出洲份，当中全部国家都有少于或等于 25000000 人口. 在这些洲份中，列出国家名字name，continent 洲份和population人口。</p>
+<pre><code class="language-sql">SELECT name,continent,population 
+FROM world x
+WHERE 25000000&gt;=ALL(
+  SELECT population 
+  FROM world y 
+  WHERE y.continent=x.continent 
+  			AND population&gt;0
+   );
+</code></pre>
+<h4 id="order-by-habing">ORDER BY HABING</h4>
+<p>使用HABING 对聚合函数进行限制，WHERE 关键字无法与合计函数一起使用</p>
+<p>对于每一个洲份，显示洲份和至少有1000万人口(10,000,000)国家的数目</p>
+<pre><code class="language-sql">SELECT continent, COUNT(name)
+  FROM world
+WHERE population &gt; 10000000
+GROUP BY continent
+</code></pre>
+<p>列出有至少100百萬(1億)(100,000,000)人口的洲份。</p>
+<pre><code class="language-sql">SELECT continent 
+  FROM world
+ GROUP BY continent HAVING SUM(population) &gt; 100000000
+</code></pre>
+<h4 id="sum-语句">sum 语句</h4>
+<p>展示世界的总人口。</p>
+<pre><code class="language-sql">SELECT sum(population)
+FROM world
+</code></pre>
+<h4 id="join-on-语句">JOIN ON 语句</h4>
+<p>**语法：**FROM [table1] JOIN [table2] JOIN[table3] ON (列名1=列名2) AND（列名2=列名3）</p>
+<figure data-type="image" tabindex="2"><img src="https://pic4.zhimg.com/80/v2-02beaf512a9e95dde56de1bc0b9b3c1b_1440w.jpg" alt="img" loading="lazy"></figure>
+<pre><code class="language-sql">SELECT goal.matchid, game.mdate,COUNT(*)  
+FROM game JOIN goal ON goal.matchid = game.id  
+WHERE(game.team1 = 'GER' OR game.team2 = 'GER') 
+AND teamid='GER' 
+GROUP BY goal.matchid, game.mdate
+</code></pre>
+<p>IS NULL</p>
+<p>判断内容为空</p>
+<pre><code class="language-sql">select name from teacher
+where dept is null
+</code></pre>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Jeanleung
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/" title="数据分析——SQL的基础语法篇">https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+      <a href="https://jeanleungguo.github.io/tag2/"># 数据分析</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title=" 数据分析——Excel的应用" href="https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/"> 数据分析——Excel的应用</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title=" 数据分析——Excel的应用" href="https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="如何判断产品生命周期" href="https://jeanleungguo.github.io/product-life-cycle/">如何判断产品生命周期</a>
+        <a class="nav-mobile-next" title="如何判断产品生命周期" href="https://jeanleungguo.github.io/product-life-cycle/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -1363,6 +1616,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -3418,6 +3888,5 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
 
   <div class="snow-container"></div>
   <script src="/media/js/bg/snow.js"></script>
-
 
 </html>

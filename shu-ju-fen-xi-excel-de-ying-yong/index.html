@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>Jeanleung_blog</title>
+<title> 数据分析——Excel的应用 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1611491258634">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content=" 数据分析——Excel的应用" />
+  <meta name="keywords" content="" />
 </head>
 
 <body>
@@ -172,8 +174,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -245,371 +263,461 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E5%B0%8F%E6%8A%80%E5%B7%A7">小技巧</a>
+<ul>
+<li><a href="#1-%E7%BB%9D%E5%AF%B9%E5%BC%95%E7%94%A8">1、绝对引用</a></li>
+<li><a href="#2-%E5%BF%AB%E9%80%9F%E9%80%89%E4%B8%AD">2、快速选中</a></li>
+<li><a href="#3-%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8">3、自动补全</a></li>
+<li><a href="#4-%E6%8F%92%E5%85%A5%E4%B8%80%E8%A1%8C">4、插入一行</a></li>
+<li><a href="#5-%E6%9F%A5%E6%89%BE%E6%9B%BF%E6%8D%A2">5、查找替换</a></li>
+<li><a href="#6-%E5%8C%BA%E5%9F%9F%E5%88%AB%E5%90%8D">6、区域别名</a></li>
+<li><a href="#7-%E5%A4%9A%E9%A1%B9%E6%B1%82%E5%92%8C">7、多项求和</a></li>
+<li><a href="#8-%E5%9B%BA%E5%AE%9A%E8%A1%8C%E5%88%97">8、固定行列</a></li>
+<li><a href="#9-%E6%8A%98%E5%8F%A0%E8%A1%8C%E5%88%97">9、折叠行列</a>
+<ul>
+<li><a href="#10-%E5%BF%AB%E9%80%9F%E9%80%89%E4%B8%AD">10、快速选中</a></li>
+<li><a href="#11-%E5%90%91%E4%B8%8B%E5%A1%AB%E5%85%85">11、向下填充</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%87%BD%E6%95%B0">函数</a>
+<ul>
+<li><a href="#1-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5">1、条件语句</a>
+<ul>
+<li><a href="#if-%E5%87%BD%E6%95%B0%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><strong>if 函数</strong>：条件判断</a></li>
+<li><a href="#countif%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E6%BB%A1%E8%B6%B3%E6%9D%A1%E4%BB%B6%E7%9A%84%E4%B8%AA%E6%95%B0">COUNTIF函数：计算满足条件的个数</a></li>
+<li><a href="#sumif%E5%87%BD%E6%95%B0%E6%9D%A1%E4%BB%B6%E6%B1%82%E5%92%8C">sumif函数：条件求和</a></li>
+<li><a href="#averageif%E5%87%BD%E6%95%B0%E6%9D%A1%E4%BB%B6%E6%B1%82%E5%B9%B3%E5%9D%87%E5%80%BC">AVERAGEIF函数：条件求平均值</a></li>
+</ul>
+</li>
+<li><a href="#2-%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5">2、查询语句</a>
+<ul>
+<li><a href="#choose%E5%87%BD%E6%95%B0%E6%A0%B9%E6%8D%AE%E5%BA%8F%E5%8F%B7%E4%BB%8E%E5%88%97%E8%A1%A8%E4%B8%AD%E9%80%89%E5%8F%96%E5%AF%B9%E5%BA%94%E7%9A%84%E5%86%85%E5%AE%B9">Choose函数：根据序号从列表中选取对应的内容</a></li>
+<li><a href="#lookup-%E5%87%BD%E6%95%B0%E4%BB%85%E5%9C%A8%E5%8D%95%E8%A1%8C%E5%8D%95%E5%88%97%E4%B8%AD%E6%9F%A5%E6%89%BE">Lookup 函数：仅在单行单列中查找</a></li>
+<li><a href="#hlookup%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F%E7%9A%84%E8%A1%8C%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E6%8D%AE">Hlookup：在数据区域的行中查找数据</a></li>
+<li><a href="#vlookup%E5%87%BD%E6%95%B0%E5%9C%A8%E6%95%B0%E6%8D%AE%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%88%97%E4%B8%AD%E6%9F%A5%E6%89%BE%E6%95%B0%E6%8D%AE">Vlookup函数：在数据区域的列中查找数据</a></li>
+<li><a href="#match%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E6%8C%87%E5%AE%9A%E5%86%85%E5%AE%B9%E6%89%80%E5%9C%A8%E7%9A%84%E4%BD%8D%E7%BD%AE">Match函数：返回指定内容所在的位置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini">
-          <section class="section  posts-expand slide-down-in">
-            
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">
-      俞军方法论——如何理解用户
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-09-28 11:20:33">2019-09-28</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>5<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>1428<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-为什么要理解用户">一、为什么要理解用户</h1>
-<p>商业的本质是“利他”，为用户创造价值。而为用户创造价值理解用户是第一步。</p>
 
-                
-              <p>
-            
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
         
       </div>
-      
     </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/">
-      理解管理
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-08-21 18:05:09">2019-08-21</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>773<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-理解管理的核心">一、理解管理的核心</h1>
-<p>管理是决定做什么，并通过人调度资源完成这件事。<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/cms-xi-tong/">
-      CMS系统组成
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-07-24 11:22:51">2019-07-24</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>617<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><p>内容管理系统（Content Management System，简称CMS）<br>
-如今成熟的CMS系统已经可以将系统提供的内容组件用便捷的交互方式快速拼装、填充内容，使最终页面效果可视化。<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/cms-xi-tong/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-you-xiao-ti-sheng-dian-ji-lu/">
-      如何有效提升点击率
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-06-26 08:18:42">2019-06-26</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>654<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><p>如何系统的提升点击率，我这里总结出4个方向。<br>
-1、布局设计<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-you-xiao-ti-sheng-dian-ji-lu/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
   
-            
-            
-<div class="page bg-color">
-  <ul class="pagination-ul">
-    
-      <li class="pagination-dir">
-        <a href="https://jeanleungguo.github.io/page/4/">
-          <i class="fa fa-angle-left"></i>
-        </a>
-      </li>
-    
-    
-      
-        <li class="pagination-li ">
-            <a href="/page/../">
-              1
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/2">
-              2
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/3">
-              3
-            </a>
-        </li>
-      
-        <li class="pagination-li ">
-            <a href="/page/4">
-              4
-            </a>
-        </li>
-      
-        <li class="pagination-li pagination-active">
-            <a href="/page/5">
-              5
-            </a>
-        </li>
-      
-    
-    
-  </ul>
 </div>
-          </section>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
+  <h1 class="post-title">
+    <a class="post-title-link" href="https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/">
+       数据分析——Excel的应用
+    </a>
+  </h1>
+  <div class="post-meta">
+    
+    <span class="meta-item pc-show">
+      <i class="fa fa-calendar-o"></i>
+      <span class="language" data-lan="publish">发布于</span>
+      <span class="publish-time" data-t="2019-12-23 20:26:26">2019-12-23</span>
+      <span class="post-meta-divider pc-show">|</span>
+    </span>
+    
+    <span class="meta-item">
+      <i class="fa fa-clock-o"></i>
+      <span>3<span class="language" data-lan="minute">分钟</span></span>
+    </span>
+    <span class="meta-item">
+      <span class="post-meta-divider">|</span>
+      <i class="fa fa-file-word-o"></i>
+      <span>769<span class="pc-show language" data-lan="words">字数</span></span>
+    </span>
+    
+  </div>
+</section>
+            <div class="post-body next-md-body" id="post_body">
+              <h2 id="小技巧">小技巧</h2>
+<h3 id="1-绝对引用">1、绝对引用</h3>
+<p>**场景：**使用函数要固定使用某个数值参与计算。</p>
+<p>**使用方式：**选中需要固定的数值，点F4</p>
+<h3 id="2-快速选中">2、快速选中</h3>
+<p>**场景：**快速选中多行</p>
+<p>**使用方式：**点选首行，后点shift+末行</p>
+<h3 id="3-自动补全">3、自动补全</h3>
+<p>**场景：**当多行数据与上方行计算方式相同，需要应用复制上方公式。</p>
+<p><strong>使用方式：</strong></p>
+<p>1、选中上方行后在出现“+”时进行拖拽；</p>
+<p>2、选中上方行后待出现“+”双击；</p>
+<h3 id="4-插入一行">4、插入一行</h3>
+<p>**快捷键：**ctrl+“+”</p>
+<h3 id="5-查找替换">5、查找替换</h3>
+<p>快捷键：Ctrl+F</p>
+<p>**使用方式：**定位功能定位到具体的值，然后输入公式后Ctrl+Enter</p>
+<h3 id="6-区域别名">6、区域别名</h3>
+<p>**场景：**对选中区域进行别名操作，再函数调用时将会更加清晰</p>
+<p>**创建别名：**选中区域，在公式栏中选择“名称管理器 ”，可指定选中区域的最左一列，最上行为下方选中区域的别名。</p>
+<p>**使用别名：**F3，选择粘贴的别名</p>
+<p>与INDIRECT实现选项联动</p>
+<h3 id="7-多项求和">7、多项求和</h3>
+<p>**场景：**计算某两个区域每一项的乘积</p>
+<p>使用方法：选中某个区域乘以某个区域，它就等于区域1的第1项<em>区域2的第1项+区域1的第2项</em>区域2的第2项+……区域1的第n项*区域2的第n项</p>
+<h3 id="8-固定行列">8、固定行列</h3>
+<p><strong>使用方式</strong>：选中某行某列，或某个单元格，选择视图中的冻结窗格</p>
+<h3 id="9-折叠行列">9、折叠行列</h3>
+<p>**使用方式：**选中固定的行列，数据—创建组，可进行折叠</p>
+<h4 id="10-快速选中">10、快速选中</h4>
+<p>快捷键：Ctrl+shift+end</p>
+<h4 id="11-向下填充">11、向下填充</h4>
+<p>快捷键：Ctrl+D</p>
+<h2 id="函数">函数</h2>
+<h3 id="1-条件语句">1、条件语句</h3>
+<h4 id="if-函数条件判断"><strong>if 函数</strong>：条件判断</h4>
+<p>**语法：**if('条件语句'，&quot;value_if_true&quot;,&quot;value_if_false&quot;)</p>
+<h4 id="countif函数计算满足条件的个数">COUNTIF函数：计算满足条件的个数</h4>
+<p>语法：countif（range,criterria）</p>
+<p>range 为用于条件判断的单元格区域。</p>
+<p>criteria 为条件语句或具体单元格</p>
+<h4 id="sumif函数条件求和">sumif函数：条件求和</h4>
+<p>**语法：**SUMIF（range,criteria,sum_range）</p>
+<p>range 为用于条件判断的单元格区域。</p>
+<p>criteria 为条件语句或具体单元格</p>
+<p>Sum_range 是需要求和的实际单元格</p>
+<h4 id="averageif函数条件求平均值">AVERAGEIF函数：条件求平均值</h4>
+<p>**语法：**AVERAGEIF（range,criteria,sum_range）</p>
+<h3 id="2-查询语句">2、查询语句</h3>
+<h4 id="choose函数根据序号从列表中选取对应的内容">Choose函数：根据序号从列表中选取对应的内容</h4>
+<h4 id="lookup-函数仅在单行单列中查找">Lookup 函数：仅在单行单列中查找</h4>
+<h4 id="hlookup在数据区域的行中查找数据">Hlookup：在数据区域的行中查找数据</h4>
+<p>语法：HLOOKUP（lookup_value,table_arry,col_index_num,range_lookup）</p>
+<p>lookup_value:查询的值</p>
+<p>table_arry:查找的区域</p>
+<p>col_index_num:返回的列</p>
+<p>range_lookup: False精确查找，True大致匹配</p>
+<h4 id="vlookup函数在数据区域的列中查找数据">Vlookup函数：在数据区域的列中查找数据</h4>
+<p>语法：VLOOKUP（lookup_value,table_arry,col_index_num,range_lookup）</p>
+<p>lookup_value:查询的值</p>
+<p>table_arry:查找的区域</p>
+<p>col_index_num:返回的列</p>
+<p>range_lookup: False精确查找，True大致匹配</p>
+<h4 id="match函数返回指定内容所在的位置">Match函数：返回指定内容所在的位置</h4>
+<p>语法：MATCH（lookup_value,lookup_array,[match_type])</p>
+<p>参数：</p>
+<p>lookup_value:查找的值；</p>
+<p>lookup_array:查找的范围；</p>
+<p>match_type：1，表示模糊查找，查找不到返回小于等于最接近的值；</p>
+<p>0，精确查找；</p>
+<p>-1，模糊查找，查找不到返回大于等于最接近的值。</p>
+
+            </div>
+            
+            
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Jeanleung
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/" title=" 数据分析——Excel的应用">https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+  <div class="tags">
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="产品冷启动" href="https://jeanleungguo.github.io/how-to-devise-a -product /">产品冷启动</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="产品冷启动" href="https://jeanleungguo.github.io/how-to-devise-a -product /">上一篇</a>
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="数据分析——SQL的基础语法篇" href="https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/">数据分析——SQL的基础语法篇</a>
+        <a class="nav-mobile-next" title="数据分析——SQL的基础语法篇" href="https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
+</div>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -1363,6 +1471,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -3418,6 +3743,5 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
 
   <div class="snow-container"></div>
   <script src="/media/js/bg/snow.js"></script>
-
 
 </html>

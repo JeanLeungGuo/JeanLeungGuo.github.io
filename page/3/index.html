@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611118469012">
+<link rel="shortcut icon" href="/favicon.ico?v=1611491258634">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -195,7 +195,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">23</span>
+        <span class="site-item-stat-count">24</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -2556,12 +2556,305 @@ KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
       </div>
       
       <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/shu-ju-fen-xi-excel-de-ying-yong/"" data-c="
+          &lt;h2 id=&#34;小技巧&#34;&gt;小技巧&lt;/h2&gt;
+&lt;h3 id=&#34;1-绝对引用&#34;&gt;1、绝对引用&lt;/h3&gt;
+&lt;p&gt;**场景：**使用函数要固定使用某个数值参与计算。&lt;/p&gt;
+&lt;p&gt;**使用方式：**选中需要固定的数值，点F4&lt;/p&gt;
+&lt;h3 id=&#34;2-快速选中&#34;&gt;2、快速选中&lt;/h3&gt;
+&lt;p&gt;**场景：**快速选中多行&lt;/p&gt;
+&lt;p&gt;**使用方式：**点选首行，后点shift+末行&lt;/p&gt;
+&lt;h3 id=&#34;3-自动补全&#34;&gt;3、自动补全&lt;/h3&gt;
+&lt;p&gt;**场景：**当多行数据与上方行计算方式相同，需要应用复制上方公式。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;使用方式：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1、选中上方行后在出现“+”时进行拖拽；&lt;/p&gt;
+&lt;p&gt;2、选中上方行后待出现“+”双击；&lt;/p&gt;
+&lt;h3 id=&#34;4-插入一行&#34;&gt;4、插入一行&lt;/h3&gt;
+&lt;p&gt;**快捷键：**ctrl+“+”&lt;/p&gt;
+&lt;h3 id=&#34;5-查找替换&#34;&gt;5、查找替换&lt;/h3&gt;
+&lt;p&gt;快捷键：Ctrl+F&lt;/p&gt;
+&lt;p&gt;**使用方式：**定位功能定位到具体的值，然后输入公式后Ctrl+Enter&lt;/p&gt;
+&lt;h3 id=&#34;6-区域别名&#34;&gt;6、区域别名&lt;/h3&gt;
+&lt;p&gt;**场景：**对选中区域进行别名操作，再函数调用时将会更加清晰&lt;/p&gt;
+&lt;p&gt;**创建别名：**选中区域，在公式栏中选择“名称管理器 ”，可指定选中区域的最左一列，最上行为下方选中区域的别名。&lt;/p&gt;
+&lt;p&gt;**使用别名：**F3，选择粘贴的别名&lt;/p&gt;
+&lt;p&gt;与INDIRECT实现选项联动&lt;/p&gt;
+&lt;h3 id=&#34;7-多项求和&#34;&gt;7、多项求和&lt;/h3&gt;
+&lt;p&gt;**场景：**计算某两个区域每一项的乘积&lt;/p&gt;
+&lt;p&gt;使用方法：选中某个区域乘以某个区域，它就等于区域1的第1项&lt;em&gt;区域2的第1项+区域1的第2项&lt;/em&gt;区域2的第2项+……区域1的第n项*区域2的第n项&lt;/p&gt;
+&lt;h3 id=&#34;8-固定行列&#34;&gt;8、固定行列&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;使用方式&lt;/strong&gt;：选中某行某列，或某个单元格，选择视图中的冻结窗格&lt;/p&gt;
+&lt;h3 id=&#34;9-折叠行列&#34;&gt;9、折叠行列&lt;/h3&gt;
+&lt;p&gt;**使用方式：**选中固定的行列，数据—创建组，可进行折叠&lt;/p&gt;
+&lt;h4 id=&#34;10-快速选中&#34;&gt;10、快速选中&lt;/h4&gt;
+&lt;p&gt;快捷键：Ctrl+shift+end&lt;/p&gt;
+&lt;h4 id=&#34;11-向下填充&#34;&gt;11、向下填充&lt;/h4&gt;
+&lt;p&gt;快捷键：Ctrl+D&lt;/p&gt;
+&lt;h2 id=&#34;函数&#34;&gt;函数&lt;/h2&gt;
+&lt;h3 id=&#34;1-条件语句&#34;&gt;1、条件语句&lt;/h3&gt;
+&lt;h4 id=&#34;if-函数条件判断&#34;&gt;&lt;strong&gt;if 函数&lt;/strong&gt;：条件判断&lt;/h4&gt;
+&lt;p&gt;**语法：**if(&#39;条件语句&#39;，&amp;quot;value_if_true&amp;quot;,&amp;quot;value_if_false&amp;quot;)&lt;/p&gt;
+&lt;h4 id=&#34;countif函数计算满足条件的个数&#34;&gt;COUNTIF函数：计算满足条件的个数&lt;/h4&gt;
+&lt;p&gt;语法：countif（range,criterria）&lt;/p&gt;
+&lt;p&gt;range 为用于条件判断的单元格区域。&lt;/p&gt;
+&lt;p&gt;criteria 为条件语句或具体单元格&lt;/p&gt;
+&lt;h4 id=&#34;sumif函数条件求和&#34;&gt;sumif函数：条件求和&lt;/h4&gt;
+&lt;p&gt;**语法：**SUMIF（range,criteria,sum_range）&lt;/p&gt;
+&lt;p&gt;range 为用于条件判断的单元格区域。&lt;/p&gt;
+&lt;p&gt;criteria 为条件语句或具体单元格&lt;/p&gt;
+&lt;p&gt;Sum_range 是需要求和的实际单元格&lt;/p&gt;
+&lt;h4 id=&#34;averageif函数条件求平均值&#34;&gt;AVERAGEIF函数：条件求平均值&lt;/h4&gt;
+&lt;p&gt;**语法：**AVERAGEIF（range,criteria,sum_range）&lt;/p&gt;
+&lt;h3 id=&#34;2-查询语句&#34;&gt;2、查询语句&lt;/h3&gt;
+&lt;h4 id=&#34;choose函数根据序号从列表中选取对应的内容&#34;&gt;Choose函数：根据序号从列表中选取对应的内容&lt;/h4&gt;
+&lt;h4 id=&#34;lookup-函数仅在单行单列中查找&#34;&gt;Lookup 函数：仅在单行单列中查找&lt;/h4&gt;
+&lt;h4 id=&#34;hlookup在数据区域的行中查找数据&#34;&gt;Hlookup：在数据区域的行中查找数据&lt;/h4&gt;
+&lt;p&gt;语法：HLOOKUP（lookup_value,table_arry,col_index_num,range_lookup）&lt;/p&gt;
+&lt;p&gt;lookup_value:查询的值&lt;/p&gt;
+&lt;p&gt;table_arry:查找的区域&lt;/p&gt;
+&lt;p&gt;col_index_num:返回的列&lt;/p&gt;
+&lt;p&gt;range_lookup: False精确查找，True大致匹配&lt;/p&gt;
+&lt;h4 id=&#34;vlookup函数在数据区域的列中查找数据&#34;&gt;Vlookup函数：在数据区域的列中查找数据&lt;/h4&gt;
+&lt;p&gt;语法：VLOOKUP（lookup_value,table_arry,col_index_num,range_lookup）&lt;/p&gt;
+&lt;p&gt;lookup_value:查询的值&lt;/p&gt;
+&lt;p&gt;table_arry:查找的区域&lt;/p&gt;
+&lt;p&gt;col_index_num:返回的列&lt;/p&gt;
+&lt;p&gt;range_lookup: False精确查找，True大致匹配&lt;/p&gt;
+&lt;h4 id=&#34;match函数返回指定内容所在的位置&#34;&gt;Match函数：返回指定内容所在的位置&lt;/h4&gt;
+&lt;p&gt;语法：MATCH（lookup_value,lookup_array,[match_type])&lt;/p&gt;
+&lt;p&gt;参数：&lt;/p&gt;
+&lt;p&gt;lookup_value:查找的值；&lt;/p&gt;
+&lt;p&gt;lookup_array:查找的范围；&lt;/p&gt;
+&lt;p&gt;match_type：1，表示模糊查找，查找不到返回小于等于最接近的值；&lt;/p&gt;
+&lt;p&gt;0，精确查找；&lt;/p&gt;
+&lt;p&gt;-1，模糊查找，查找不到返回大于等于最接近的值。&lt;/p&gt;
+"> 数据分析——Excel的应用</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/"" data-c="
+          &lt;h2 id=&#34;数据库的操作&#34;&gt;数据库的操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;展示所有数据库 —SHOW DATABASES;&lt;/li&gt;
+&lt;li&gt;新建数据库 —CREATE DATABASE [dbname]&lt;/li&gt;
+&lt;li&gt;使用某个数据库 —USE [dbname];&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;视图创建&#34;&gt;视图创建&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;　create view &amp;lt;视图名称&amp;gt;[(column_list)]
+ as select语句
+ with check option;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;sql语句的使用&#34;&gt;Sql语句的使用&lt;/h2&gt;
+&lt;p&gt;练习网站：https://sqlzoo.net/wiki/SELECT_basics/zh&lt;/p&gt;
+&lt;h3 id=&#34;查询语句&#34;&gt;查询语句&lt;/h3&gt;
+&lt;h4 id=&#34;基础语法&#34;&gt;基础语法：&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;查询world表显示德国 Germany 的人口&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name,population FROM world  WHERE name = &#39;Germany &#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;distinct&#34;&gt;DISTINCT:&lt;/h4&gt;
+&lt;p&gt;distinct:显示唯一&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;举例：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;查询全世界的人口&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT SUM(population) from world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;in语法&#34;&gt;IN语法：&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;Ireland 爱尔兰”,“Iceland 冰岛”,“Denmark 丹麦”的国家名称和人口。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name, population FROM world  WHERE name IN (&#39;Ireland &#39;, &#39;Iceland &#39;, &#39;Denmark &#39;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;between-and&#34;&gt;BETWEEN AND&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;显示面积为 200,000 及 250,000 之间的国家名称和该国面积。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name,area FROM world WHERE area BETWEEN 200000 AND 250000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;like-语句&#34;&gt;like 语句&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;通配符&lt;/th&gt;
+&lt;th style=&#34;text-align:left&#34;&gt;描述&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;%&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;替代一个或多个字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;_&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;仅替代一个字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;[charlist]&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;字符列中的任何单一字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;[^charlist]或者[!charlist]&lt;/td&gt;
+&lt;td style=&#34;text-align:left&#34;&gt;不在字符列中的任何单一字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;找出以 Y 为开头的国家。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name from world WHERE name LIKE &#39;Y%&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;找出以*Y 为结尾的国家。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name FROM world WHERE name LIKE &#39;%Y&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;找出包含 Y 的国家。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name FROM world WHERE name LIKE &#39;%Y%&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;找出所有国家,其名字以t作第二个字母。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name FROM world WHERE name LIKE &#39;_t%&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;从 &amp;quot;Persons&amp;quot; 表中选取居住的城市以 &amp;quot;A&amp;quot; 或 &amp;quot;L&amp;quot; 或 &amp;quot;N&amp;quot; 开头的人&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT * FROM Persons
+WHERE City LIKE &#39;[ALN]%&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;concat&#34;&gt;concat&lt;/h4&gt;
+&lt;p&gt;concat（&#39;str1&#39; , &#39;str2&#39;）：可以用来合并两个或以上的字串。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;显示所有国家名字,其首都是国家名字加上”City”&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name FROM world where capital = concat(name, &#39; City&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;找出所有首都和其國家名字,而首都要有國家名字中出現。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select capital,name from world where capital Like concat(&#39;%&#39;,name,&#39;%&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;replace&#34;&gt;&lt;a href=&#34;http://sqlzoo.net/wiki/REPLACE&#34;&gt;REPLACE&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;显示国家名字，及其延伸词，如首都是国家名字的延伸。&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name, REPLACE (capital, name, &#39;&#39;) AS extend
+FROM world
+WHERE capital LIKE CONCAT ( name, &#39;%_&#39; ) ;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;concat-2&#34;&gt;CONCAT&lt;/h4&gt;
+&lt;p&gt;**CONCAT()函数：**用于将两个字符串连接起来，形成一个单一的字符串。&lt;/p&gt;
+&lt;p&gt;**语法：**CONCAT(&#39;str1&#39;,&#39;str2&#39;)&lt;/p&gt;
+&lt;h4 id=&#34;mid&#34;&gt;MID&lt;/h4&gt;
+&lt;p&gt;**MID()函数：**用于从文本字段中提取字符。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;语法：SELECT MID(column_name, start, length ) FROM table_name&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;column_name：要提取字符的字段。&lt;/p&gt;
+&lt;p&gt;start：规定开始位置（起始值是1）。&lt;/p&gt;
+&lt;p&gt;length：可选参数。要返回的字符数。如果省略，则MID()函数返回剩余文本。&lt;/p&gt;
+&lt;h4 id=&#34;round&#34;&gt;ROUND&lt;/h4&gt;
+&lt;p&gt;ROUND 函数用于把数值字段舍入为指定的小数位数。&lt;/p&gt;
+&lt;p&gt;SQL ROUND() 语法&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT ROUND(column_name,decimals) FROM table_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;case-when&#34;&gt;CASE WHEN&lt;/h4&gt;
+&lt;p&gt;显示以N开头的国家的名字，并用Australasia 替代 Oceania&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name, CASE WHEN continent=&#39;Oceania&#39; 
+THEN &#39;Australasia&#39;
+ELSE continent END
+FROM world 
+WHERE name LIKE &#39;N%&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;显示以A或B开头的国家的名称的大陆名称，用Eurasia 替代Europe and Asia，用America 替代每个在 North America &lt;strong&gt;or&lt;/strong&gt; South America &lt;strong&gt;or&lt;/strong&gt; Caribbean的国家名称。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name,
+CASE WHEN continent IN(&#39;Europe&#39;,&#39;Asia&#39;)
+     THEN &#39;Eurasia&#39;
+     WHEN continent IN(&#39;North America&#39;,&#39;South America&#39;,&#39;Caribbean&#39;)
+     THEN &#39;America&#39;
+     ELSE continent END
+FROM world
+WHERE name LIKE &#39;A%&#39; OR name LIKE &#39;B%&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;将各大洲摆放正确，Oceania 改为Australasia，Eurasia 和 Turkey的国家改为Europe/Asia，以&#39;B&#39;开头的国家，原Caribbean 改为North America，其他Caribbean 改为&lt;strong&gt;South America&lt;/strong&gt; 显示所有国家的名称，大陆名称。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name,continent,
+CASE WHEN continent IN (&#39;Eurasia&#39;, &#39;Turkey&#39;)
+     THEN &#39;Europe/Asia&#39;
+
+     WHEN continent = &#39;Oceania&#39;
+     THEN &#39;Australasia&#39;
+
+     WHEN continent = &#39;Caribbean&#39;
+          THEN CASE WHEN name LIKE &#39;B%&#39;
+               THEN &#39;North America&#39;
+               ELSE &#39;South America&#39;
+          END
+     ELSE continent
+     END
+FROM world
+ORDER BY name ASC;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;all&#34;&gt;ALL&lt;/h4&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:%5CUsers%5CAdministrator%5CDesktop%5C%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20210120155815.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h4 id=&#34;alias-别名&#34;&gt;Alias 别名：&lt;/h4&gt;
+&lt;p&gt;**语法：**表/列名后 使用as后跟别名&lt;/p&gt;
+&lt;p&gt;在每一個州中找出最大面積的國家，列出洲份 continent, 國家名字 name 及面積 area。 (有些國家的記錄中，AREA是NULL，沒有填入資料的。)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT continent, name, area FROM world x  
+WHERE area &amp;gt;= 
+ALL(SELECT area 
+    FROM world y
+		WHERE y.continent=x.continent
+		AND area&amp;gt;0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;limit-语句&#34;&gt;limit 语句&lt;/h4&gt;
+&lt;p&gt;limit子句用于限制查询结果返回的数量。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用法&lt;/strong&gt;：【select * from tableName limit i,n 】&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;tableName : 为数据表；&lt;/li&gt;
+&lt;li&gt;i : 为查询结果的索引值（默认从0开始）；&lt;/li&gt;
+&lt;li&gt;n : 为查询结果返回的数量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：列出洲份名稱，和每個洲份中國家名字按子母順序是排首位的國家名。(即每洲只有列一國)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT continent,name FROM world x 
+WHERE x.name=
+(SELECT y.name 
+ FROM world y 
+WHERE y.continent=x.continent 
+ORDER BY name LIMIT 1)；
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;语句嵌套&#34;&gt;语句嵌套&lt;/h4&gt;
+&lt;p&gt;**例子：**找出洲份，当中全部国家都有少于或等于 25000000 人口. 在这些洲份中，列出国家名字name，continent 洲份和population人口。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT name,continent,population 
+FROM world x
+WHERE 25000000&amp;gt;=ALL(
+  SELECT population 
+  FROM world y 
+  WHERE y.continent=x.continent 
+  			AND population&amp;gt;0
+   );
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;order-by-habing&#34;&gt;ORDER BY HABING&lt;/h4&gt;
+&lt;p&gt;使用HABING 对聚合函数进行限制，WHERE 关键字无法与合计函数一起使用&lt;/p&gt;
+&lt;p&gt;对于每一个洲份，显示洲份和至少有1000万人口(10,000,000)国家的数目&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT continent, COUNT(name)
+  FROM world
+WHERE population &amp;gt; 10000000
+GROUP BY continent
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;列出有至少100百萬(1億)(100,000,000)人口的洲份。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT continent 
+  FROM world
+ GROUP BY continent HAVING SUM(population) &amp;gt; 100000000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;sum-语句&#34;&gt;sum 语句&lt;/h4&gt;
+&lt;p&gt;展示世界的总人口。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT sum(population)
+FROM world
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;join-on-语句&#34;&gt;JOIN ON 语句&lt;/h4&gt;
+&lt;p&gt;**语法：**FROM [table1] JOIN [table2] JOIN[table3] ON (列名1=列名2) AND（列名2=列名3）&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://pic4.zhimg.com/80/v2-02beaf512a9e95dde56de1bc0b9b3c1b_1440w.jpg&#34; alt=&#34;img&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT goal.matchid, game.mdate,COUNT(*)  
+FROM game JOIN goal ON goal.matchid = game.id  
+WHERE(game.team1 = &#39;GER&#39; OR game.team2 = &#39;GER&#39;) 
+AND teamid=&#39;GER&#39; 
+GROUP BY goal.matchid, game.mdate
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;IS NULL&lt;/p&gt;
+&lt;p&gt;判断内容为空&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select name from teacher
+where dept is null
+&lt;/code&gt;&lt;/pre&gt;
+">数据分析——SQL的基础语法篇</a>
+      </div>
+      
+      <div class="item">
         <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/product-life-cycle/"" data-c="
           &lt;h1 id=&#34;1-为什么要关注产品生命周期&#34;&gt;1、为什么要关注产品生命周期&lt;/h1&gt;
 &lt;p&gt;任何一款产品都和人一样有属于自己生命阶段，在对应的阶段也会有属于这个阶段的特征，我们作为产品人只有先判断出当前产品生命状态再制定下一步发展战略，才能有针对性解决产品中现存的问题。&lt;/p&gt;
 &lt;p&gt;举例来说，对于一款处于引入期的产品，此时最重要的是验证商业模式与产品核心竞争力，而如果在此时就开始大举推广往往造成的结果就是由于产品不一定契合目前市场的需求，而投入巨大收效甚微，白白浪费了资源。&lt;/p&gt;
 &lt;h1 id=&#34;2-产品生命周期划分&#34;&gt;2、&lt;strong&gt;产品生命周期划分&lt;/strong&gt;&lt;/h1&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/EqU5yOZLvY62YISN.png!thumbnail?fileGuid=GH9rqwc6GRkrVrrJ&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1611491096001.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;&lt;strong&gt;a.引入期&lt;/strong&gt;&lt;br&gt;
 此时产品还处于寻找主要市场切合点的时期，市场用户大多不了解产品，此时产品会通过快速迭代去寻找产品的核心方向，并通过小范围的市场投放去进行产品方向验证，所谓很多产品人老讲的MVP期也就属于这里。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;b.成长期&lt;/strong&gt;&lt;br&gt;
@@ -2596,7 +2889,7 @@ KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
 &lt;strong&gt;推荐流量&lt;/strong&gt;：点击其他网站的链接或锚点进入本网站，其他网站的链接主要是指常见的网站下的友情链接，而网站锚点的流量主要是指：Flash 广告、搜索引擎的诱导访问、弹窗广告等导流入口，当然这部分是需要进行付费的；&lt;br&gt;
 &lt;strong&gt;直接流量&lt;/strong&gt;：直接从域名进入网站。这里需要强调下，具体来说分为如下几种：直接输入网址；从浏览器收藏夹进入；和所有统计中丢失来源的访问信息源；&lt;br&gt;
 在初步建立起印象后，我们就可以看看如何评估一个网站的质量与此时的业务状态。网站的质量分析一般是按照质和量两个维度来衡量的，例如下图。&lt;/p&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://uploader.shimo.im/f/hFbZFvHgP82ZeX6F.png!thumbnail?fileGuid=GH9rqwc6GRkrVrrJ&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1611491143325.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;p&gt;X轴代表数量，指网站的用户访问量（UV）；&lt;br&gt;
 Y轴代表核心指标触达出数，也是反应流量质量的指标，具体来说指可以促进网站核心的事件次数，例如电商下单、视频网站的点击量等行为。&lt;br&gt;
 我们将流量数据按照它们在这两个维度上的表现展示在坐标轴上，不同的流量就会有不同的位置相对应，如果把流量的成本用圆圈的大小表示，就可以清楚的知道什么途径的流量是最好的。&lt;/p&gt;
@@ -2888,7 +3181,7 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
 在系统提供的组件不够丰富，无法达到运营的需求时，或者需要实 现一些动态的效果时，就需要在活动页中嵌入Html代码（CSS样式）。 在系统解析时，把Html代码当作活动页组件的一部分进行解析。 总之，丰富的基础组件是支持运营活动的基础，很多平台除了提供 一些基础组件供用户编辑，还会适当开放组件功能，一些有开发能力的 平台使用者可在固定框架内开发丰富的组件样式，以满足运营的需求。 此外，还可以把基础组件放在装修市场，供其他用户使用。&lt;br&gt;
 &lt;code&gt;装修模板&lt;/code&gt;&lt;br&gt;
 装修模板可以减少在新建活动时从0到1逐步配置的巨大工作量。直 接套用模板中的内容，进行替换、新增部分内容，可以快速新建活动。&lt;/p&gt;
-">CMS系统</a>
+">CMS系统组成</a>
       </div>
       
       <div class="item">
@@ -2927,14 +3220,6 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
 而图2和百度搜索一样。用户熟悉和亲切度更明显，使用图2方案更能提升用户点击搜索的欲望。&lt;br&gt;
 &lt;img src=&#34;https://jeanleungguo.github.io/post-images/1609720866726.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/p&gt;
 ">如何有效提升点击率</a>
-      </div>
-      
-      <div class="item">
-        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/cong-ling-kai-shi-xue-shu-ju-fen-xi-sql-de-ji-chu-yu-fa-pian/"" data-c="
-          &lt;h1 id=&#34;数据库&#34;&gt;数据库&lt;/h1&gt;
-&lt;p&gt;展示所有数据库 —SHOW DATABASES;&lt;br&gt;
-新建数据库 —CREATE DATABASE[dbname]&lt;/p&gt;
-">从零开始学数据分析——SQL的基础语法篇</a>
       </div>
       
     </div>
