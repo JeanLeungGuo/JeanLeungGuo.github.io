@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>Python  split的使用 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611539747843">
+<link rel="shortcut icon" href="/favicon.ico?v=1611551541615">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -132,6 +132,19 @@
               
                 <a href="/python/" target="_self">
                   <i class="fa fa-globe"></i> python
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="java/" target="_self">
+                  <i class="fa fa-globe"></i> java
                 </a>
               
             </li>
@@ -287,6 +300,8 @@
 <li><a href="#split1%E4%B8%8Esplit1%E7%9A%84%E5%8C%BA%E5%88%AB">split('',1)与split（''）[1]的区别</a></li>
 <li><a href="#splitt0">split('\t',0)</a></li>
 <li><a href="#splitt0-2">split('\t')[0]</a></li>
+<li><a href="#splitt0-4">split('\t')[0-4]</a></li>
+<li><a href="#splitt04">split('\t')[0:4]</a></li>
 </ul>
 </li>
 </ul>
@@ -587,7 +602,7 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>243<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>306<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
@@ -604,7 +619,7 @@
 str1='学号\t姓名\t语文\t数学\t英语\n 2017001\t曹操\t99\t88\t0'
 text_create('mytxtfile',str1)
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125094310207.png" alt="image-20210125094310207" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://jeanleungguo.github.io/post-images/1611539893887.png" alt="" loading="lazy"></figure>
 <h2 id="splitt0">split('\t',0)</h2>
 <pre><code class="language-python">b=[]
 f=open(&quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&quot;,'r')
@@ -622,6 +637,18 @@ for a1 in a:
 f=open(&quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&quot;,'r')
 a=f.readlines()[0:2]
 for a1 in a:
+    b.append(a1.split('\t')[0])
+    print(b)
+</code></pre>
+<p>输出结果</p>
+<pre><code>['学号']
+['学号', ' 2017001']
+</code></pre>
+<h2 id="splitt0-4">split('\t')[0-4]</h2>
+<pre><code class="language-python">b=[]
+f=open(&quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&quot;,'r')
+a=f.readlines()[0:2]
+for a1 in a:
     b.append(a1.split('\t')[0-4])
     print(b)
 </code></pre>
@@ -629,15 +656,16 @@ for a1 in a:
 <pre><code>['姓名']
 ['姓名', '曹操']
 </code></pre>
+<h2 id="splitt04">split('\t')[0:4]</h2>
 <pre><code class="language-python">b=[]
 f=open(&quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&quot;,'r')
 a=f.readlines()[0:2]
 for a1 in a:
-    b.append(a1.split('\t')[0])
+    b.append(a1.split('\t')[0:4])
     print(b)
 </code></pre>
-<pre><code>['学号']
-['学号', ' 2017001']
+<pre><code>[['学号', '姓名', '语文', '数学']]
+[['学号', '姓名', '语文', '数学'], [' 2017001', '曹操', '99', '88']]
 </code></pre>
 
             </div>
@@ -2657,7 +2685,7 @@ KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
 str1=&#39;学号\t姓名\t语文\t数学\t英语\n 2017001\t曹操\t99\t88\t0&#39;
 text_create(&#39;mytxtfile&#39;,str1)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125094310207.png&#34; alt=&#34;image-20210125094310207&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1611539893887.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;splitt0&#34;&gt;split(&#39;\t&#39;,0)&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
@@ -2675,6 +2703,18 @@ for a1 in a:
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
 a=f.readlines()[0:2]
 for a1 in a:
+    b.append(a1.split(&#39;\t&#39;)[0])
+    print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出结果&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[&#39;学号&#39;]
+[&#39;学号&#39;, &#39; 2017001&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;splitt0-4&#34;&gt;split(&#39;\t&#39;)[0-4]&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
+a=f.readlines()[0:2]
+for a1 in a:
     b.append(a1.split(&#39;\t&#39;)[0-4])
     print(b)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2682,15 +2722,16 @@ for a1 in a:
 &lt;pre&gt;&lt;code&gt;[&#39;姓名&#39;]
 [&#39;姓名&#39;, &#39;曹操&#39;]
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;splitt04&#34;&gt;split(&#39;\t&#39;)[0:4]&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
 a=f.readlines()[0:2]
 for a1 in a:
-    b.append(a1.split(&#39;\t&#39;)[0])
+    b.append(a1.split(&#39;\t&#39;)[0:4])
     print(b)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;[&#39;学号&#39;]
-[&#39;学号&#39;, &#39; 2017001&#39;]
+&lt;pre&gt;&lt;code&gt;[[&#39;学号&#39;, &#39;姓名&#39;, &#39;语文&#39;, &#39;数学&#39;]]
+[[&#39;学号&#39;, &#39;姓名&#39;, &#39;语文&#39;, &#39;数学&#39;], [&#39; 2017001&#39;, &#39;曹操&#39;, &#39;99&#39;, &#39;88&#39;]]
 &lt;/code&gt;&lt;/pre&gt;
 ">Python  split的使用</a>
       </div>

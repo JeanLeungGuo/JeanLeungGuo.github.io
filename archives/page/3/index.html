@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611539747843">
+<link rel="shortcut icon" href="/favicon.ico?v=1611551541615">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -131,6 +131,19 @@
               
                 <a href="/python/" target="_self">
                   <i class="fa fa-globe"></i> python
+                </a>
+              
+            </li>
+          
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="java/" target="_self">
+                  <i class="fa fa-globe"></i> java
                 </a>
               
             </li>
@@ -2149,7 +2162,7 @@ KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
 str1=&#39;学号\t姓名\t语文\t数学\t英语\n 2017001\t曹操\t99\t88\t0&#39;
 text_create(&#39;mytxtfile&#39;,str1)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125094310207.png&#34; alt=&#34;image-20210125094310207&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://jeanleungguo.github.io/post-images/1611539893887.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
 &lt;h2 id=&#34;splitt0&#34;&gt;split(&#39;\t&#39;,0)&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
@@ -2167,6 +2180,18 @@ for a1 in a:
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
 a=f.readlines()[0:2]
 for a1 in a:
+    b.append(a1.split(&#39;\t&#39;)[0])
+    print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出结果&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[&#39;学号&#39;]
+[&#39;学号&#39;, &#39; 2017001&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;splitt0-4&#34;&gt;split(&#39;\t&#39;)[0-4]&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
+a=f.readlines()[0:2]
+for a1 in a:
     b.append(a1.split(&#39;\t&#39;)[0-4])
     print(b)
 &lt;/code&gt;&lt;/pre&gt;
@@ -2174,15 +2199,16 @@ for a1 in a:
 &lt;pre&gt;&lt;code&gt;[&#39;姓名&#39;]
 [&#39;姓名&#39;, &#39;曹操&#39;]
 &lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;splitt04&#34;&gt;split(&#39;\t&#39;)[0:4]&lt;/h2&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
 f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
 a=f.readlines()[0:2]
 for a1 in a:
-    b.append(a1.split(&#39;\t&#39;)[0])
+    b.append(a1.split(&#39;\t&#39;)[0:4])
     print(b)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;[&#39;学号&#39;]
-[&#39;学号&#39;, &#39; 2017001&#39;]
+&lt;pre&gt;&lt;code&gt;[[&#39;学号&#39;, &#39;姓名&#39;, &#39;语文&#39;, &#39;数学&#39;]]
+[[&#39;学号&#39;, &#39;姓名&#39;, &#39;语文&#39;, &#39;数学&#39;], [&#39; 2017001&#39;, &#39;曹操&#39;, &#39;99&#39;, &#39;88&#39;]]
 &lt;/code&gt;&lt;/pre&gt;
 ">Python  split的使用</a>
       </div>
