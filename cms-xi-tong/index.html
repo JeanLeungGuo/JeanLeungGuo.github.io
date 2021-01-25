@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>CMS系统组成 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611491258634">
+<link rel="shortcut icon" href="/favicon.ico?v=1611539747843">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -123,6 +123,19 @@
               
             </li>
           
+            
+            
+              
+            
+            <li class="nav-item ">
+              
+              
+                <a href="/python/" target="_self">
+                  <i class="fa fa-globe"></i> python
+                </a>
+              
+            </li>
+          
           
             
               <li class="nav-item ">
@@ -213,19 +226,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">24</span>
+        <span class="site-item-stat-count">25</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">4</span>
+        <span class="site-item-stat-count">5</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">4</span>
+        <span class="site-item-stat-count">5</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -2602,6 +2615,57 @@ ARPU并非越高越好，但如果用户获取成本过高，ＲＯＩ其实并�
 &lt;p&gt;看客户盈亏平衡的使劲啊，也就是收回获取用户的成本所需的时间。&lt;br&gt;
 KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
 ">用户增长方法论</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/python-split-de-shi-yong/"" data-c="
+          &lt;h2 id=&#34;split1与split1的区别&#34;&gt;split(&#39;&#39;,1)与split（&#39;&#39;）[1]的区别&lt;/h2&gt;
+&lt;p&gt;创建文件&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def text_create(name, msg):
+    desktop_path = &amp;quot;C:\\Users\\Administrator\\Desktop\\&amp;quot;  # 新创建的txt文件的存放路径
+    full_path = desktop_path + name + &#39;.txt&#39;  # 也可以创建一个.doc的word文档
+    file = open(full_path, &#39;w&#39;)
+    file.write(msg)   #msg也就是下面的Hello world!
+    file.close()
+str1=&#39;学号\t姓名\t语文\t数学\t英语\n 2017001\t曹操\t99\t88\t0&#39;
+text_create(&#39;mytxtfile&#39;,str1)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125094310207.png&#34; alt=&#34;image-20210125094310207&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;splitt0&#34;&gt;split(&#39;\t&#39;,0)&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
+a=f.readlines()[0:2]
+for a1 in a:
+    b.append(a1.split(&#39;\t&#39;,0))
+    print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行结果：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[[&#39;学号\t姓名\t语文\t数学\t英语\n&#39;]]
+[[&#39;学号\t姓名\t语文\t数学\t英语\n&#39;], [&#39; 2017001\t曹操\t99\t88\t0&#39;]]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;splitt0-2&#34;&gt;split(&#39;\t&#39;)[0]&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
+a=f.readlines()[0:2]
+for a1 in a:
+    b.append(a1.split(&#39;\t&#39;)[0-4])
+    print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;运行结果&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[&#39;姓名&#39;]
+[&#39;姓名&#39;, &#39;曹操&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;b=[]
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\mytxtfile.txt&amp;quot;,&#39;r&#39;)
+a=f.readlines()[0:2]
+for a1 in a:
+    b.append(a1.split(&#39;\t&#39;)[0])
+    print(b)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[&#39;学号&#39;]
+[&#39;学号&#39;, &#39; 2017001&#39;]
+&lt;/code&gt;&lt;/pre&gt;
+">Python  split的使用</a>
       </div>
       
       <div class="item">
