@@ -9,7 +9,7 @@
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
 <title>用户增长过程中关注的数据指标 | Jeanleung_blog</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1611551541615">
+<link rel="shortcut icon" href="/favicon.ico?v=1611578340400">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -239,7 +239,7 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">25</span>
+        <span class="site-item-stat-count">26</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
@@ -2683,6 +2683,138 @@ ARPU并非越高越好，但如果用户获取成本过高，ＲＯＩ其实并�
 &lt;p&gt;看客户盈亏平衡的使劲啊，也就是收回获取用户的成本所需的时间。&lt;br&gt;
 KPI是客户终身价值（CLV），客户获取成本（CLA）&lt;/p&gt;
 ">用户增长方法论</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://jeanleungguo.github.io/numpy-shi-shi-me/"" data-c="
+          &lt;p&gt;NumPy(Numerical Python) 是 Python 语言的一个扩展程序库，支持大量的维度数组与矩阵运算，此外也针对数组运算提供大量的数学函数库。&lt;/p&gt;
+&lt;h2 id=&#34;numpy数组&#34;&gt;numpy数组&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;array=[1,2,3,4,5,6]
+np_array1=np.array(array)
+print(np_array)
+&#39;&#39;&#39;一维数组&#39;&#39;&#39;
+#naim 打印出来的是Numpy数组的维度
+print(np_array.ndim)
+#shape是由矩阵组成的元组,对于一个n*m列的矩阵，shape是（n,m）
+print(np_array.shape)
+#数组的元素的个数总和
+print(np_array.size)
+#在数组中描述元素类型的一个对象，它是一种可以用标准的python类型创建和指定的类型
+print(np_array.dtype.name)
+
+print(&amp;quot;===================================&amp;quot;)
+
+&#39;&#39;&#39;二维数组&#39;&#39;&#39;
+#将原有的一维数组转置为rank=2,ndim=3的数组
+np_array2=np.array(array).reshape(2,3)
+#naim 打印出来的是Numpy数组的维度
+print(np_array2.ndim)
+#shape是由矩阵组成的元组,对于一个n*m列的矩阵，shape是（n,m）
+print(np_array2.shape)
+#数组的元素的个数总和
+print(np_array2.size)
+#在数组中描述元素类型的一个对象，它是一种可以用标准的python类型创建和指定的类型
+print(np_array2.dtype.name)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;输出结果&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[1 2 3 4 5 6]
+1
+(6,)
+6
+int32
+===================================
+2
+(2, 3)
+6
+int32
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;numpy数组的运算&#34;&gt;numpy数组的运算&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+# 以只读的方式打开文件
+f=open(&amp;quot;C:\\Users\\Administrator\\Desktop\\user_data.txt&amp;quot;,&amp;quot;r&amp;quot;)
+
+#读取前20行数据
+top_20_list=f.readlines()[0:20]
+for line in top_20_list:
+    #list1添加为top_20_list的第0列
+    list1.append(int(line.split(&#39;\t&#39;)[0]))
+    #list2添加为top_20_list的第3列
+    list2.append(int(line.split(&#39;\t&#39;)[3]))
+
+#list3是将list1分成了10*2的两维数组
+list3=np.array([list1[0:10],list1[10:20]])
+print(list3)
+print(list3.shape)
+&#39;&#39;&#39;输出结果
+[[100 111 122 133 144 155 166 177 188 199]
+ [210 221 232 243 254 265 276 287 298 309]]
+(2, 10)&#39;&#39;&#39;
+
+#list4是将list2分成了10*2的两维数组
+list4=np.array([list1[0:10],list1[10:20]])
+print(list4)
+print(list4.shape)
+&#39;&#39;&#39;
+输出结果
+[[100 111 122 133 144 155 166 177 188 199]
+ [210 221 232 243 254 265 276 287 298 309]]
+(2, 10)&#39;&#39;&#39;
+
+#拿到前两行的前5个数
+print(list4[0:2,0:5])
+&#39;&#39;&#39;
+[[100 111 122 133 144]
+ [210 221 232 243 254]]
+&#39;&#39;&#39;
+
+#两个矩阵相加，得到结果=两矩阵相同位置之和
+print(list3+list4)
+&#39;&#39;&#39;
+[[200 222 244 266 288 310 332 354 376 398]
+ [420 442 464 486 508 530 552 574 596 618]]
+&#39;&#39;&#39;
+#两个矩阵相乘，得到结果=两矩阵相同位置之积
+print(list3*list4)
+&#39;&#39;&#39;
+[[10000 12321 14884 17689 20736 24025 27556 31329 35344 39601]
+ [44100 48841 53824 59049 64516 70225 76176 82369 88804 95481]]
+ &#39;&#39;&#39;
+
+#矩阵乘法用dot函数
+A=np.array([[1,2],[2,3]])
+B=np.array([[4,5],[5,6]])
+print(np.dot(A,B))
+&#39;&#39;&#39;
+[[14 17]
+ [23 28]]
+&#39;&#39;&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;dot函数，矩阵乘法&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;C:%5CUsers%5CAdministrator%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210125180310998.png&#34; alt=&#34;image-20210125180310998&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;A=np.array([100,111,122,133,144,155,166,177,188,199])
+print(&amp;quot;最小值&amp;quot;+ str(np.amin(A)))
+print(&amp;quot;最大值&amp;quot;+ str(np.amax(A)))
+print(&amp;quot;最大值和最小值的差&amp;quot;+ str(np.ptp(A)))
+print(&amp;quot;75分位&amp;quot;+str(np.percentile(A,75)))
+print(&amp;quot;中位数&amp;quot;+str(np.median(A)))
+print(&amp;quot;平均数&amp;quot;+str(np.mean(A)))
+print(&amp;quot;标准差&amp;quot;+str(np.std(A)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;最小值100
+最大值199
+最大值和最小值的差99
+75分位174.25
+中位数149.5
+算数平均数149.5
+标准差31.595094555959157
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;numpy数组与python列表&#34;&gt;Numpy数组与Python列表&lt;/h2&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;2&#34;&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCquFtgk9IyLzajr4CgoYhBkSSAS5WliaBY21OLabsqecLxs5GicSGfiazWqG8ev8bAJeTaqVhTqKNyQ/640?wx_fmt=png&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;em&gt;左侧为一般python数组，右侧为Numpy数组&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;和Python列表相比，Numpy数组具有以下特点：&lt;/p&gt;
+&lt;p&gt;更紧凑，尤其是在一维以上的维度；向量化操作时比Python列表快，但在末尾添加元素比Python列表慢。&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;3&#34;&gt;&lt;img src=&#34;https://mmbiz.qpic.cn/mmbiz_png/YicUhk5aAGtCquFtgk9IyLzajr4CgoYhBdUDmYiaw84spcJKoKjw7p0JLVZgI8Yb1skICjNAHTp4UATbian2VFJRQ/640?wx_fmt=png&amp;amp;tp=webp&amp;amp;wxfrom=5&amp;amp;wx_lazy=1&amp;amp;wx_co=1&#34; alt=&#34;图片&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+"> Numpy是什么</a>
       </div>
       
       <div class="item">
