@@ -8,7 +8,7 @@
 <meta name="keywords" content="jeanleung">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>Jeanleung_blog</title>
+<title>活动运营思路 | Jeanleung_blog</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1612511485065">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -38,6 +38,8 @@
 
 
 
+  <meta name="description" content="活动运营思路" />
+  <meta name="keywords" content="marketing" />
 </head>
 
 <body>
@@ -211,8 +213,24 @@
     <div
       class="section-layout gemini ">
       <div class="section-layout-wrapper">
-        <div id="sidebarMeta" class="sidebar">
-    
+        
+
+<div class="sidebar">
+  
+    <div class="sidebar-box box-shadow-wrapper bg-color right-motion" id="sidebar">
+      
+        <div class="post-list-sidebar">
+          <div class="sidebar-title">
+            <span id="tocSideBar" class="sidebar-title-item sidebar-title-active language" data-lan="index">文章目录</span>
+            <span id="metaSideBar" class="sidebar-title-item language" data-lan="preview">站点概览</span>
+          </div>
+        </div>
+      
+      <div class="sidebar-body gemini" id="sidebar_body">
+        
+          
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -284,30 +302,282 @@
   </div>
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E6%90%AD%E5%BB%BA%E6%B4%BB%E5%8A%A8%E6%A8%A1%E5%9E%8B"><strong>一、搭建活动模型</strong></a></li>
+<li><a href="#%E4%BA%8C-%E6%B4%BB%E5%8A%A8%E6%96%B9%E6%A1%88"><strong>二、活动方案</strong></a></li>
+<li><a href="#%E4%B8%89-%E6%B4%BB%E5%8A%A8%E5%B7%A5%E5%85%B7%E6%A8%A1%E6%9D%BF"><strong>三、活动工具&amp;模板</strong></a></li>
+</ul>
+
+  </div>
 </div>
+
 <script>
-  let sidebarMeta = document.querySelector('#sidebarMeta');
-  let scheme = 'gemini';
-  let sidebarWrapper = document.querySelector('.sidebar-wrapper');
-  if (sidebarMeta && (scheme === 'pisces' || scheme === 'gemini')) {
-    document.addEventListener('scroll', function(e) {
-      if (document.scrollingElement.scrollTop > parseInt(sidebarMeta.style.marginTop) + 10) {
-        sidebarWrapper.classList.add('home-sidebar-fixed')
-      } else {
-        sidebarWrapper.classList.remove('home-sidebar-fixed')
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
       }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
     });
   }
-  </script>
-        <div class="section-box gemini">
-          <section class="section  posts-expand slide-down-in">
-            
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
+          
+        
+      </div>
+    </div>
+  
+</div>
+<script>
+  const SIDEBAR_TITLE_ACTIVE = 'sidebar-title-active';
+  const SIDEBAR_BODY_ACTIVE = 'sidebar-body-active';
+  const SLIDE_UP_IN = 'slide-up-in';
+
+  let sidebar = document.querySelector('#sidebar'),
+  tocSideBar = document.querySelector('#tocSideBar'),
+  metaSideBar = document.querySelector('#metaSideBar'),
+  postToc = document.querySelector('#post_toc'),
+  postSiteMeta = document.querySelector('#post_side_meta'),
+  sidebarTitle = document.querySelector('.sidebar-title'),
+  sidebarBody = document.querySelector('#sidebar_body');
+
+  tocSideBar && tocSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  metaSideBar && metaSideBar.addEventListener('click', (e) => {
+    toggleSidebar(e);
+  });
+
+  function toggleSidebar(e) {
+    let currentTitle = document.querySelector("."+SIDEBAR_TITLE_ACTIVE);
+    if (currentTitle == e.srcElement) {
+      return ;
+    }
+    let current, showElement, hideElement;
+    if (e.srcElement == metaSideBar) {
+      showElement = postSiteMeta;
+      hideElement = postToc;
+    } else if (e.srcElement == tocSideBar){
+      showElement = postToc;
+      hideElement = postSiteMeta;
+    }
+    currentTitle.classList.remove(SIDEBAR_TITLE_ACTIVE);
+    e.srcElement.classList.add(SIDEBAR_TITLE_ACTIVE);
+
+    window.Velocity(hideElement, 'stop');
+    window.Velocity(hideElement, 'transition.slideUpOut', {
+      display: 'none',
+      duration: 200,
+      complete: function () {
+        window.Velocity(showElement, 'transition.slideDownIn', {
+          duration: 200
+        });
+      }
+    })
+    hideElement.classList.remove(SIDEBAR_BODY_ACTIVE);
+    showElement.classList.add(SIDEBAR_BODY_ACTIVE);
+  }
+
+  postToc && postToc.addEventListener('transitionend', function() {
+    this.classList.remove(SLIDE_UP_IN);
+  });
+
+  if (sidebarBody) {
+    if (sidebarBody.classList.contains('pisces') || sidebarBody.classList.contains('gemini')) {
+      let hasFix = false;
+      let scrollEl = document.querySelector('.main-continer');
+      let limitTop = document.querySelector('#nav_ul').children.length * 42 + 162;
+      window.addEventListener('scroll', function(e) {
+        if (document.scrollingElement.scrollTop >= limitTop) {
+          if (!hasFix) {
+            sidebar.classList.add('sidebar-fixed');
+            hasFix = true;
+          }
+        } else {
+          if (hasFix) {
+            sidebar.classList.remove('sidebar-fixed');
+            hasFix = false;
+          }
+        }
+      });
+    }
+  }
+  
+</script>
+        <div class="section-box box-shadow-wrapper">
+          <div class="section bg-color post post-page">
+            <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/product-life-cycle/">
-      如何判断产品生命周期
+    <a class="post-title-link" href="https://jeanleungguo.github.io/huo-dong-yun-ying-si-lu/">
+      活动运营思路
     </a>
   </h1>
   <div class="post-meta">
@@ -315,7 +585,7 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-12-15 21:31:52">2019-12-15</span>
+      <span class="publish-time" data-t="2021-01-01 15:42:52">2021-01-01</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -324,78 +594,13 @@
       <span class="pc-show language" data-lan="category-in">分类于</span>
       
       
-      <a href="https://jeanleungguo.github.io/tag/">
-        <span>用户增长</span>
+      <a href="https://jeanleungguo.github.io/marketing/">
+        <span>marketing</span>
       </a>
       
       
     </span>
     <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>7<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>2064<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="1-为什么要关注产品生命周期">1、为什么要关注产品生命周期</h1>
-<p>任何一款产品都和人一样有属于自己生命阶段，在对应的阶段也会有属于这个阶段的特征，我们作为产品人只有先判断出当前产品生命状态再制定下一步发展战略，才能有针对性解决产品中现存的问题。</p>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/product-life-cycle/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/dian-shang-de-cu-xiao-mo-shi/">
-      电商的促销模式
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-11-20 10:41:37">2019-11-20</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
@@ -404,329 +609,182 @@
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>3511<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>3374<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><p>促销有多种形式，目前电商系统能够支持的促销形式大致总有7 种：条件促销、降价促销、定金促销。<br>
-<code>清库存</code></p>
+            <div class="post-body next-md-body" id="post_body">
+              <blockquote>
+<p>活动运营是运营工作中一个重要的方面。一个优秀的活动运营除了具备全面体系化知识，对于项目把控、流程推动、各部门协调、资源整合都应该有高效的执行力，来推进整体活动KPI的完成。</p>
+</blockquote>
+<h1 id="一-搭建活动模型"><strong>一、搭建活动模型</strong></h1>
+<p>电商“人货场”中，活动承担了“场”的角色，一场成功的活动能把人和货通过“场”的作用有效地结合，发挥出最大效用。</p>
+<p>搭建一个行之有效的活动模型，是“场”的基础，活动PM在活动前/中/后三个阶段做好各事项统筹和把控。</p>
+<figure data-type="image" tabindex="1"><img src="https://i.loli.net/2021/02/05/8AhkaCHoc1lwL3n.png" alt="图片" loading="lazy"></figure>
+<p><strong>l 活动前-预防胜于补救</strong></p>
+<p>活动前做好充分准备，目标/预算/资源/方案与各部门对齐，保证各部门对信息理解不产生偏差，好的事前规划，胜于一切事后补救措施。</p>
+<p><strong>l 活动中-全面监控</strong></p>
+<p>活动中对于整体活动进行全面监控，预热/正式/倒计时/返场各节点是否有效执行，页面/商品/数据/用户/活动机制各维度实时监控，发现问题，及时调整。</p>
+<p><strong>l 活动后-全面复盘</strong></p>
+<p>活动后期一定要对活动进行多维度复盘，总结经验教训，纳入经验教训库中，为以后活动提供避坑指南。</p>
+<h1 id="二-活动方案"><strong>二、活动方案</strong></h1>
+<p><strong>1、制定合理的活动目标</strong></p>
+<p>全年销售目标通常都会提前制定好，根据每月的销售业绩目标细化到每场活动上。</p>
+<p>整场活动GMV目标会根据商品备货货值、大促活动级别、可投入资源和预算以及以往的历史数据来参考，具体设定一个合理性的目标。</p>
+<p>根据制定的目标再进行KPI拆解，把KPI拆解到最小颗粒</p>
+<p><strong>GMV=UV<em>转化率</em>客单价</strong></p>
+<p>l UV：UV从免费搜索、自主访问、付费推广、其他流量中细化拆解</p>
+<p>l 转化率：对比同期活动转化率/同行业转化率</p>
+<p>l 客单价：根据主推品到手价、关联销售、满减门槛等来估算大致的客单价</p>
+<p>不同波段数据拆解：<img src="https://i.loli.net/2021/02/05/rWYxLt6IPnsw7bz.png" alt="图片" loading="lazy"></p>
+<p>全店销售目标拆解：</p>
+<figure data-type="image" tabindex="2"><img src="https://i.loli.net/2021/02/05/ZasG3Tg9nDyxSit.png" alt="图片" loading="lazy"></figure>
+<p>根据制定的GMV目标，推算可用预算。</p>
+<p>GMV、货品成本都是已知量，如果公司要求利润率在15%，那么推算一下就得出来了可用预算。</p>
+<p><strong>利润率=(GMV-货品成本-预算费用）/GMV*100%</strong></p>
+<p><strong>预算费用=GMV-GMV*利润率-货品成本</strong></p>
+<p>有了这笔费用，就要精打细算地做好费用计划，让每分钱都能有高产出!</p>
+<p>预算费用一般会花在<strong>优惠券补贴、商品补贴、站内硬广和站外营销</strong>等多个方面，每个费用版块按照具体活动case by case得分配金额，如果重营销那站外营销就占比大一点，如果重补贴，那货品补贴就占比大一点，控制好ROI。</p>
+<p><strong>2、明确活动主题，让活动听起来更加吸引</strong></p>
+<p>活动传播出去后，活动主题是与用户连接的桥梁。</p>
+<p>一个好的活动主题应该包括六个要素：<strong>简洁、易传播、易理解、有相关性、有趣、有记忆力。</strong></p>
+<p>活动主题可以由活动目的、促销行业、促销人群、活动时节、促销力度自由组合，确定活动大致方向后，可以锁定主题关键词。</p>
+<p><strong>3、活动节奏</strong></p>
+<p>通常活动节奏分为<strong>预热、正式、返场</strong>三个阶段，三个阶段的运营动作、页面展示、店铺权益都会不同。</p>
+<p>l 预热期：这是一个蓄水的过程，我认为这是最核心的阶段。预热期宣传告知活动，提升活动热度，引导用户抢券、分享、收藏加购，预热准备做得越充分，正式期才会有大爆发。</p>
+<p>l 正式期：预热期做的好，那么正式期就迎来一场大爆发吧，这是收割的好时期！预热期领取的优惠券通常正式期才能生效使用，前期的蓄水预热让大家都牟足了劲正式期剁手。收藏加购的释放转化率一般在25-40%，再加上客服、短信等催促用户购买，订单可以来的更猛些！</p>
+<p>l 返场期：可以观察正式期商品销售数据，针对高转化用户定向投放触达，利于返场活动再冲刺一把！</p>
+<figure data-type="image" tabindex="3"><img src="https://i.loli.net/2021/02/05/LsQJo72kbfGv1iz.png" alt="图片" loading="lazy"></figure>
+<p><strong>4、会场布局</strong></p>
+<p>会场布局通过Demo设计，使用不同的模块与动线，即可组成满足不同需求的会场。</p>
+<p><strong>什么是模块？</strong></p>
+<p>模块是会场流量的入口，流量涌入会场会将不同人群分流到不同的模块中。</p>
+<p>以线下商超举列，人群进入商超后，女生可能会走向美妆区域，而老人们会去生鲜区域，宝妈们会走向孕婴区域等等，不同的区域就把不同用户人群进行分流了。</p>
+<p>模块搭建成楼层，再把人群从空间进行分流。</p>
+<p>为啥一般商场把化妆品放在一楼，男装放在高层，这也是根据男女逛商场浏览路线特点来做的设计。</p>
+<p>线上模块会比线下更加灵活，摆脱空间物理搬运的束缚，线上模块可以通过系统实现个性化模块展示。</p>
+<figure data-type="image" tabindex="4"><img src="https://i.loli.net/2021/02/05/q7mUN85QOIytPdY.png" alt="图片" loading="lazy"></figure>
+<p><strong>什么是动线？</strong></p>
+<p>同样结合线下商超布局来说，逛过超市的人都有感受 ，你想去哪个区域都会有路线引导，能如鱼得水般在店内畅游；或者你只想随便逛逛，也会有条线路带着你一直往前走，琳琅满目的商品和沉浸式的购物体验，让你可以一直愉快的逛下去，这就是经过设计的客流动线。</p>
+<p>一个好的动线，会让人更愿意逛、停留时间更久、看的更多、更容易转化。</p>
+<figure data-type="image" tabindex="5"><img src="https://i.loli.net/2021/02/05/xlR2XC7FnoImd4g.png" alt="图片" loading="lazy"></figure>
+<p>同样，对于线上的活动来说，来到会场的用户，大多目的并非特别明确的，明确的用户多数都是通过搜索来完成购物行为的。线上用户逛活动会场时，因为超脱空间束缚，大多都是跳跃式的扫视，不会像线下一样逐一地逛下去。</p>
+<p>而此时会场动线就像导购员一样，引导用户从哪里开始，先看什么，后看什么？通过合理的页面布局和元素组合，引导用户尽可能看更多，多停留。合理规划动线，尽量避免盲区，给予用户明确指引，满足运营指标和目标的路线设计。</p>
+<p>一个好的动线设计，能减少用户页面跳失率，增加用户停留时长，提升购买转化率。</p>
+<p>结合活动节奏，各活动时点的店铺权益和利益点不同，展示的页面也会随之变化，所以一个活动，运营需根据不同阶段策划不同的活动页面展示。</p>
+<figure data-type="image" tabindex="6"><img src="https://i.loli.net/2021/02/05/lB2SJpZc4kufCWT.png" alt="图片" loading="lazy"></figure>
+<p>活动预热页面示例：</p>
+<figure data-type="image" tabindex="7"><img src="https://i.loli.net/2021/02/05/QUYsF5Sgu6rv8lX.png" alt="图片" loading="lazy"></figure>
+<p><strong>5、活动商品规划</strong></p>
+<p>会场布局规划完，紧接着就是规划活动商品了。</p>
+<p>每个会场中的楼层，对应着不同要求的活动选品，活动运营需说明选品要求（坑位数、商品属性、折扣率等等），选品同事会根据需求进行选品填充，输出一份活动选品清单表。</p>
+<figure data-type="image" tabindex="8"><img src="https://i.loli.net/2021/02/05/dlYXNvDIhVp8GKb.png" alt="图片" loading="lazy"></figure>
+<p><strong>6、传播玩法逻辑</strong></p>
+<p>活动能够达成“人传人”的效果，玩法逻辑是利用用户分享动机，进行裂变扩散传播。</p>
+<p>古人说：“道生一，一生二，二生三，三生万物”。通过一传十、十传百的方式进行裂变传播。</p>
+<p>砍价、拼团、分享裂变券、抽奖等都是常规电商传播裂变的运营工具，通过利益驱动使用户分享传播。</p>
+<p>拼多多最常用的就是砍价和拼团，通过老带新的方式，以人为中心逐步扩散开传播圈层，引入更多新流量。</p>
+<p>具体的传播营销玩法这边就不多述说，阿里后台营销工具非常成熟，运营人员只需把营销工具和货品有效地结合，选出第一批种子用户即可。</p>
+<figure data-type="image" tabindex="9"><img src="https://i.loli.net/2021/02/05/dlYXNvDIhVp8GKb.png" alt="图片" loading="lazy"></figure>
+<h1 id="三-活动工具模板"><strong>三、活动工具&amp;模板</strong></h1>
+<p><strong>1、活动日历</strong></p>
+<p>活动日历是活动运营的法宝。</p>
+<p>活动是需要前置规划的，不能今天想到什么做一个，明天想到什么又再做一个，毫无规划性和专业度。通过制作活动日历来进行规划活动，定下活动级别，拆解成年度/季度/月度销售目标，从而做出全年活动规划。</p>
+<p>全年活动规划</p>
+<figure data-type="image" tabindex="10"><img src="https://uploader.shimo.im/f/XxYUXbSoZMI3PjB0.png!thumbnail?fileGuid=ctVphcPVjYrR3TGK" alt="图片" loading="lazy"></figure>
+<p>|细化拆解到季度/月度活动规划<img src="https://uploader.shimo.im/f/qdjZQKEO0rkAQ6DQ.png!thumbnail?fileGuid=ctVphcPVjYrR3TGK" alt="图片" loading="lazy"></p>
+<p><strong>2、活动工作流程图</strong></p>
+<p>活动策划过程中，往往是很多条线同时进行的，活动PM要推动协同多部门工作，活动工作流程图是统筹管理过程中必备的工具。它能让活动规范化、标准化，同时可以提升整理项目管理效能。</p>
+<p>流程图中要阐明各条线重点负责事项、事项流程的走向和事项间紧前紧后关系。好的工作流程会带来高效的执行力，是活动成功的保证。</p>
+<p>（这是某公司活动工作流程，供大家参考，此流程不适用所有活动业务。）</p>
+<figure data-type="image" tabindex="11"><img src="https://i.loli.net/2021/02/05/oaluTBe7YEdrPgC.png" alt="图片" loading="lazy"></figure>
+<p><strong>3、WBS（项目事项分解）</strong></p>
+<p>WBS和活动工作流程图是一对CP。通过活动工作流程图中需完成事项，把活动项目拆分细化到最小工作包，每个工作包都应有对应负责人。WBS和甘特图结合，还可以表明事项进度及完成时间。</p>
+<figure data-type="image" tabindex="12"><img src="https://i.loli.net/2021/02/05/oZVLt5sWR3bBr1n.png" alt="图片" loading="lazy"></figure>
+<p><strong>4、营销工具</strong></p>
+<p>我把营销工具称作“销售十八法”，有效选择营销工具和活动结合，总有一个让你的用户剁手。</p>
+<p>（1）满减促销</p>
+<p>购物者只要特定时间内购买相应商品到规定价格即可得到一定的减价优惠。</p>
+<p>主要有两种形式：阶梯满减、每满减。</p>
+<p>l 阶梯满减，例：满100减10、满300减50、满500减80；</p>
+<p>l 每满减，例：设置每满200减20，则订单金额230元实付210元，订单金额430元实付390元。</p>
+<p>（2）单品促销</p>
+<p>在特定时间内购买指定商品享受一定的价格优惠。</p>
+<p>例：促销期间商品6折，原价100元，购买时60元。</p>
+<p>（3）套装促销</p>
+<p>商品组合套装以优惠价出售。</p>
+<p>例如：A商品50元，B商品80元，A+B商品套装促销价100元。</p>
+<p>（4）赠品促销</p>
+<p>购买主商品之后赠送商品（可多个）</p>
+<p>（5）满赠促销</p>
+<p>有满XX元送XX商品、有满XX元加价XX元送XX商品，与赠品促销的区别在于以相应商品订单的价格来区分，可分阶设置。</p>
+<p>例如满300元送自拍杆，满500送充电宝，满1000送高端耳机等。</p>
+<p>（6）多买优惠促销</p>
+<p>有M元任选N件、M件N折两种优惠形式。</p>
+<p>（7）定金促销</p>
+<p>在商品正式售卖之前采用预付定金的促销模式，提前交定金可享受优惠价。</p>
+<p>定金预售有多种玩法：定金预购，相当于定金就已经确认订单；定金杠杆，例如定金10元可抵扣30元。</p>
+<p>（8）优惠券</p>
+<p>一个活动中会有不同门槛优惠券，把门槛值/客单价的比值分成为低、中、高三种结构类型。</p>
+<p>低门槛优惠券：门槛值/客单价&lt;0.5的优惠券；缺少这块将无法通过优惠券提高转化率。</p>
+<p>中门槛优惠券：门槛值/客单价介于1与1.5倍之间优惠券；缺少这块将无法刺激用户提高购买笔数。</p>
+<p>高门槛优惠券：门槛值/客单价&gt;2的优惠券；缺少这块将无法刺激高价值用户，大幅提高店铺客单价。</p>
+<p><strong>5、店铺盘货表模板</strong></p>
+<p>重点关注爆品（主推品）备货情况，避免活动上线货品备货不足，影响整体KPI。</p>
+<p>（*双11前售罄率=双11前库存/双11成交目标）</p>
+<figure data-type="image" tabindex="13"><img src="https://i.loli.net/2021/02/05/mglIeYyRJfD5cjk.png" alt="图片" loading="lazy"></figure>
+<p><strong>6、活动复盘模板</strong></p>
+<p>复盘必不可少5个模块：店铺总况、商品、推广、行业&amp;竞品、过程；</p>
+<p>l 店铺总况：店铺KPI完成情况（同比去年同等级情况如何？环比上一个大促增长情况？），销售额、销售件数、客单价、PV、转化率等数据情况；</p>
+<p>l 商品：活动商品售罄情况，爆款商品情况；</p>
+<p>l 推广：环比往期活动数据，本活动推广版块数据；</p>
+<p>l 行业&amp;竞品：自己在行业中排名情况（增长或下降），分析竞品优缺点（好的地方学习模仿、不足地方避免）；</p>
+<p>l 过程：活动过程是否有非常明显的坑，沉淀下来避免下次犯同样错误。</p>
+<figure data-type="image" tabindex="14"><img src="https://i.loli.net/2021/02/05/rfSIjTmqEQ3Y2uA.png" alt="图片" loading="lazy"></figure>
+<p>以上，是店铺活动规划整体思路，大家可以根据自身店铺量级或活动级别做裁剪，制定与自身业务需求匹配的活动方案及规划。</p>
 
-                
-                  <!-- 自动摘要出来的内容有<code则补上结尾,防止格式错误 -->
-                  </code></pre>
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/dian-shang-de-cu-xiao-mo-shi/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/user-growth-model/">
-      用户增长过程中关注的数据指标
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-10-25 21:31:52">2019-10-25</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/tag2/">
-        <span>数据分析</span>
-      </a>、
-      
-      
-      
-      <a href="https://jeanleungguo.github.io/tag/">
-        <span>用户增长</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>220<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
+            </div>
             
             
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-财务模型">一、财务模型</h1>
-<p>三个要素：</p>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/user-growth-model/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/">
-      俞军方法论——如何理解用户
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-09-28 11:20:33">2019-09-28</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-folder-o"></i>
-      <span class="pc-show language" data-lan="category-in">分类于</span>
-      
-      
-      <a href="https://jeanleungguo.github.io/product_design/">
-        <span>产品设计</span>
-      </a>
-      
-      
-    </span>
-    <span class="post-meta-divider">|</span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>5<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>1428<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-为什么要理解用户">一、为什么要理解用户</h1>
-<p>商业的本质是“利他”，为用户创造价值。而为用户创造价值理解用户是第一步。</p>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-li-jie-yong-hu/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-
-  <article class="post-list-box  post box-shadow-wrapper">
-    <div class="article-wrapper bg-color">
-      <section class="post-header">
-  <h1 class="post-title">
-    <a class="post-title-link" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/">
-      理解管理
-    </a>
-  </h1>
-  <div class="post-meta">
-    
-    <span class="meta-item pc-show">
-      <i class="fa fa-calendar-o"></i>
-      <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2019-08-21 18:05:09">2019-08-21</span>
-      <span class="post-meta-divider pc-show">|</span>
-    </span>
-    
-    <span class="meta-item">
-      <i class="fa fa-clock-o"></i>
-      <span>3<span class="language" data-lan="minute">分钟</span></span>
-    </span>
-    <span class="meta-item">
-      <span class="post-meta-divider">|</span>
-      <i class="fa fa-file-word-o"></i>
-      <span>773<span class="pc-show language" data-lan="words">字数</span></span>
-    </span>
-    
-  </div>
-</section>
-      <div class="post-body">
-        
-        
-          
-            <!-- 没有手动摘要切开启了自动摘要,则根据配置筛除摘要内容 -->
-            
-            
-              
-              
-              
-            
-              
-              
-              
-            
-            
-              <p><h1 id="一-理解管理的核心">一、理解管理的核心</h1>
-<p>管理是决定做什么，并通过人调度资源完成这件事。<br>
-
-                
-              <p>
-            
-          
-        
-        
-        <div class="post-button text-center">
-          <a class="btn language" data-lan="read-more" href="https://jeanleungguo.github.io/ru-he-zuo-guan-li/" rel="contents">
-            阅读全文 »
-          </a>
-        </div>
-        
-      </div>
-      
-    </div>
-  </article>
-  
-            
-            
-<div class="page bg-color">
-  <ul class="pagination-ul">
-    
-      <li class="pagination-dir">
-        <a href="https://jeanleungguo.github.io/page/4/">
-          <i class="fa fa-angle-left"></i>
-        </a>
-      </li>
-    
-    
-      <!-- 1 2 3 4 ... N -->
-      
-        <!-- 1 ... N-2 N-1 N-->
-        <li class="pagination-li">
-          <a href="/">1</a>
-        </li>
-        <li class="pagination-li">
-          …
-        </li>
-        
-          <li class="pagination-li ">
-            <a href="/page/4">
-              4
-            </a>
-          </li>
-        
-          <li class="pagination-li pagination-active">
-            <a href="#">
-              5
-            </a>
-          </li>
-        
-          <li class="pagination-li ">
-            <a href="/page/6">
-              6
-            </a>
-          </li>
-        
-      
-    
-    
-      <li class="pagination-dir">
-        <a href="/page/6">
-          <i class="fa fa-angle-right"></i>
-        </a>
-      </li>
-    
+              <div class="post-footer">
+  <ul class="post-copyright">
+    <li class="post-copyright-author">
+      <strong class="language" data-lan="author">本文作者：</strong>
+      Jeanleung
+    </li>
+    <li class="post-copyright-link">
+      <strong class="language" data-lan="link">本文链接：</strong>
+      <a href="https://jeanleungguo.github.io/huo-dong-yun-ying-si-lu/" title="活动运营思路">https://jeanleungguo.github.io/huo-dong-yun-ying-si-lu/</a>
+    </li>
+    <li class="post-copyright-license">
+      <strong class="language" data-lan="copyright">版权声明： </strong>
+      本博客所有文章除特别声明外，均采用<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！
+    </li>
   </ul>
+  <div class="tags">
+    
+      <a href="https://jeanleungguo.github.io/marketing/"># marketing</a>
+    
+  </div>
+  <div class="nav">
+    <div class="nav-prev">
+      
+    </div>
+    <div class="nav-next">
+      
+        <a class="nav-pc-next" title="中台—需求预测" href="https://jeanleungguo.github.io/zhong-tai-cang-chu-yu-ce/">中台—需求预测</a>
+        <a class="nav-mobile-next" title="中台—需求预测" href="https://jeanleungguo.github.io/zhong-tai-cang-chu-yu-ce/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
+      
+    </div>
+  </div>
 </div>
-          </section>
+            
+            
+  
+
+          </div>
         </div>
       </div>
     </div>
@@ -1480,6 +1538,223 @@
     parent.insertBefore(aelem, next);
   })
 </script>
+    <div class="reward-mask" style="display: none;">
+  <div class="reward-relative">
+    <span class="close" aria-hidden="true">x</span>
+    <div class="reward-body">
+      <h2>感谢您的支持，我会继续努力的!</h2>
+      <div class="reward-img-box">
+        <div style="position: relative; width: 140px; height: 140px;">
+          
+          
+          
+        </div>
+      </div>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
+    </div>
+    <div class="bottom">
+      
+      
+    </div>
+  </div>
+</div>
+<style>
+  .reward-mask {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000054;
+  }
+
+  .reward-relative {
+    position: relative;
+    width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #fff;
+    top: 50%;
+    margin-top: -205px;
+  }
+
+  .reward-relative .close {
+    position: absolute;
+    right: 10px;
+    font-weight: normal;
+    font-size: 16px;
+    color: #929292;
+  }
+
+  .reward-body {
+    padding: 40px 20px 20px;
+  }
+
+  .bottom {
+    display: flex;
+  }
+
+  .reward-btn {
+    text-align: center;
+  }
+
+  .reward-btn-text {
+    display: inline-block;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: #ff9734;
+    color: #FFF;
+    margin-top: 20px;
+  }
+
+  .pay-text {
+    margin-top: 10px;
+    padding: 10px;
+    flex: 1;
+    transition: all .2s linear;
+  }
+
+  .pay-text:hover {
+    background-color: #a5a5a536;
+  }
+
+  .reward-body h2 {
+    padding-top: 10px;
+    text-align: center;
+    color: #a3a3a3;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px;
+  }
+
+  .reward-body h2:after,
+  .reward-body h2:before {
+    font-family: Arial, Helvetica, sans-serif;
+    background: 0 0;
+    width: 0;
+    height: 0;
+    font-style: normal;
+    color: #eee;
+    font-size: 80px;
+    position: absolute;
+    top: 20px;
+  }
+
+  .reward-body h2:before {
+    content: '\201c';
+    left: 50px;
+  }
+
+  .reward-body h2:after {
+    content: '\201d';
+    right: 80px;
+  }
+
+  .reward-img-box {
+    display: inline-block;
+    padding: 10px;
+    border: 6px solid #ea5f00;
+    margin: 0 auto;
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .reward-img {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .reward-relative {
+      height: 100%;
+      top: 0px;
+      margin-top: 0;
+      width: auto;
+    }
+
+    .reward-relative .bottom {
+      flex-direction: column;
+    }
+
+    .reward-relative .pay-text {
+      width: 80%;
+      margin: 5px auto;
+      border: 1px solid silver;
+      padding: 6px;
+      border-radius: 4px;
+    }
+
+    .reward-body h2:after {
+      right: 40px;
+    }
+
+    .reward-body h2:after,
+    .reward-body h2:before {
+      font-size: 60px;
+    }
+
+    .reward-body h2:before {
+      left: 20px;
+    }
+  }
+</style>
+<script>
+  !function () {
+    var mask = document.querySelector('.reward-mask');
+    let close = document.querySelector('.reward-relative .close');
+    let rewardBtn = document.querySelector('.reward-btn');
+
+    let zfb = document.querySelector('#zfb'),
+      wx = document.querySelector('#wx'),
+      zfbBtn = document.querySelector('#zfbBtn'),
+      wxBtn = document.querySelector('#wxBtn');
+
+    if (zfbBtn && wxBtn) {
+      zfbBtn.addEventListener('click', () => {
+        window.Velocity(zfb, 'transition.slideLeftIn', {
+          duration: 400
+        });
+        window.Velocity(wx, 'transition.slideRightOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+
+      wxBtn.addEventListener('click', () => {
+        window.Velocity(wx, 'transition.slideRightIn', {
+          duration: 400
+        });
+        window.Velocity(zfb, 'transition.slideLeftOut', {
+          display: 'none',
+          duration: 400
+        });
+      });
+    }
+
+    rewardBtn.addEventListener('click', (e) => {
+      window.Velocity(mask, 'transition.slideDownIn', {
+        duration: 400
+      })
+    });
+
+    close.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.Velocity(mask, 'transition.slideUpOut', {
+        duration: 400
+      })
+    })
+  }()
+</script>
+
   </div>
 </body>
 
@@ -3864,6 +4139,5 @@ ofo亚太地区推广时，内部管理完全跟不上它膨胀的速度，ofo�
 
   <div class="snow-container"></div>
   <script src="/media/js/bg/snow.js"></script>
-
 
 </html>
